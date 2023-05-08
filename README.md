@@ -1,0 +1,2 @@
+# mapin
+PHP Project class
