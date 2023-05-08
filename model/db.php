@@ -2,7 +2,8 @@
 
 
 
-class Db{
+class Db
+{
 
 	private $host;
 	private $db;
@@ -10,7 +11,8 @@ class Db{
 	private $pass;
 	public $conection;
 
-	public function __construct(){
+	public function __construct()
+	{
 
 		$this->host = constant('DB_HOST');
 		$this->db = constant('DB');
