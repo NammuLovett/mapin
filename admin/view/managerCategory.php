@@ -1,3 +1,11 @@
+<?php
+require_once __DIR__ . '/../../model/Category.php';
+
+$allCategories = Category::getAllCategories();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -47,29 +55,27 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Info</th>
-                            <th>Dirección</th>
                             <th></th>
                             <!-- Quitar el texto "Acciones" del encabezado de la columna -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Parque Central</td>
-                            <td>Un hermoso parque en el centro de la ciudad.</td>
-                            <td>Calle 1 # 2-3</td>
-                            <td class="no-border-top">
-                                <div class="dropdown-menu">
-                                    <span>&#8942;</span>
-                                    <div class="dropdown-content">
-                                        <a href="#">Ver</a>
-                                        <a href="#">Editar</a>
-                                        <a href="#">Borrar</a>
+                        <?php foreach ($allCategories as $category) : ?>
+                            <tr>
+                                <td><?php echo $category->getIdCategory(); ?></td>
+                                <td><?php echo $category->getNameCategory(); ?></td>
+                                <td><?php echo $category->getDescriptionCategory(); ?></td>
+                                <td class="no-border-top">
+                                    <div class="dropdown-menu">
+                                        <span>&#8942;</span>
+                                        <div class="dropdown-content">
+                                            <a href="editCategory.php?id=<?php echo $category->getIdCategory(); ?>">Editar</a>
+                                            <a href="deleteCategory.php?id=<?php echo $category->getIdCategory(); ?>">Borrar</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Añade las filas restantes de manera similar -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
 

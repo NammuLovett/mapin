@@ -85,6 +85,10 @@
                                 <label for="mapa">Mapa google para poner latitud y longitud</label>
                                 <input type="text" id="mapa" name="mapa" class="input-field" />
                             </div>
+                            <div>
+                                <label for="mapa">Categoría</label>
+                                <input type="text" id="mapa" name="mapa" class="input-field" />
+                            </div>
                             <div class="buttons">
                                 <button type="reset">Reset</button>
                                 <button type="submit">Guardar</button>

@@ -2,7 +2,7 @@
 
 /* Database connection values */
 define("DB_HOST", "localhost");
-define("DB", "mapin");
+define("DB", "mapindb");
 define("DB_USER", "root");
 define("DB_PASS", "root");
 
