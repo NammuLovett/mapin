@@ -39,16 +39,16 @@
             <div class="outer-container">
                 <div class="form-container">
                     <h2>Formulario de Categorías</h2>
-                    <form id="registro-form" action="index.php?action=" method="POST">
+                    <form id="registro-form" action="../../index.php?action=insertCategory" method="POST">
                         <div class="icon-placeholder">
                             <label for="nombre">Nombre de la categoría <span>*</span></label>
-                            <input type="text" id="nombre" name="nombre" class="input-field" placeholder="Ej: Parque Central" required />
+                            <input type="text" id="nameCategory" name="nameCategory" class="input-field" placeholder="Ej: Parque Central" required />
                             <i class="fas fa-map-marker-alt"></i>
                             <span class="error">El campo nombre no puede estar vacío</span>
                         </div>
                         <div class="icon-placeholder">
                             <label for="info">Descripción <span>*</span></label>
-                            <input type="text" id="info" name="info" class="input-field" placeholder="Ej: Un hermoso parque en el centro de la ciudad." required />
+                            <input type="text" id="descriptionCategory" name="descriptionCategory" class="input-field" placeholder="Ej: Un hermoso parque en el centro de la ciudad." required />
                         </div>
                         <div class="buttons">
                             <button type="reset">Reset</button>

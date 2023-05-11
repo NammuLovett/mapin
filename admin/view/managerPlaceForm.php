@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" crossorigin="anonymous" />
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap" async defer></script>
+
     <title>MAP!N</title>
 </head>
 
@@ -84,7 +86,9 @@
                             </div>
                             <div>
                                 <label for="mapa">Mapa google para poner latitud y longitud</label>
-                                <input type="text" id="mapa" name="mapa" class="input-field" />
+                                <div id="map" style="width: 100%; height: 400px;"></div>
+                                <!-- Cambia el ID y el nombre del input para que sea más descriptivo -->
+                                <input type="text" id="coordenadas" name="coordenadas" class="input-field" readonly />
                             </div>
                             <div>
                                 <label for="mapa">Categoría</label>
@@ -102,5 +106,43 @@
         </main>
     </div>
 </body>
+<script>
+    var map;
+    var marker;
+
+    function initMap() {
+        // Inicializa el mapa centrado en Ceuta
+        var ceuta = {
+            lat: 35.889387,
+            lng: -5.321346
+        };
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: ceuta
+        });
+
+        // Permite al usuario colocar un pin y almacena las coordenadas
+        map.addListener('click', function(event) {
+            placeMarker(event.latLng);
+        });
+    }
+
+    function placeMarker(location) {
+        // Elimina el marcador anterior si existe
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        // Crea y coloca un nuevo marcador
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        // Almacena la latitud y longitud en los campos ocultos
+        document.getElementById('coordenadas').value = location.lat() + ', ' + location.lng();
+
+    }
+</script>
 
 </html>

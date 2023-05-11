@@ -11,7 +11,7 @@ class Category
     private $conection;
 
     // Constructor
-    public function __construct($idCategory, $nameCategory, $descriptionCategory)
+    public function __construct($idCategory = null, $nameCategory, $descriptionCategory)
     {
         $this->idCategory = $idCategory;
         $this->nameCategory = $nameCategory;

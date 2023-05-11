@@ -2,17 +2,20 @@
 
 require_once 'config/config.php';
 require_once 'model/Db.php';
+require_once 'model/Mapin.php';
 require_once 'model/Category.php';
 require_once 'model/Location.php';
 require_once 'model/Manager.php';
 require_once 'model/Place.php';
 require_once 'model/Visitor.php';
+/* controlador */
 require_once 'controller/controller.php';
 require_once 'admin/controller/adminController.php';
 
 
 /* Intercambio entre controladores  admin y visitor*/
 if (!isset($_GET["action"])) $_GET["action"] = constant("DEFAULT_ACTION");
+
 if (
     $_GET['controller'] = 'adminController'
 ) {
