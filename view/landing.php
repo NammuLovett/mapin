@@ -20,11 +20,12 @@
     <!-- Marcado estructurado (datos estructurados de Schema.org) para SEO -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "MAP!N",
-            "description": "Registra y descubre nuevos lugares de interés, monumentos y museos en tu ciudad.",
-            "url": "https://www.example.com" // Reemplaza con la URL de tu sitio
+            "@context": 'https://schema.org',
+            "@type": 'WebSite',
+            "name": 'MAP!N',
+            "description": 'Registra y descubre nuevos lugares de interés, monumentos y museos en tu ciudad.'
+            ',
+            "url": 'https://www.mapin.es'
         }
     </script>
     <!-- importar fuentes -->
@@ -79,7 +80,7 @@
         </nav>
     </header>
     <!-- seccion 1 -->
-    <section class="principal">
+    <section class="contenido">
         <div class="texto">
             <h1>Explora tu ciudad, Descubre tu Mundo</h1>
             <p>
@@ -101,11 +102,11 @@
                 <div class="card">
                     <img src="../zimg/places/image1.png" alt="Lugar de interés 1" />
                     <div class="card-info">
-                        <h3>Nombre del lugar 1</h3>
+                        <h3>Murallas Reales</h3>
                         <div class="rating">
                             <span>4.5</span>
                             <span class="star">★</span>
-                            <span>(200)</span>
+
                         </div>
                     </div>
                 </div>
@@ -113,11 +114,11 @@
                 <div class="card">
                     <img src="../zimg/places/image2.png" alt="Lugar de interés 1" />
                     <div class="card-info">
-                        <h3>Nombre del lugar 1</h3>
+                        <h3>Parque Marítimo</h3>
                         <div class="rating">
                             <span>4.5</span>
                             <span class="star">★</span>
-                            <span>(200)</span>
+
                         </div>
                     </div>
                 </div>
@@ -125,23 +126,11 @@
                 <div class="card">
                     <img src="../zimg/places/image3.png" alt="Lugar de interés 1" />
                     <div class="card-info">
-                        <h3>Nombre del lugar 1</h3>
+                        <h3>Casa de los dragones</h3>
                         <div class="rating">
                             <span>4.5</span>
                             <span class="star">★</span>
-                            <span>(200)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- asd -->
-                <div class="card">
-                    <img src="../zimg/places/image4.jpg" alt="Lugar de interés 1" />
-                    <div class="card-info">
-                        <h3>Nombre del lugar 1</h3>
-                        <div class="rating">
-                            <span>4.5</span>
-                            <span class="star">★</span>
-                            <span>(200)</span>
+
                         </div>
                     </div>
                 </div>
@@ -189,9 +178,9 @@
                 <div class="foto-opinion">
                     <img src="../zimg/places/image3.png" alt="avatar" />
                 </div>
-                <p class="texto-opinion">Opinión del usuario...</p>
-                <p class="autor">Nombre del usuario</p>
-                <p class="ciudad">Ciudad del usuario</p>
+                <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
+                <p class="autor">Paco Benítez</p>
+                <p class="ciudad">Sevilla</p>
                 <div class="estrellas">
                     <span class="star">&#9733;</span>
                     <span class="star">&#9733;</span>
@@ -206,7 +195,7 @@
                 <div class="foto-opinion">
                     <img src="../zimg/places/image3.png" alt="avatar" />
                 </div>
-                <p class="texto-opinion">Opinión del usuario...</p>
+                <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
                 <p class="autor">Nombre del usuario</p>
                 <p class="ciudad">Ciudad del usuario</p>
                 <div class="estrellas">
@@ -222,7 +211,7 @@
                 <div class="foto-opinion">
                     <img src="../zimg/places/image3.png" alt="avatar" />
                 </div>
-                <p class="texto-opinion">Opinión del usuario...</p>
+                <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
                 <p class="autor">Nombre del usuario</p>
                 <p class="ciudad">Ciudad del usuario</p>
                 <div class="estrellas">
@@ -238,7 +227,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="principal">
+        <div class="contenido">
             <div class="footer-logo">
                 <img src="../zimg/logo/typo.svg" alt="Logo" />
                 <div class="footer-socials">
@@ -249,23 +238,23 @@
             </div>
             <div class="footer-right">
                 <div class="column">
-                    <h4>Menú</h4>
-                    <a href="#">Inicio</a>
-                    <a href="#">Explorar</a>
-                    <a href="#">Sobre Nosotros</a>
+                    <h4>MENÚ</h4>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#explorar">Explorar</a>
+                    <a href="#nosotros">Nosotros</a>
                 </div>
                 <div class="column">
-                    <h4>Compañía</h4>
+                    <h4>COMPAÑÍA</h4>
                     <a href="#">Términos y condiciones</a>
                     <a href="#">Privacidad</a>
                 </div>
                 <div class="column">
-                    <h4>Soporte</h4>
+                    <h4>SOPORTE</h4>
                     <a href="#">FAQ</a>
                     <a href="#">Recursos</a>
                 </div>
                 <div class="column">
-                    <h4>Contacto</h4>
+                    <h4>CONTACTO</h4>
                     <p><i class="fas fa-mobile-alt"></i> 0000121212</p>
                     <p><i class="fas fa-envelope"></i> hola@mapin.es</p>
                 </div>
