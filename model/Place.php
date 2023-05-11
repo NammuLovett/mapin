@@ -11,7 +11,9 @@ class Place
     private $coordinatesPlace;
     private $showPlace;
     private $idLocation;
-    private $categories;
+    private array $categories = array();
+
+
 
     // Constructor
     public function __construct($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $coordinatesPlace, $showPlace, $idLocation)
@@ -25,7 +27,6 @@ class Place
         $this->coordinatesPlace = $coordinatesPlace;
         $this->showPlace = $showPlace;
         $this->idLocation = $idLocation;
-        $this->categories = array();
     }
 
 
@@ -142,6 +143,22 @@ class Place
     }
 
     /* FUNCIONES */
+
+    /* public function getCategorias($id)
+    {
+        $this->getConection();
+        $sql = "SELECT * FROM category WHERE idLocation = '$id'";
+        $result = $this->conection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $this->categorias[$i] = new Categoria($row['idCategoria'], $row['nombre'], $row['img'], $row['estado'], $row['orden'], $row['idNegocio']);
+                $i++;
+            }
+            return $this->categorias;
+        }
+    } */
 
     /* INSERT LIST ; BORRAR, UPDATE  */
 }

@@ -10,8 +10,9 @@ class Visitor
     private $genderVisitor;
     private $datebirthVisitor;
     private $cityVisitor;
-    private $places;
-    private $favorites;
+
+    private array $places = array();
+    private array $favorites = array();
 
     // Constructor
     public function __construct($idVisitor, $nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor)
@@ -24,8 +25,6 @@ class Visitor
         $this->genderVisitor = $genderVisitor;
         $this->datebirthVisitor = $datebirthVisitor;
         $this->cityVisitor = $cityVisitor;
-        $this->places = array();
-        $this->favorites = array();
     }
 
     // Getters
@@ -120,30 +119,50 @@ class Visitor
         $this->cityVisitor = $cityVisitor;
     }
 
-    // Métodos para manejar los arrays de lugares y favoritos
-    public function addPlace($place)
-    {
-        array_push($this->places, $place);
-    }
 
+
+    // Funciones ARRAY
+    /*     public function addPlace($place)
+    {
+        $this->getConection();
+        $sql = "UPDATE `visitorVisitPlace` SET
+        `idVisitor`	= '$this->idvisitor',
+        `idPlace`	= '$this->idPlace',
+        WHERE `visitorVisitPlace`.`idVisitor` = " . $this->idVisitor . ";";
+
+        if ($this->conection->query($sql)) {
+            return $this;
+        } else {
+            return false;
+        }
+        $this->conection->close();
+    }
+ */
     public function removePlace($place)
     {
-        $index = array_search($place, $this->places);
-        if ($index !== false) {
-            array_splice($this->places, $index, 1);
-        }
     }
 
-    public function addFavorite($favorite)
+    /*    public function addFavorite($favorite)
     {
-        array_push($this->favorites, $favorite);
-    }
+        $sql = "UPDATE `visitorVisitPlace` SET
+        `idVisitor`	= '$this->idvisitor',
+        `idPlace`	= '$this->idPlace',
+        WHERE `visitorVisitPlace`.`idVisitor` = " . $this->idVisitor . ";";
+
+        if ($this->conection->query($sql)) {
+            return $this;
+        } else {
+            return false;
+        }
+        $this->conection->close();
+    } */
 
     public function removeFavorite($favorite)
     {
-        $index = array_search($favorite, $this->favorites);
-        if ($index !== false) {
-            array_splice($this->favorites, $index, 1);
-        }
     }
 }
+
+
+/* FUNCIONES DE USUARIO  */
+
+/* CREATE;  */

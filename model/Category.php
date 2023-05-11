@@ -31,10 +31,10 @@ class Category
     }
 
     // Setters
-    public function setIdCategory($idCategory)
+    /*  public function setIdCategory($idCategory)
     {
         $this->idCategory = $idCategory;
-    }
+    } */
 
     public function setNameCategory($nameCategory)
     {

@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
     <link rel="stylesheet" href="./css/loginRegisterStyle.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
+
 </head>
 
 <body>
-    <div class="container">
+    <main class="container">
         <div class="form-container">
+            <div class="logo">
+                <img src="../zimg/logo/logo VERT.svg" alt="" srcset="">
+
+            </div>
             <h1>Registro</h1>
             <p>
                 Crea una cuenta para acceder a todas las funcionalidades de Mapin!
@@ -42,9 +48,7 @@
 
                     <span class="error">El campo contraseña no puede estar vacío</span>
                 </div>
-                <div id="password-strength" class="password-strength">
-                    <p>Fuerza de la contraseña: <span id="strength-output"></span></p>
-                </div>
+
                 <div class="icon-placeholder">
                     <label for="confirm-password">Confirmar contraseña <span>*</span></label>
                     <input type="password" id="confirm-password" name="confirm-password" class="input-field" placeholder="Ej: Contraseña123" required />
@@ -52,23 +56,26 @@
 
                     <span class="error">Las contraseñas no coinciden</span>
                 </div>
+                <div id="password-strength" class="password-strength">
+                    <p>Fuerza de la contraseña: <span id="strength-output"></span></p>
+                </div>
                 <div class="icon-placeholder">
                     <label for="fecha-nacimiento">Fecha de nacimiento <span>*</span></label>
                     <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" class="input-field" required />
                     <i class="fas fa-calendar"></i>
                     <span class="error">El campo fecha de nacimiento no puede estar vacío</span>
                 </div>
-                <label for="codigo-postal">Código postal <span>*</span></label>
-                <input type="text" id="codigo-postal" name="codigo-postal" class="input-field" pattern="^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$" maxlength="5" placeholder="Ej: 28012" required />
-                <span class="error">El campo código postal no puede estar vacío</span>
+
                 <label for="genero">Género <span>*</span></label>
                 <select id="genero" name="genero" required>
                     <option value="">Seleccione una opción</option>
                     <option value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
-                    <option value="prefiero_no_contestar">Prefiero no contestar</option>
                 </select>
                 <span class="error">El campo género no puede estar vacío</span>
+                <label for="codigo-postal">Código postal </label>
+                <input type="text" id="codigo-postal" name="codigo-postal" class="input-field" pattern="^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$" maxlength="5" placeholder="Ej: 28012" required />
+                <span class="error">El campo código postal no puede estar vacío</span>
                 <div class="buttons">
                     <button type="reset">Reset</button>
                     <button type="submit">Guardar</button>
@@ -80,7 +87,7 @@
                 <a href="login.php">Haz Login</a>
             </div>
         </div>
-    </div>
+    </main>
     <script src="./js/register.js"></script>
 </body>
 

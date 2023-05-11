@@ -29,7 +29,7 @@
         }
     </script>
     <!-- importar fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
 </head>
 <!-- Cabecera de la página con logo, menú de navegación y botones de login/registro -->
 
