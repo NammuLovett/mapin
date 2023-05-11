@@ -28,6 +28,8 @@ class Place
         $this->categories = array();
     }
 
+
+
     // Getters
     public function getIdPlace()
     {
@@ -138,4 +140,8 @@ class Place
             array_splice($this->categories, $index, 1);
         }
     }
+
+    /* FUNCIONES */
+
+    /* INSERT LIST ; BORRAR, UPDATE  */
 }

@@ -59,7 +59,7 @@
                 <h3>Lugares destacados</h3>
                 <div class="cards-container-c2">
                     <!-- Card -->
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c2">
                             <div class="card-image-c2">
                                 <img src="../zimg/places/image1.png" alt="foso" />
@@ -68,7 +68,7 @@
                         </div>
                     </a>
                     <!-- Card -->
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c2">
                             <div class="card-image-c2">
                                 <img src="../zimg/places/image2.png" alt="foso" />
@@ -77,7 +77,7 @@
                         </div>
                     </a>
                     <!-- Card -->
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c2">
                             <div class="card-image-c2">
                                 <img src="../zimg/places/image3.png" alt="foso" />

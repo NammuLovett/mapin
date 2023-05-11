@@ -23,7 +23,7 @@
         <section class="columna-1">
             <!-- Logo -->
             <div class="logo">
-                <a href="visitorDashboard.html"><img src="../zimg/logo/logo HOR.svg" alt="Logo MAP!N" /></a>
+                <a href="visitorDashboard.php"><img src="../zimg/logo/logo HOR.svg" alt="Logo MAP!N" /></a>
             </div>
             <!-- Menú de navegación -->
             <nav>
@@ -69,7 +69,7 @@
                 </div>
                 <!-- Card -->
                 <div class="cards-container-c3 ">
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c3">
                             <div class="card-image-c3">
                                 <img src="../zimg/places/image1.png" alt="Lugar 1" />
@@ -84,7 +84,7 @@
                         </div>
                     </a>
                     <!-- Card -->
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c3">
                             <div class="card-image-c3">
                                 <img src="../zimg/places/image2.png" alt="Lugar 2" />
@@ -99,7 +99,7 @@
                         </div>
                     </a>
                     <!-- Card -->
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c3">
                             <div class="card-image-c3">
                                 <img src="../zimg/places/image3.png" alt="Lugar 3" />
@@ -114,7 +114,7 @@
                         </div>
                     </a>
                     <!-- card -->
-                    <a href="vistalugar.html">
+                    <a href="visitorPlace.php">
                         <div class="card-c3">
                             <div class="card-image-c3">
                                 <img src="../zimg/places/image3.png" alt="Lugar 3" />
