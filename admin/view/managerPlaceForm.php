@@ -84,12 +84,13 @@
                                 <input type="file" id="imagen" name="imagen" class="input-field" accept="image/*" />
                                 <i class="fas fa-image"></i>
                             </div>
-                            <div>
+                            <div class="icon-placeholder">
                                 <label for="mapa">Mapa google para poner latitud y longitud</label>
-                                <div id="map" style="width: 100%; height: 400px;"></div>
-                                <!-- Cambia el ID y el nombre del input para que sea más descriptivo -->
+                                <i class="fas fa-map-marker-alt"></i>
                                 <input type="text" id="coordenadas" name="coordenadas" class="input-field" readonly />
+                                <div id="map" class="map-container"></div>
                             </div>
+
                             <div>
                                 <label for="mapa">Categoría</label>
                                 <input type="text" id="mapa" name="mapa" class="input-field" />
