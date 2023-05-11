@@ -15,7 +15,8 @@
     <div class="wrapper">
         <nav class="sidebar">
             <div class="logo">
-                <img src="../zimg/logo/typo.svg" alt="Logo de Map!n" />
+                <img src="../../zimg/logo/typo.svg" alt="Logo de Map!n" />
+
             </div>
 
             <ul class="menu">
@@ -38,7 +39,7 @@
             <div class="outer-container">
                 <div class="form-container">
                     <h2>Formulario de Categorías</h2>
-                    <form id="registro-form">
+                    <form id="registro-form" action="index.php?action=" method="POST">
                         <div class="icon-placeholder">
                             <label for="nombre">Nombre de la categoría <span>*</span></label>
                             <input type="text" id="nombre" name="nombre" class="input-field" placeholder="Ej: Parque Central" required />
