@@ -95,4 +95,18 @@ class adminController
             return $category;
         }
     }
+
+    public function editCategory()
+    {
+    }
+    public function deleteCategory()
+    {
+
+        $idCategory = $_GET['id'];
+        $categoria = new Category($idCategory, null, null);
+        $categoria->deleteCategory($idCategory);
+
+        $this->view = 'managerCategory';
+    }
+    /* index.php?action=insertCategory */
 }

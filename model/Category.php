@@ -17,7 +17,6 @@ class Category
         $this->nameCategory = $nameCategory;
         $this->descriptionCategory = $descriptionCategory;
         $this->getConection();
-        /* $this->getPlaces($this->idPlaces); */
     }
 
     // Getters

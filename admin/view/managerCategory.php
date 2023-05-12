@@ -69,8 +69,8 @@ $allCategories = Category::getAllCategories();
                                     <div class="dropdown-menu">
                                         <span>&#8942;</span>
                                         <div class="dropdown-content">
-                                            <a href="editCategory.php?id=<?php echo $category->getIdCategory(); ?>">Editar</a>
-                                            <a href="deleteCategory.php?id=<?php echo $category->getIdCategory(); ?>">Borrar</a>
+                                            <a href="index.php?action=editCategory&id=<?php echo $category->getIdCategory(); ?>">Editar</a>
+                                            <a href="index.php?action=deleteCategory&id=<?php echo $category->getIdCategory(); ?>">Borrar</a>
                                         </div>
                                     </div>
                                 </td>
