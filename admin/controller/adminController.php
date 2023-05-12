@@ -5,6 +5,8 @@ class adminController
     public $view;
     public $mapin;
     public $title;
+    public $vars = array();
+
 
     public function __construct()
     {
@@ -85,7 +87,7 @@ class adminController
     public function insertCategory()
     {
         $this->view = 'managerCategory';
-        /* $this->header = "headerSec"; */
+
         if (isset($_POST["nameCategory"]) && isset($_POST["descriptionCategory"])) {
 
             $nameCategory = $_POST['nameCategory'];
@@ -96,9 +98,32 @@ class adminController
         }
     }
 
+    public function verEditCategory()
+    {
+        $idCategory = $_GET['id'];
+        $category = Category::getCategoryById($idCategory);
+        $this->vars = [];
+        $this->vars['category'] = $category;
+        $this->view = 'managerCategoryFormEdit';
+    }
+
     public function editCategory()
     {
+        $idCategory = $_GET['id'];
+        if (isset($_POST['nameCategory']) && isset($_POST['descriptionCategory'])) {
+            $nameCategory = $_POST['nameCategory'];
+            $desCategory = $_POST['descriptionCategory'];
+
+            $categoria = new Category($idCategory, $nameCategory, $desCategory);
+            $categoria->editCategory($idCategory);
+        }
+
+        $this->view = 'managerCategory';
     }
+
+
+
+
     public function deleteCategory()
     {
 

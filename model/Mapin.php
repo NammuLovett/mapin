@@ -37,6 +37,22 @@ class Mapin
         return $manager;
     }
 
+    public function getCategoryById($id)
+    {
+
+
+        if (is_null($id)) return false;
+
+        $sql = " SELECT * FROM `category` WHERE `idCategory` = '$id';";
+
+        $result = $this->conection->query($sql);
+
+        $row = $result->fetch_assoc();
+        $category =  new Category($row['idCategory'], $row['nameCategory'], $row['descriptionCategory']);
+
+        return $category;
+    }
+
     /* LOGIN */
 
     public function login($email, $password)

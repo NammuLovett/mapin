@@ -102,7 +102,23 @@ class Category
 
         return $categories;
     }
-    /* llamar array categorias 
-    $allCategories = Category::getAllCategories();
-    */
+
+
+    public static function getCategoryById($idCategory)
+    {
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT * FROM category WHERE idCategory = '$idCategory'";
+
+        $result = $conection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $category = new Category($row['idCategory'], $row['nameCategory'], $row['descriptionCategory']);
+            return $category;
+        } else {
+            return null;
+        }
+    }
 }
