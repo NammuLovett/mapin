@@ -23,7 +23,6 @@ class adminController
                 return $this->verManagerCategory();
             } else {
                 $this->view = 'managerLogin';
-                $this->title = 'Inicio de Sesión';
             }
         }
     }
@@ -34,11 +33,9 @@ class adminController
 
         $logeo = $this->mapin->login($_POST['email'], $_POST['password']);
         if ($logeo !== false) {
-            $this->verManagerCategory();
+            $this->verManagerDashboard();
             return $logeo;
         } else {
-            var_dump($_POST['email'], $_POST['password']);
-
             $this->login();
         }
     }
@@ -49,18 +46,41 @@ class adminController
         $this->login();
     }
 
-    public function verManagerCategory()
+
+
+    public function verManagerDashboard()
     {
         if (isset($_SESSION['manager'])) {
-            $this->view = 'managerCategory';
-            $this->title = 'Manager Category';
+            $this->view = 'managerDashboard';
             return $this->mapin->getManagerById($_SESSION['manager']);
         } else {
             $this->login();
         }
     }
 
+    /* CARGAR VISTAS MANAGER*/
+    public function verManagerCategory()
+    {
+        $this->view = 'managerCategory';
+    }
 
+    public function verManagerCategoryForm()
+    {
+        $this->view = 'managerCategoryForm';
+    }
+
+    public function verManagerPlace()
+    {
+        $this->view = 'managerPlace';
+    }
+
+    public function verManagerPlaceForm()
+    {
+        $this->view = 'managerPlaceForm';
+    }
+
+
+    /* CATEGORÏA */
 
     public function insertCategory()
     {

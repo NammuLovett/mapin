@@ -17,6 +17,7 @@ class Controller
     {
         $this->view = 'visitorLogin';
     }
+
     public function register()
     {
         $this->view = 'register';

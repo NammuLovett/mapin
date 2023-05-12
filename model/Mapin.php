@@ -32,7 +32,7 @@ class Mapin
         $result = $this->conection->query($sql);
 
         $row = $result->fetch_assoc();
-        $manager =  new Manager($row['idManager'], $row['nameManager'], $row['surnameManager'], $row['emailManager'], $row['passwordManager'], $row['password'], $row['showManager'], $row['idLocation']);
+        $manager =  new Manager($row['idManager'], $row['nameManager'], $row['surnameManager'], $row['emailManager'], $row['passwordManager'],  $row['showManager'], $row['idLocation']);
 
         return $manager;
     }
