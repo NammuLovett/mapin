@@ -13,6 +13,19 @@ class Controller
         $this->mapin = new Mapin();
     }
 
+    public function landing()
+    {
+        $this->view = 'visitorLogin';
+    }
+    public function register()
+    {
+        $this->view = 'register';
+    }
+
+    public function login()
+    {
+        $this->view = 'login.php';
+    }
     public function visitorDashboard()
     {
     }

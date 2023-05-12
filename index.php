@@ -10,20 +10,13 @@ require_once 'model/Place.php';
 require_once 'model/Visitor.php';
 /* controlador */
 require_once 'controller/controller.php';
-require_once 'admin/controller/adminController.php';
 
 
 /* Intercambio entre controladores  admin y visitor*/
 if (!isset($_GET["action"])) $_GET["action"] = constant("DEFAULT_ACTION");
 
-if (
-    $_GET['controller'] = 'adminController'
-) {
-    $controlador = new adminController();
-} else {
-    $controlador = new controller();
-}
 
+$controlador = new Controller();
 
 
 $dataToView = array();
@@ -32,6 +25,6 @@ $dataToView  = $controlador->{$_GET["action"]}();
 
 
 // Leer vistas 
-require_once 'view/template/' . $controlador->header . '.php';
+/* require_once 'view/template/' . $controlador->header . '.php'; */
 require_once 'view/' . $controlador->view . '.php';
-require_once 'view/template/footer.php';
+/* require_once 'view/template/footer.php'; */

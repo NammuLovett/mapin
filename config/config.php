@@ -8,4 +8,5 @@ define("DB_PASS", "root");
 
 /* Default options */
 
-define("DEFAULT_ACTION", "web");
+/* llamas a la función  del controlador que llama a la vista*/
+define("DEFAULT_ACTION", "landing");
