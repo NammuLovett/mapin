@@ -11,11 +11,11 @@ class Category
     private $conection;
 
     // Constructor
-    public function __construct($nameCategory, $descriptionCategory, $idCategory = null)
+    public function __construct($idCategory, $nameCategory, $descriptionCategory)
     {
+        $this->idCategory = $idCategory;
         $this->nameCategory = $nameCategory;
         $this->descriptionCategory = $descriptionCategory;
-        $this->idCategory = $idCategory;
         $this->getConection();
         /* $this->getPlaces($this->idPlaces); */
     }

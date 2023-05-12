@@ -25,7 +25,7 @@ $allCategories = Category::getAllCategories();
     <div class="wrapper">
         <nav class="sidebar">
             <div class="logo">
-                <img src="../../zimg/logo/typo.svg" alt="Logo de Map!n" />
+                <img src="../zimg/logo/typo.svg" alt="Logo de Map!n" />
 
             </div>
 
@@ -57,7 +57,6 @@ $allCategories = Category::getAllCategories();
                             <th>Nombre</th>
                             <th>Info</th>
                             <th></th>
-                            <!-- Quitar el texto "Acciones" del encabezado de la columna -->
                         </tr>
                     </thead>
                     <tbody>

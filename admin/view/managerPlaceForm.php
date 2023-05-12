@@ -17,7 +17,7 @@
     <div class="wrapper">
         <nav class="sidebar">
             <div class="logo">
-                <img src="../../zimg/logo/typo.svg" alt="Logo de Map!n" />
+                <img src="../zimg/logo/typo.svg" alt="Logo de Map!n" />
 
             </div>
 
