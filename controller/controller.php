@@ -76,7 +76,10 @@ class Controller
 
     public function verVisitorDescubre()
     {
+        $places = Place::getAllPlaces();
+
         $this->view = 'visitorDescubre';
+        include('view/visitorDescubre.php');
     }
     public function verVisitorFavorito()
     {
@@ -91,8 +94,22 @@ class Controller
     {
         $this->view = 'visitorMapaCategory';
     }
+
+
     public function verVisitorPlace()
     {
-        $this->view = 'visitorPlace';
+        if (isset($_GET['id'])) {
+            $idPlace = $_GET['id'];
+
+            $place = Place::getPlaceById($idPlace);
+
+
+            $this->view = 'visitorPlace';
+
+
+            $_SESSION['mapin'] = $place;
+        } else {
+            echo "ERROR: ";
+        }
     }
 }

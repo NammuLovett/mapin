@@ -149,15 +149,13 @@ class Place
         $dbObj = new Db();
         $conection = $dbObj->conection;
 
-        $sql = "SELECT * FROM place"; // Asume que 'place' es el nombre de tu tabla
+        $sql = "SELECT * FROM place";
         $result = $conection->query($sql);
         $places = [];
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['coordinatesPlace'], $row['showPlace'], $row['idLocation']);
-                // Tendrás que añadir las categorías después de crear el objeto place, si es necesario.
-                $places[] = $place;
+                $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['coordinatesPlace'], $row['showPlace'], $row['idLocation']);
             }
         }
 

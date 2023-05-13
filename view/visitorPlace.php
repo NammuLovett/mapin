@@ -1,3 +1,7 @@
+<?php
+$mapin = $_SESSION['mapin'];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -51,13 +55,13 @@
         <section class="columna-2">
 
             <div class="place-image">
-                <img src="../zimg/places/image4.jpg" alt="" srcset="" class="place-image-img">
+                <img src="zimg/places/image4.jpg" alt="" srcset="" class="place-image-img">
             </div>
             <div class="place-details">
 
                 <div class="icon-links-container">
 
-                    <a href="#" class="icon-link" id="link-visitado" onclick="/* llamar a funcion */">
+                    <a href="#" class="icon-link" id="link-visitado" onclick="">
                         <div class="circle">
                             <i class="fas fa-check"></i>
                         </div>
@@ -75,13 +79,15 @@
 
                 <!-- --- -->
                 <div class="place-info">
-                    <h1 class="place-title">Murallas Reales</h1>
+                    <h1 class="place-title"><?php echo $mapin->getNamePlace(); ?></h1>
                     <p class="place-location"><i class="fa-solid fa-location-dot"></i> Ceuta, España</p>
                     <h2 class="info-title">Información</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum malesuada dui, a fermentum ligula consequat et.</p>
+                    <p><?php echo $mapin->getInfoPlace(); ?></p>
                     <h2 class="description-title">Descripción</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum malesuada dui, a fermentum ligula consequat et. Fusce molestie urna ut orci tristique, ac facilisis purus malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    <p><?php echo $mapin->getDescriptionPlace(); ?></p>
                 </div>
+                <div id="map" style="height: 400px; width: 100%;"></div>
+
             </div>
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
@@ -112,7 +118,26 @@
     </main>
 
     <script src="view/js/visitor.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            var placeLocation = {
+                lat: <?php echo $mapin->getLatitud(); ?>,
+                lng: <?php echo $mapin->getLongitud(); ?>
+            };
 
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: placeLocation
+            });
+
+            var marker = new google.maps.Marker({
+                position: placeLocation,
+                map: map
+            });
+        }
+    </script>
 </body>
 
 </html>

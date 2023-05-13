@@ -127,7 +127,7 @@
                     <a href="vistalugar.html">
                         <div class="card-c3">
                             <div class="card-image-c3">
-                                <img src="../zimg/places/image1.png" alt="Lugar 1" />
+                                <img src="zimg/places/image1.png" alt="Lugar 1" />
                             </div>
                             <div class="card-info-c3">
                                 <p class="card-name-c3">Murallas Reales</p>
@@ -142,7 +142,7 @@
                     <a href="vistalugar.html">
                         <div class="card-c3">
                             <div class="card-image-c3">
-                                <img src="../zimg/places/image2.png" alt="Lugar 2" />
+                                <img src="zimg/places/image2.png" alt="Lugar 2" />
                             </div>
                             <div class="card-info-c3">
                                 <p class="card-name-c3">Parque Marítimo del Mediterráneo</p>
@@ -157,7 +157,7 @@
                     <a href="vistalugar.html">
                         <div class="card-c3">
                             <div class="card-image-c3">
-                                <img src="../zimg/places/image3.png" alt="Lugar 3" />
+                                <img src="zimg/places/image3.png" alt="Lugar 3" />
                             </div>
                             <div class="card-info-c3">
                                 <p class="card-name-c3">Casa de los Dragones</p>
