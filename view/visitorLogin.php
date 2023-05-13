@@ -23,7 +23,7 @@
                 Inicie sesión ahora para poder acceder a la plataforma y registrar sus
                 visitas.
             </p>
-            <form action="">
+            <form action="index.php?action=logearUsuario" method="post">
                 <div class="icon-placeholder">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="input-field" placeholder="Ej: juan@example.com" required />
@@ -49,7 +49,6 @@
             </div>
         </div>
         </div>
-        <script src="view/js/login.js"></script>
 </body>
 
 </html>

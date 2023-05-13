@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MAP!N!</title>
     <!-- Estilos principales -->
-    <link rel="stylesheet" href="./css/visitorStyle.css" />
+    <link rel="stylesheet" href="view/css/visitorStyle.css" />
     <!-- Icono del sitio -->
-    <link rel="icon" href="../zimg/logo/Logotipo.svg" type="image/svg+xml" />
+    <link rel="icon" href="zimg/logo/Logotipo.svg" type="image/svg+xml" />
     <!-- Fuente personalizada Lato -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
     <!-- Iconos de Font Awesome -->
@@ -23,7 +23,7 @@
         <section class="columna-1">
             <!-- Logo -->
             <div class="logo">
-                <a href="visitorDashboard.html"><img src="../zimg/logo/logo HOR.svg" alt="Logo MAP!N" /></a>
+                <a href="visitorDashboard.html"><img src="zimg/logo/logo HOR.svg" alt="Logo MAP!N" /></a>
             </div>
             <!-- Menú de navegación -->
             <nav>

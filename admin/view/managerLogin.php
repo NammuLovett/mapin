@@ -15,15 +15,15 @@
     <main class="container">
         <div class="form-container">
             <div class="logo">
-                <img src="zimg/logo/typo.svg" alt="" srcset="">
-            </div>
+                <img src="../zimg/logo/typo.svg" alt="" srcset="">
 
+            </div>
             <h1>Manager - Login </h1>
             <p>
                 Inicie sesión ahora para poder acceder a la plataforma y registrar sus
                 visitas.
             </p>
-            <form action="index.php?controller=adminController&action=logearUsuario" method="post">
+            <form action="index.php?action=logearUsuario" method="post">
                 <div class="icon-placeholder">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="input-field" placeholder="Ej: juan@example.com" required />
@@ -39,14 +39,13 @@
                 </div>
 
                 <div class="buttons">
-                    <button href="" type="submit">Login</button>
+                    <button type="submit">Login</button>
                 </div>
             </form>
             <hr style="border-top: 1px solid #ccc; width: 100%; margin: 20px 0" />
 
         </div>
     </main>
-    <script src="./js/login.js"></script>
 </body>
 
 </html>

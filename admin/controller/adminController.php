@@ -4,7 +4,6 @@ class adminController
 {
     public $view;
     public $mapin;
-    public $title;
     public $vars = array();
 
 
@@ -14,18 +13,14 @@ class adminController
         $this->mapin = new Mapin();
     }
 
-
+    /* LOGIN */
 
     public function login()
     {
         if (isset($_SESSION['manager'])) {
-            return $this->verManagerCategory();
+            return $this->verManagerDashboard();
         } else {
-            if (isset($_SESSION['manager'])) {
-                return $this->verManagerCategory();
-            } else {
-                $this->view = 'managerLogin';
-            }
+            $this->view = 'managerLogin';
         }
     }
 
@@ -44,6 +39,7 @@ class adminController
 
     public function cerrarSesion()
     {
+        unset($_SESSION['manager']);
         $this->mapin->close();
         $this->login();
     }
