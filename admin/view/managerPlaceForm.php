@@ -87,7 +87,8 @@
                             <div class="icon-placeholder">
                                 <label for="mapa">Mapa google para poner latitud y longitud</label>
                                 <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" id="coordenadas" name="coordenadas" class="input-field" readonly />
+                                <input class="input-field" type="text" id="lat" name="lat" readonly />
+                                <input class="input-field" type="text" id="lng" name="lng" readonly />
                                 <div id="map" class="map-container"></div>
                             </div>
 
@@ -141,8 +142,8 @@
         });
 
         // Almacena la latitud y longitud en los campos ocultos
-        document.getElementById('coordenadas').value = location.lat() + ', ' + location.lng();
-
+        document.getElementById('lat').value = location.lat();
+        document.getElementById('lng').value = location.lng();
     }
 </script>
 

@@ -57,38 +57,41 @@ $mapin = $_SESSION['mapin'];
             <div class="place-image">
                 <img src="zimg/places/image4.jpg" alt="" srcset="" class="place-image-img">
             </div>
-            <div class="place-details">
+            <?php if ($mapin) : ?>
+                <div class="place-details">
 
-                <div class="icon-links-container">
+                    <div class="icon-links-container">
 
-                    <a href="#" class="icon-link" id="link-visitado" onclick="">
-                        <div class="circle">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <span>No Visitado</span>
-                    </a>
-                    <a href="#" class="icon-link" id="link-favorito">
-                        <div class="circle">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>No Favorito</span>
-                    </a>
+                        <a href="#" class="icon-link" id="link-visitado" onclick="">
+                            <div class="circle">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span>No Visitado</span>
+                        </a>
+                        <a href="#" class="icon-link" id="link-favorito">
+                            <div class="circle">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>No Favorito</span>
+                        </a>
+
+                    </div>
+
+
+                    <!-- --- -->
+                    <div class="place-info">
+                        <h1 class="place-title"><?php echo $mapin->getNamePlace(); ?></h1>
+                        <p class="place-location"><i class="fa-solid fa-location-dot"></i> Ceuta, España</p>
+                        <h2 class="info-title">Información</h2>
+                        <p><?php echo $mapin->getInfoPlace(); ?></p>
+                        <h2 class="description-title">Descripción</h2>
+                        <p><?php echo $mapin->getDescriptionPlace(); ?></p>
+                    </div>
+                    <div id="map" style="height: 400px; width: 100%;"></div>
 
                 </div>
+            <?php endif; ?>
 
-
-                <!-- --- -->
-                <div class="place-info">
-                    <h1 class="place-title"><?php echo $mapin->getNamePlace(); ?></h1>
-                    <p class="place-location"><i class="fa-solid fa-location-dot"></i> Ceuta, España</p>
-                    <h2 class="info-title">Información</h2>
-                    <p><?php echo $mapin->getInfoPlace(); ?></p>
-                    <h2 class="description-title">Descripción</h2>
-                    <p><?php echo $mapin->getDescriptionPlace(); ?></p>
-                </div>
-                <div id="map" style="height: 400px; width: 100%;"></div>
-
-            </div>
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
@@ -123,19 +126,85 @@ $mapin = $_SESSION['mapin'];
     <script>
         function initMap() {
             var placeLocation = {
-                lat: <?php echo $mapin->getLatitud(); ?>,
-                lng: <?php echo $mapin->getLongitud(); ?>
+                lat: <?php echo $mapin->getLatPlace(); ?>,
+                lng: <?php echo $mapin->getLonPlace(); ?>
             };
 
             var map = new google.maps.Map(document.getElementById('map'), {
+
                 zoom: 15,
-                center: placeLocation
+                center: placeLocation,
+                styles: [{
+                    featureType: 'poi',
+                    stylers: [{
+                        visibility: 'off'
+                    }]
+                }]
             });
 
-            var marker = new google.maps.Marker({
+
+            var placeMarker = new google.maps.Marker({
                 position: placeLocation,
-                map: map
+                map: map,
+                title: "<?php echo $mapin->getNamePlace(); ?>"
             });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    var iconUrl = FontAwesome.dom.getSvgDataUrl(document.querySelector('.fa-layers'));
+
+                    var userMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: "Tu ubicación",
+                        icon: 'https://fontawesome.com/icons/location-smile?f=sharp&s=regular',
+                    });
+                }, function() {
+                    // El usuario rechazó el permiso de geolocalización
+                    alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
+                });
+            } else {
+                // El navegador no soporta la geolocalización
+                alert('Error: Tu navegador no soporta la geolocalización.');
+            }
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: "<h3><?php echo $mapin->getNamePlace(); ?></h3><p><?php echo $mapin->getInfoPlace(); ?>.</p><a href='https://www.google.com/maps/search/?api=1&query=" + placeLocation.lat + "," + placeLocation.lng + "' target='_blank'>Ir al lugar</a>"
+            });
+
+            // Asocia la infoventana al marcador del lugar
+            placeMarker.addListener('click', function() {
+                infoWindow.open(map, placeMarker);
+            });
+
+
+            // Calcula la distancia entre el usuario y el lugar
+            var userLocation = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+            var placePosition = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
+            var distance = google.maps.geometry.spherical.computeDistanceBetween(userLocation, placePosition);
+
+            // Convierte la distancia a un formato legible
+            var distanceText = (distance / 1000).toFixed(2) + " km";
+
+            // Crea una instancia de infoventana
+            var infoWindowContent = "<h3>Información del lugar</h3><p>Aquí puedes agregar detalles sobre el lugar.</p><p>Distancia desde tu ubicación: " + distanceText + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + placeLocation.lat + "," + placeLocation.lng + "' target='_blank'>Abrir en Google Maps</a>";
+
+            var infoWindow = new google.maps.InfoWindow();
+
+            // Asigna el contenido a la infoventana
+            infoWindow.setContent(infoWindowContent);
+
+            // Agrega un listener de clic al marcador
+            placeMarker.addListener('click', function() {
+                // Abre la infoventana al hacer clic en el marcador
+                infoWindow.open(map, placeMarker);
+            });
+
         }
     </script>
 </body>

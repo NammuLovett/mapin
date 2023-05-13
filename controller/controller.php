@@ -105,6 +105,8 @@ class Controller
 
 
             $this->view = 'visitorPlace';
+            $this->mapin = $place;
+
 
 
             $_SESSION['mapin'] = $place;

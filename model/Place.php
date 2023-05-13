@@ -8,7 +8,8 @@ class Place
     private $descriptionPlace;
     private $addressPlace;
     private $imgPlace;
-    private $coordinatesPlace;
+    private $latPlace;
+    private $lonPlace;
     private $showPlace;
     private $idLocation;
     private array $categories = array();
@@ -16,7 +17,7 @@ class Place
 
 
     // Constructor
-    public function __construct($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $coordinatesPlace, $showPlace, $idLocation)
+    public function __construct($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation)
     {
         $this->idPlace = $idPlace;
         $this->namePlace = $namePlace;
@@ -24,7 +25,8 @@ class Place
         $this->descriptionPlace = $descriptionPlace;
         $this->addressPlace = $addressPlace;
         $this->imgPlace = $imgPlace;
-        $this->coordinatesPlace = $coordinatesPlace;
+        $this->latPlace = $latPlace;
+        $this->lonPlace = $lonPlace;
         $this->showPlace = $showPlace;
         $this->idLocation = $idLocation;
     }
@@ -62,11 +64,15 @@ class Place
         return $this->imgPlace;
     }
 
-    public function getCoordinatesPlace()
+    public function getLatPlace()
     {
-        return $this->coordinatesPlace;
+        return $this->latPlace;
     }
 
+    public function getLonPlace()
+    {
+        return $this->lonPlace;
+    }
     public function getShowPlace()
     {
         return $this->showPlace;
@@ -113,9 +119,14 @@ class Place
         $this->imgPlace = $imgPlace;
     }
 
-    public function setCoordinatesPlace($coordinatesPlace)
+    public function setLatPlace($latPlace)
     {
-        $this->coordinatesPlace = $coordinatesPlace;
+        $this->latPlace = $latPlace;
+    }
+
+    public function setLonPlace($lonPlace)
+    {
+        $this->lonPlace = $lonPlace;
     }
 
     public function setShowPlace($showPlace)
@@ -155,7 +166,7 @@ class Place
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['coordinatesPlace'], $row['showPlace'], $row['idLocation']);
+                $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
             }
         }
 
@@ -173,7 +184,7 @@ class Place
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['coordinatesPlace'], $row['showPlace'], $row['idLocation']);
+            $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
             return $place;
         } else {
             return null;
