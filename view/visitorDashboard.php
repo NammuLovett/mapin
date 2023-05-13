@@ -82,41 +82,10 @@
             </div>
 
             <!-- Segunda fila: Lugares destacados -->
-            <div class="fila-2">
-                <h3>Lugares destacados</h3>
-                <div class="cards-container-c2">
-                    <!-- Card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c2">
-                            <div class="card-image-c2">
-                                <img src="../zimg/places/image1.png" alt="foso" />
-                            </div>
-                            <h3 class="card-name-c2">Murallas Reales de Ceuta</h3>
-                        </div>
-                    </a>
-                    <!-- Card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c2">
-                            <div class="card-image-c2">
-                                <img src="../zimg/places/image2.png" alt="foso" />
-                            </div>
-                            <h3 class="card-name-c2">Parque Marítimo del Mediterraneo</h3>
-                        </div>
-                    </a>
-                    <!-- Card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c2">
-                            <div class="card-image-c2">
-                                <img src="../zimg/places/image3.png" alt="foso" />
-                            </div>
-                            <h3 class="card-name-c2">Casa de los Dragones</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
+
             <!-- Tercera fila: Estadísticas -->
+            <h3>Tus estadísticas</h3>
             <div class="fila-3">
-                <h3>Tus estadísticas</h3>
                 <div class="estadisticas">
                     <p>
                         Has visitado &lt;number&gt; de &lt;number&gt; lugares de interés
