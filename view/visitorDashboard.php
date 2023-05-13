@@ -26,7 +26,33 @@
                 <a href="index.php?action=verVisitorDashboard"><img src="zimg/logo/logoHOR.svg" alt="Logo MAP!N" /></a>
             </div>
             <!-- Menú de navegación -->
-            <nav>
+            <nav role="navigation" aria-label="Menú de navegación principal">
+                <ul>
+                    <li class="activo">
+                        <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorDescubre"><i class="fas fa-paper-plane"></i> Descubre</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- HAMBURGUESA -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-mobile" role="navigation" aria-labelledby="mobile-menu-label">
                 <ul>
                     <li class="activo">
                         <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>
@@ -54,6 +80,7 @@
                 <h1>Hola, María!</h1>
                 <p>Te damos la bienvenida a la exploración.</p>
             </div>
+
             <!-- Segunda fila: Lugares destacados -->
             <div class="fila-2">
                 <h3>Lugares destacados</h3>
@@ -89,8 +116,8 @@
             </div>
             <!-- Tercera fila: Estadísticas -->
             <div class="fila-3">
+                <h3>Tus estadísticas</h3>
                 <div class="estadisticas">
-                    <h3>Tus estadísticas</h3>
                     <p>
                         Has visitado &lt;number&gt; de &lt;number&gt; lugares de interés
                         de Ceuta.
@@ -100,24 +127,29 @@
                     </div>
                 </div>
             </div>
-            <!-- Cuarta fila: Previsión del tiempo -->
-            <div class="fila-4">
-                <div class="previsión">
-                    <h3>Previsión del tiempo</h3>
-                    <p>&lt;Tipo de tiempo&gt;</p>
-                </div>
-            </div>
+
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
             <!-- c3 :Primera fila: Perfil -->
             <div class="fila-1">
                 <div class="avatar">
-                    <img src="../zimg/avatar/avatar.png" alt="Avatar de usuario" />
+                    <!--                     <img src="../zimg/avatar/avatar.png" alt="Avatar de usuario" />
+ -->
                 </div>
                 <h4>María Roldán</h4>
                 <p>Amante de los viajes</p>
             </div>
+
+            <!--  Previsión del tiempo -->
+            <div class="fila-2">
+                <h3>Previsión del tiempo</h3>
+                <div class="previsión">
+                    <img id="weather-img" src="" alt="Imagen del clima">
+                    <p id="weather-description"></p>
+                </div>
+            </div>
+
             <!-- C3 - Segunda fila: Lugares visitados -->
             <div class="fila-2">
                 <h3>Lugares visitados</h3>
@@ -153,21 +185,6 @@
                         </div>
                     </a>
                     <!-- Card -->
-                    <a href="vistalugar.html">
-                        <div class="card-c3">
-                            <div class="card-image-c3">
-                                <img src="../zimg/places/image3.png" alt="Lugar 3" />
-                            </div>
-                            <div class="card-info-c3">
-                                <p class="card-name-c3">Casa de los Dragones</p>
-                                <div class="card-date-container-c3">
-                                    <i class="fas fa-calendar"></i>
-                                    <span class="card-date-c3">15-05-2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- card -->
                     <a href="vistalugar.html">
                         <div class="card-c3">
                             <div class="card-image-c3">

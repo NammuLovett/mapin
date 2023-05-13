@@ -104,13 +104,15 @@
             <div class="fila-2">
                 <h3>Previsión del tiempo</h3>
                 <div class="previsión">
-                    <h3>Previsión del tiempo</h3>
-                    <p>&lt;Tipo de tiempo&gt;</p>
+                    <img id="weather-img" src="" alt="Imagen del clima">
+                    <p id="weather-description"></p>
                 </div>
+            </div>
         </section>
     </main>
 
-    <script src="./js/visitor.js"></script>
+    <script src="view/js/visitor.js"></script>
+
 </body>
 
 </html>

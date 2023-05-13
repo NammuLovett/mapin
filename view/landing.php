@@ -35,9 +35,11 @@
 
 <body>
     <header>
+        <!-- Logo -->
         <div class="logo">
             <img src="zimg/logo/logoHOR.svg" alt="Logo MAP!N" />
         </div>
+        <!-- Menú de navegación -->
         <nav role="navigation" aria-label="Menú de navegación principal">
             <ul class="nav-desktop">
                 <li>
