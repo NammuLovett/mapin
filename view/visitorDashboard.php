@@ -23,25 +23,25 @@
         <section class="columna-1">
             <!-- Logo -->
             <div class="logo">
-                <a href="visitorDashboard.html"><img src="zimg/logo/logo HOR.svg" alt="Logo MAP!N" /></a>
+                <a href="index.php?action=verVisitorDashboard"><img src="zimg/logo/logoHOR.svg" alt="Logo MAP!N" /></a>
             </div>
             <!-- Menú de navegación -->
             <nav>
                 <ul>
                     <li class="activo">
-                        <a href="visitorDashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+                        <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="visitorDescubre.php"><i class="fas fa-paper-plane"></i> Descubre</a>
+                        <a href="index.php?action=verVisitorDescubre"><i class="fas fa-paper-plane"></i> Descubre</a>
                     </li>
                     <li>
-                        <a href="visitorFavorito.php"><i class="fas fa-star"></i> Favoritos</a>
+                        <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="visitorMapa.php"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -188,7 +188,7 @@
             </div>
         </section>
     </main>
-    <script src="./js/visitor.js"></script>
+    <script src="view/js/visitor.js"></script>
 </body>
 
 </html>
