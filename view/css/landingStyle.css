@@ -100,13 +100,12 @@ nav ul li a:hover {
 }
 
 /* SECCIÓN PRINCIPAL */
-.textoPral {
-  width: 50%;
+.contenido {
+  width: 90%;
   box-sizing: border-box;
-  padding-right: 20px;
 }
 
-.textoPral h1 {
+.contenido h1 {
   font-size: 28px;
   margin-bottom: 20px;
   color: var(--color-primario);
@@ -303,7 +302,7 @@ nav.nav-mobile ul {
 }
 .opinion {
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 20px;
   padding: 20px;
   width: 300px;

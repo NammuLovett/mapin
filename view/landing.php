@@ -95,7 +95,7 @@
         </div>
     </section>
     <!-- sección 2 -->
-    <section class="sitios-populares">
+    <section class="sitios-populares" id="explorar">
         <div class="contenedor">
             <h2>Sitios populares</h2>
             <div class="carrusel">
@@ -140,7 +140,7 @@
     </section>
 
     <!-- Sección 3 -->
-    <section class="sobre-nosotros" id="#nosotros">
+    <section class="sobre-nosotros" id="nosotros">
         <div class="contenedor">
             <h2>Sobre nosotros</h2>
             <div class="contenido">
