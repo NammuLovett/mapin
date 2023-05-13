@@ -15,7 +15,7 @@
     <main class="container">
         <div class="form-container">
             <div class="logo">
-                <img src="../zimg/logo/logo VERT.svg" alt="" srcset="">
+                <img src="../zimg/logo/logoVERT.svg" alt="" srcset="">
 
             </div>
             <h1>Manager - Login </h1>

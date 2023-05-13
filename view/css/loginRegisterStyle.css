@@ -8,7 +8,7 @@
 }
 
 :root {
-  --primary-color: #00ac8d;
+  --color-primario: #00ac8d;
 }
 body {
   font-family: 'Lato', sans-serif;
@@ -29,7 +29,7 @@ img {
 }
 h1,
 .login-link > a {
-  color: var(--primary-color);
+  color: var(--color-primario);
 }
 p {
   padding: 5% 0;
@@ -74,7 +74,7 @@ select {
 }
 .input-field:focus,
 select:focus {
-  border-color: var(--primary-color);
+  border-color: var(--color-primario);
 }
 .icon-placeholder {
   position: relative;
@@ -84,11 +84,11 @@ select:focus {
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
-  color: var(--primary-color);
+  color: var(--color-primario);
   pointer-events: none;
 }
 input[type='date']::-webkit-calendar-picker-indicator {
-  color: var(--primary-color);
+  color: var(--color-primario);
   position: absolute;
   left: 10px;
   opacity: 1;
@@ -113,7 +113,7 @@ input[type='date'] {
 
 button[type='submit'],
 button[type='reset'] {
-  background-color: var(--primary-color);
+  background-color: var(--color-primario);
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -123,8 +123,8 @@ button[type='reset'] {
 
 button[type='reset'] {
   background-color: #fff;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  color: var(--color-primario);
+  border: 1px solid var(--color-primario);
 }
 
 .loginReg {
@@ -139,6 +139,6 @@ button[type='reset'] {
 }
 
 .loginReg a {
-  color: var(--primary-color);
+  color: var(--color-primario);
   padding: 5%;
 }

@@ -73,21 +73,30 @@ nav ul li a:hover {
   border-radius: 4px;
   transition: all 0.3s ease;
 }
-
-.botones button {
+.boton {
   margin-left: 10px;
+  display: inline-block;
+  text-align: center;
   background-color: var(--color-primario);
   color: #ffffff;
   border: none;
   padding: 10px 20px;
+  text-decoration: none;
   cursor: pointer;
   border-radius: 4px;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-.botones button:hover {
+.botonSec {
+  background-color: #ffffff;
+  color: var(--color-primario);
+  border: 1px solid var(--color-primario);
+}
+
+.boton:hover {
   background-color: var(--color-secundario);
-  transition: all 0.3s ease;
+  color: var(--color-cuaternario);
 }
 
 /* SECCIÓN PRINCIPAL */
@@ -101,16 +110,6 @@ nav ul li a:hover {
   font-size: 28px;
   margin-bottom: 20px;
   color: var(--color-primario);
-}
-
-.texto button {
-  background-color: var(--color-primario);
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
 }
 
 .imagen {
@@ -480,7 +479,7 @@ footer {
     display: flex;
     z-index: 10;
     position: absolute;
-    left: 20px;
+    left: 40px;
   }
   .footer-right {
     flex-direction: column;

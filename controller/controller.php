@@ -15,7 +15,7 @@ class Controller
 
     public function landing()
     {
-        $this->view = 'visitorLogin';
+        $this->view = 'landing';
     }
 
     public function register()

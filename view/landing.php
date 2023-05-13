@@ -11,7 +11,7 @@
     <meta name="keywords" content="mapin, monumentos, museos, lugares de interés, turismo, explorar, ciudad" />
 
     <!-- Enlace a la hoja de estilos CSS -->
-    <link rel="stylesheet" href="./css/landingStyle.css" />
+    <link rel="stylesheet" href="view/css/landingStyle.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="icon" href="../zimg/logo/Logotipo.svg" type="image/svg+xml" />
 
@@ -36,7 +36,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="../zimg/logo/logo HOR.svg" alt="Logo MAP!N" />
+            <img src="zimg/logo/logoHOR.svg" alt="Logo MAP!N" />
         </div>
         <nav role="navigation" aria-label="Menú de navegación principal">
             <ul class="nav-desktop">
@@ -49,10 +49,9 @@
                 <li>
                     <a href="#nosotros" aria-label="Ir a la sección Sobre Nosotros">Nosotros</a>
                 </li>
-                <li class="botones">
-                    <button aria-label="Iniciar sesión">Login</button>
-                    <button aria-label="Registrarse en MAP!N">Registrarse</button>
-                </li>
+
+                <a class="boton botonSec" aria-label="Registrarse en MAP!N" href="#">Registrarse</a>
+                <a class="boton" aria-label="Iniciar sesión" href="#">Login</a>
             </ul>
         </nav>
         <!-- HAMBURGUESA -->
@@ -73,8 +72,8 @@
                     <a href="#nosotros" aria-label="Ir a la sección Sobre Nosotros">Sobre Nosotros</a>
                 </li>
                 <li class="botones">
-                    <button aria-label="Iniciar sesión">Login</button>
-                    <button aria-label="Registrarse en MAP!N">Registrarse</button>
+                    <a class="boton botonSec" aria-label="Registrarse en MAP!N" href="#">Registrarse</a>
+                    <a class="boton" aria-label="Iniciar sesión" href="#">Login</a>
                 </li>
             </ul>
         </nav>
@@ -88,10 +87,11 @@
                 lugares de interés que hayas visitado y ver los que te quedan por
                 visitar. Así descubrirás nuevos lugares.
             </p>
-            <button>¡Empezemos!</button>
+            <a class="boton" aria-label="Iniciar sesión" href="#">¡A viajar!</a>
+
         </div>
         <div class="imagen">
-            <img src="../zimg/illustration/landing1.svg " alt="Una persona explorando un lugar de interés con la aplicación MAP!N" />
+            <img src="zimg/illustration/landing1.svg " alt="Una persona explorando un lugar de interés con la aplicación MAP!N" />
         </div>
     </section>
     <!-- sección 2 -->
@@ -100,7 +100,7 @@
             <h2>Sitios populares</h2>
             <div class="carrusel">
                 <div class="card">
-                    <img src="../zimg/places/image1.png" alt="Lugar de interés 1" />
+                    <img src="zimg/places/image1.png" alt="Lugar de interés 1" />
                     <div class="card-info">
                         <h3>Murallas Reales</h3>
                         <div class="rating">
@@ -112,7 +112,7 @@
                 </div>
                 <!-- Agregar más tarjetas aquí -->
                 <div class="card">
-                    <img src="../zimg/places/image2.png" alt="Lugar de interés 1" />
+                    <img src="zimg/places/image2.png" alt="Lugar de interés 1" />
                     <div class="card-info">
                         <h3>Parque Marítimo</h3>
                         <div class="rating">
@@ -124,7 +124,7 @@
                 </div>
                 <!-- asd -->
                 <div class="card">
-                    <img src="../zimg/places/image3.png" alt="Lugar de interés 1" />
+                    <img src="zimg/places/image3.png" alt="Lugar de interés 1" />
                     <div class="card-info">
                         <h3>Casa de los dragones</h3>
                         <div class="rating">
@@ -165,7 +165,7 @@
                     </p>
                 </div>
                 <div class="imagen">
-                    <img src="../zimg/illustration/landing2.svg" alt="Una persona explorando un lugar de interés con la aplicación MAP!N" />
+                    <img src="zimg/illustration/landing2.svg" alt="Una persona explorando un lugar de interés con la aplicación MAP!N" />
                 </div>
             </div>
         </div>
@@ -176,7 +176,7 @@
         <div class="opiniones-contenedor">
             <div class="opinion">
                 <div class="foto-opinion">
-                    <img src="../zimg/places/image3.png" alt="avatar" />
+                    <img src="zimg/places/image3.png" alt="avatar" />
                 </div>
                 <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
                 <p class="autor">Paco Benítez</p>
@@ -193,7 +193,7 @@
             <!-- opinion -->
             <div class="opinion">
                 <div class="foto-opinion">
-                    <img src="../zimg/places/image3.png" alt="avatar" />
+                    <img src="zimg/places/image3.png" alt="avatar" />
                 </div>
                 <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
                 <p class="autor">Nombre del usuario</p>
@@ -209,7 +209,7 @@
             <!-- opinion -->
             <div class="opinion">
                 <div class="foto-opinion">
-                    <img src="../zimg/places/image3.png" alt="avatar" />
+                    <img src="zimg/places/image3.png" alt="avatar" />
                 </div>
                 <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
                 <p class="autor">Nombre del usuario</p>
@@ -229,7 +229,7 @@
     <footer>
         <div class="contenido">
             <div class="footer-logo">
-                <img src="../zimg/logo/typo.svg" alt="Logo" />
+                <img src="zimg/logo/typo.svg" alt="Logo" />
                 <div class="footer-socials">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -251,7 +251,7 @@
                 <div class="column">
                     <h4>SOPORTE</h4>
                     <a href="#">FAQ</a>
-                    <a href="#">Recursos</a>
+                    <a href="admin/index.php">Manager</a>
                 </div>
                 <div class="column">
                     <h4>CONTACTO</h4>
@@ -271,7 +271,7 @@
         ↑
     </button>
 
-    <script src="./js/landing.js"></script>
+    <script src="view/js/landing.js"></script>
 </body>
 
 </html>
