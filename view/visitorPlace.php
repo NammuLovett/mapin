@@ -151,51 +151,44 @@ $mapin = $_SESSION['mapin'];
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                        var userLocation = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
 
 
-                        var userMarker = new google.maps.Marker({
-                            position: userLocation,
-                            map: map,
-                            title: "Tu ubicación",
-                            icon: {
-                                url: 'zimg/avatar/avatar.png',
-                                scaledSize: new google.maps.Size(40, 40)
-                            }
-                        });
-
-                        // Calcula la distancia entre el usuario y el lugar
-                        var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
-                        var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
-                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
-
-                        // Convierte la distancia a un formato legible
-                        var distanceText = (distance / 1000).toFixed(2) + " km";
-
-                        // Crea una instancia de infoventana
-                        var infoWindowContent = "<h3><?php echo $mapin->getNamePlace(); ?></h3><p><?php echo $mapin->getInfoPlace(); ?></p><p>Distancia desde tu ubicación: " + distanceText + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + placeLocation.lat + "," + placeLocation.lng + "' target='_blank'>Abrir en Google Maps</a>";
-
-                        var infoWindow = new google.maps.InfoWindow({
-                            content: infoWindowContent
-                        });
-                        // Agrega un listener de clic al marcador del lugar
-                        placeMarker.addListener('click', function() {
-                            infoWindow.open(map, placeMarker);
-                        });
-
-
-                    },
-                    function() {
-                        // El usuario rechazó el permiso de geolocalización
-                        alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
+                    var userMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: "Tu ubicación",
+                        icon: {
+                            url: 'zimg/avatar/avatar.png',
+                            scaledSize: new google.maps.Size(40, 40)
+                        }
                     });
+
+                    var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+                    var placeLatLng = new google.maps.LatLng(<?php echo $mapin->getLatPlace(); ?>, <?php echo $mapin->getLonPlace(); ?>);
+                    var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
+                    var distanceText = (distance / 1000).toFixed(2) + " km";
+
+                    var infoWindowContent = "<h3><?php echo $mapin->getNamePlace(); ?></h3><p><?php echo $mapin->getInfoPlace(); ?>.</p><p>Distancia desde tu ubicación: " + distanceText + "</p><a href='https://www.google.com/maps/search/?api=1&query=<?php echo $mapin->getLatPlace(); ?>,<?php echo $mapin->getLonPlace(); ?>' target='_blank'>Ir al lugar</a>";
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: infoWindowContent
+                    });
+
+                    placeMarker.addListener('click', function() {
+                        infoWindow.open(map, placeMarker);
+                    });
+
+                }, function() {
+                    alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
+                });
             } else {
-                // El navegador no soporta la geolocalización
                 alert('Error: Tu navegador no soporta la geolocalización.');
             }
+
 
             var infoWindow = new google.maps.InfoWindow({
                 content: "<h3><?php echo $mapin->getNamePlace(); ?></h3><p><?php echo $mapin->getInfoPlace(); ?>.</p><a href='https://www.google.com/maps/search/?api=1&query=" + placeLocation.lat + "," + placeLocation.lng + "' target='_blank'>Ir al lugar</a>"
