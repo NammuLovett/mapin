@@ -50,8 +50,8 @@
                     <a href="#nosotros" aria-label="Ir a la sección Sobre Nosotros">Nosotros</a>
                 </li>
 
-                <a class="boton botonSec" aria-label="Registrarse en MAP!N" href="#">Registrarse</a>
-                <a class="boton" aria-label="Iniciar sesión" href="#">Login</a>
+                <a class="boton botonSec" aria-label="Registrarse en MAP!N" href="index.php?action=register">Registrarse</a>
+                <a class="boton" aria-label="Iniciar sesión" href="index.php?action=login">Login</a>
             </ul>
         </nav>
         <!-- HAMBURGUESA -->
@@ -72,8 +72,8 @@
                     <a href="#nosotros" aria-label="Ir a la sección Sobre Nosotros">Sobre Nosotros</a>
                 </li>
                 <li class="botones">
-                    <a class="boton botonSec" aria-label="Registrarse en MAP!N" href="#">Registrarse</a>
-                    <a class="boton" aria-label="Iniciar sesión" href="#">Login</a>
+                    <a class="boton botonSec" aria-label="Registrarse en MAP!N" href="index.php?action=register">Registrarse</a>
+                    <a class="boton" aria-label="Iniciar sesión" href="index.php?action=login">Login</a>
                 </li>
             </ul>
         </nav>
@@ -87,7 +87,7 @@
                 lugares de interés que hayas visitado y ver los que te quedan por
                 visitar. Así descubrirás nuevos lugares.
             </p>
-            <a class="boton" aria-label="Iniciar sesión" href="#">¡A viajar!</a>
+            <a class="boton" aria-label="Iniciar sesión" href="index.php?action=login">¡A viajar!</a>
 
         </div>
         <div class="imagen">

@@ -15,9 +15,9 @@
     <main class="container">
         <div class="form-container">
             <div class="logo">
-                <img src="../zimg/logo/logoVERT.svg" alt="" srcset="">
-
+                <img src="zimg/logo/typo.svg" alt="" srcset="">
             </div>
+
             <h1>Manager - Login </h1>
             <p>
                 Inicie sesión ahora para poder acceder a la plataforma y registrar sus

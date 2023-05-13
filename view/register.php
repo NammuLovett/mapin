@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
-    <link rel="stylesheet" href="./css/loginRegisterStyle.css" />
+    <link rel="stylesheet" href="view/css/loginRegisterStyle.css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
 
 </head>
@@ -14,8 +14,7 @@
     <main class="container">
         <div class="form-container">
             <div class="logo">
-                <img src="../zimg/logo/logo VERT.svg" alt="" srcset="">
-
+                <img src="zimg/logo/typo.svg" alt="" srcset="">
             </div>
             <h1>Registro</h1>
             <p>
@@ -84,11 +83,11 @@
             <hr style="border-top: 1px solid #ccc; width: 100%; margin: 20px 0" />
             <div class="loginReg">
                 <p>¿Ya tienes una cuenta?</p>
-                <a href="login.php">Haz Login</a>
+                <a href="index.php?action=login">Haz Login</a>
             </div>
         </div>
     </main>
-    <script src="./js/register.js"></script>
+    <script src="view/js/register.js"></script>
 </body>
 
 </html>

@@ -5,19 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="./css/loginRegisterStyle.css" />
+    <link rel="stylesheet" href="view/css/loginRegisterStyle.css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
 
     <title>Login</title>
 </head>
 
 <body>
-    <div class="container">
+    <main class="container">
         <div class="form-container">
             <div class="logo">
-                <img src="../zimg/logo/logo VERT.svg" alt="" srcset="">
-
+                <img src="zimg/logo/logoVERT.svg" alt="" srcset="">
             </div>
+
             <h1>Login</h1>
             <p>
                 Inicie sesión ahora para poder acceder a la plataforma y registrar sus
@@ -45,11 +45,11 @@
             <hr style="border-top: 1px solid #ccc; width: 100%; margin: 20px 0" />
             <div class="loginReg">
                 <p>¿Aún no tienes cuenta?</p>
-                <a href="register.php"> Registro</a>
+                <a href="index.php?action=register"> Registro</a>
             </div>
         </div>
-    </div>
-    <script src="./js/login.js"></script>
+        </div>
+        <script src="view/js/login.js"></script>
 </body>
 
 </html>

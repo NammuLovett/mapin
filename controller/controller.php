@@ -25,7 +25,7 @@ class Controller
 
     public function login()
     {
-        $this->view = 'login.php';
+        $this->view = 'visitorLogin';
     }
     public function visitorDashboard()
     {
