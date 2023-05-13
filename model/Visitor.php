@@ -160,9 +160,29 @@ class Visitor
     public function removeFavorite($favorite)
     {
     }
+
+    public static function getVisitorById($idVisitor)
+    {
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT * FROM visitor WHERE idVisitor = '$idVisitor'";
+
+        $result = $conection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $visitor = new Visitor($row['idVisitor'], $row['nameVisitor'], $row['surnameVisitor'], $row['emailVisitor'], $row['passwordVisitor'], $row['genderVisitor'], $row['datebirthVisitor'], $row['cityVisitor']);
+            return $visitor;
+        } else {
+            return null;
+        }
+    }
 }
 
 
 /* FUNCIONES DE USUARIO  */
+
+
 
 /* CREATE;  */

@@ -1,3 +1,11 @@
+<?php
+require_once __DIR__ . '/../../model/Place.php';
+
+$allPlaces = Place::getAllPlaces();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -49,27 +57,27 @@
                             <th>Info</th>
                             <th>Dirección</th>
                             <th></th>
-                            <!-- Quitar el texto "Acciones" del encabezado de la columna -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Parque Central</td>
-                            <td>Un hermoso parque en el centro de la ciudad.</td>
-                            <td>Calle 1 # 2-3</td>
-                            <td class="no-border-top">
-                                <div class="dropdown-menu">
-                                    <span>&#8942;</span>
-                                    <div class="dropdown-content">
-                                        <a href="#">Ver</a>
-                                        <a href="#">Editar</a>
-                                        <a href="#">Borrar</a>
+                        <?php foreach ($allPlaces as $place) : ?>
+                            <tr>
+                                <td><?php echo $place->getIdPlace(); ?></td>
+                                <td><?php echo $place->getNamePlace(); ?></td>
+                                <td><?php echo $place->getInfoPlace(); ?></td>
+                                <td><?php echo $place->getAddressPlace(); ?></td>
+                                <td class="no-border-top">
+                                    <div class="dropdown-menu">
+                                        <span>&#8942;</span>
+                                        <div class="dropdown-content">
+                                            <a href="index.php?action=viewPlace&id=<?php echo $place->getId(); ?>">Ver</a>
+                                            <a href="index.php?action=editPlace&id=<?php echo $place->getId(); ?>">Editar</a>
+                                            <a href="index.php?action=deletePlace&id=<?php echo $place->getId(); ?>">Borrar</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Añade las filas restantes de manera similar -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
 

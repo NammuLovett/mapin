@@ -34,7 +34,7 @@
                     <li>
                         <a href="index.php?action=verVisitorDescubre"><i class="fas fa-paper-plane"></i> Descubre</a>
                     </li>
-                    <li class="actico">
+                    <li class="activo">
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>

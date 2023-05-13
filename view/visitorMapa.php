@@ -56,55 +56,16 @@
             </div>
             <!-- Segunda fila: mapa -->
             <div class="fila-2 f2mapa">
-                <h3>Categorías</h3>
-
-
                 <div class="category-cards-container">
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
-                    <a href="visitorMapaCategory.php" class="category-card">
-                        <i class="fas fa-landmark"></i>
-                        <p>Categoría 1</p>
-                    </a>
-                    <!-- ... -->
+                    <?php
+                    $allCategories = Category::getAllCategories();
+                    foreach ($allCategories as $category) :
+                    ?>
+                        <a href="visitorMapaCategory.php?id=<?php echo $category->getIdCategory(); ?>" class="category-card">
+                            <i class="fas fa-landmark"></i>
+                            <p><?php echo $category->getNameCategory(); ?></p>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
 

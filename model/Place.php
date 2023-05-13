@@ -144,21 +144,41 @@ class Place
 
     /* FUNCIONES */
 
-    /* public function getCategorias($id)
+    public static function getAllPlaces()
     {
-        $this->getConection();
-        $sql = "SELECT * FROM category WHERE idLocation = '$id'";
-        $result = $this->conection->query($sql);
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT * FROM place"; // Asume que 'place' es el nombre de tu tabla
+        $result = $conection->query($sql);
+        $places = [];
 
         if ($result->num_rows > 0) {
-            $i = 0;
             while ($row = $result->fetch_assoc()) {
-                $this->categorias[$i] = new Categoria($row['idCategoria'], $row['nombre'], $row['img'], $row['estado'], $row['orden'], $row['idNegocio']);
-                $i++;
+                $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['coordinatesPlace'], $row['showPlace'], $row['idLocation']);
+                // Tendrás que añadir las categorías después de crear el objeto place, si es necesario.
+                $places[] = $place;
             }
-            return $this->categorias;
         }
-    } */
 
-    /* INSERT LIST ; BORRAR, UPDATE  */
+        return $places;
+    }
+
+    public static function getPlaceById($idPlace)
+    {
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT * FROM place WHERE idPlace = '$idPlace'";
+
+        $result = $conection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['coordinatesPlace'], $row['showPlace'], $row['idLocation']);
+            return $place;
+        } else {
+            return null;
+        }
+    }
 }

@@ -52,19 +52,17 @@
             <!-- Primera fila: Bienvenida y búsqueda -->
             <div class="fila-1">
                 <h1>Descubre los lugares</h1>
-                <p>¿Qué nuevos lugares quieres visitar?</p>
+                <p>¿Qué nuevos lugares quieres ver?</p>
             </div>
             <!-- Segunda fila: Lugares destacados -->
             <div class="fila-2">
-                <h3>Categorías</h3>
+
                 <div class="categorias-container">
                     <ul class="categorias-list">
                         <li class="categoria activo"><a href="#">Todos</a></li>
                         <li class="categoria"><a href="#">No visitados</a></li>
                         <li class="categoria"><a href="#">Visitados</a></li>
-                        <li class="categoria"><a href="#">Playas</a></li>
-                        <li class="categoria"><a href="#">Esculturas</a></li>
-                        <li class="categoria"><a href="#">Edificios</a></li>
+
                     </ul>
                 </div>
                 <!-- Card -->

@@ -62,7 +62,13 @@ class Controller
     {
         if (isset($_SESSION['visitor'])) {
             $this->view = 'visitorDashboard';
-            return $this->mapin->getVisitorById($_SESSION['visitor']);
+            // Obtén la información del visitante
+            $visitor = Visitor::getVisitorById($_SESSION['visitor']);
+            if ($visitor === null) {
+                die("No se pudo encontrar el visitante con el ID: " . $_SESSION['visitor']);
+            }
+            // Pasa la información del visitante a la vista
+            include 'view/visitorDashboard.php';  // Asegúrate de que este es el path correcto a tu archivo de vista
         } else {
             $this->login();
         }

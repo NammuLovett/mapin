@@ -77,7 +77,7 @@
         <section class="columna-2">
             <!-- Primera fila: Bienvenida y búsqueda -->
             <div class="fila-1">
-                <h1>Hola, María!</h1>
+                <h1>Hola, <?php echo $visitor->getNameVisitor(); ?>!</h1>
                 <p>Te damos la bienvenida a la exploración.</p>
             </div>
 
@@ -106,7 +106,7 @@
                     <!--                     <img src="../zimg/avatar/avatar.png" alt="Avatar de usuario" />
  -->
                 </div>
-                <h4>María Roldán</h4>
+                <h4><?php echo $visitor->getNameVisitor(); ?></h4>
                 <p>Amante de los viajes</p>
             </div>
 
