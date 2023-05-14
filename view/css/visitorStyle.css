@@ -35,6 +35,19 @@
   }
   
   /* COLUMNA 1 */
+  .columna-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    padding: 2vh;
+    box-sizing: border-box;
+    box-shadow: 0.2vw 0px 0.6vh rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    width: 100%;
+}
+
   
   /* LOGO */
   
@@ -56,22 +69,9 @@
     margin-bottom: 2vh;
   }
   
-  .columna-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fafafa;
-    padding: 2vh;
-    box-sizing: border-box;
-    box-shadow: 0.2vw 0px 0.6vh rgba(0, 0, 0, 0.1);
-    height: 100vh;
-    width: 100%;
-  }
   
   /* MENU */
   .columna-1 nav ul {
-    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +94,7 @@
     text-align: left;
     width: 100%;
     height: 100%;
-    padding-left: 4vw; 
+    padding-left: 4vw;  
   }
   
   .columna-1 nav ul li.activo a {
@@ -130,10 +130,16 @@
   
   .columna-2 h1 {
     font-weight: var(--font-lato-700);
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 1vh;
   }
   
   .columna-2 p {
     font-weight: var(--font-lato-400);
+    color: var(--color-texto);
+    line-height: 1.5;
+    margin-bottom: 1vh;
   }
 
   
@@ -270,37 +276,26 @@
   /* COLUMNA 3 */
   
   .columna-3 {
-    display: grid;
-    grid-template-rows: repeat(2, auto);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: var(--primary-color);
-    opacity: 0.8;
-  
-    background-size: 10px 10px;
+    opacity: 0.8;;
     padding: 2vh;
-
+    box-sizing: border-box;
+    box-shadow: 0.2vw 0px 0.6vh rgba(0, 0, 0, 0.1);
     height: 100vh;
     width: 100%;
   }
+
+  .columna-3 h2 {
+    font-weight: var(--font-lato-700);
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 1vh;
+}
   
-  /* AVATAR */
-  .avatar {
-  width: 5vw;
-  height: 5vw; 
-  background: url('../../zimg/avatar/avatar.png') no-repeat center center;
-  background-size: cover;
-  border-radius: 50%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-  
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
   
   .columna-3 h3 {
     color: var(--white);
@@ -319,11 +314,50 @@
     font-weight: var(--font-lato-400);
   }
   .columna-3 p {
-    font-weight: var(--font-lato-700);
-    font-size: 1rem;
-    margin-top: 0.5vh;
-  }
+    font-weight: var(--font-lato-400);
+    color: var(--color-texto);
+    line-height: 1.5;
+    margin-bottom: 1vh;
+}
+
   
+.columna-3 button {
+  font-weight: var(--font-lato-400);
+  color: var(--background-color);
+  background-color: var(--primary-color);
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.columna-3 button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+
+   /* AVATAR */
+   .avatar {
+    width: 6vw;
+    height: 6vw; 
+    background: url('../../zimg/avatar/avatar.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
   /* CARDS C3 */
   .cards-container-c3 {
     display: flex;
@@ -350,15 +384,15 @@
   
   .card-image-c3 {
     flex: 0 0 auto;
-    width: 10vw; 
-    height: 6vw;
+    width: 5vw; 
+    height: 8vh;
     overflow: hidden;
     border-radius: 5px;
   }
   
   .card-image-c3 img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     object-position: center center;
   }
@@ -745,7 +779,7 @@
   z-index: 9;
   padding-top: 60px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transform: translateX(-110%);
+  transform: translateX(-150%);
 }
 
 /* Estilos para la lista de elementos del menú móvil */
@@ -772,9 +806,14 @@ nav.nav-mobile ul {
 
   
   
-  @media only screen and (max-width: 768px) { 
+  @media only screen and (max-width: 968px) { 
     body{
       height: 100%;
+    }
+
+    .avatar {
+      width: 5vw;
+      height: 5vw; 
     }
 
     .hamburger {
@@ -792,6 +831,14 @@ nav.nav-mobile ul {
       grid-template-columns: 1fr;
       height: auto;
     }
+
+    .columna-1 {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 20px 0;
+      }
+
   
   .columna-1,
     .columna-2,
@@ -799,10 +846,18 @@ nav.nav-mobile ul {
       height: auto;
     }
   
-  
-    .logo img {
-      max-width: 50%;
-    }
+    .logo {
+      min-height: 100px;
+      width: 100%; /* Asegúrate de que el logo ocupe todo el ancho de la columna */
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+  }
+
+  .logo img {
+      max-width: 80%; /* Ajusta según lo necesites */
+      height: auto; /* Mantiene la relación de aspecto de la imagen */
+  }
   
     .columna-1 nav ul li {
       width: 100%;
@@ -821,6 +876,16 @@ nav.nav-mobile ul {
       align-items: center;
       padding: 5%;
   }
+
+  .card-c3 {
+    flex-direction: column;
+}
+
+.card-image-c3 {
+    width: 80%; 
+    height: 80%; 
+    margin: auto;
+}
   
   }
   
