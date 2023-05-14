@@ -4,7 +4,6 @@ class adminController
 {
     public $view;
     public $mapin;
-    public $vars = array();
 
 
     public function __construct()
@@ -60,6 +59,9 @@ class adminController
     public function verManagerCategory()
     {
         $this->view = 'managerCategory';
+
+        $categories = Category::getAllCategories();
+        include('view/managerCategory.php');
     }
 
     public function verManagerCategoryForm()
@@ -69,11 +71,16 @@ class adminController
 
     public function verManagerPlace()
     {
+        $places = Place::getAllPlaces();
+
         $this->view = 'managerPlace';
+        include('view/managerPlace.php');
     }
 
     public function verManagerPlaceForm()
     {
+
+
         $this->view = 'managerPlaceForm';
     }
 
@@ -97,11 +104,9 @@ class adminController
 
     public function verEditCategory()
     {
-        $idCategory = $_GET['id'];
+        /*   $idCategory = $_GET['id'];
         $category = Category::getCategoryById($idCategory);
-        $this->vars = [];
-        $this->vars['category'] = $category;
-        $this->view = 'managerCategoryFormEdit';
+        $this->view = 'managerCategoryFormEdit'; */
     }
 
     public function editCategory()

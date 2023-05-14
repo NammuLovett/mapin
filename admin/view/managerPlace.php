@@ -1,7 +1,6 @@
 <?php
-require_once __DIR__ . '/../../model/Place.php';
 
-$allPlaces = Place::getAllPlaces();
+
 
 ?>
 
@@ -60,7 +59,7 @@ $allPlaces = Place::getAllPlaces();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($allPlaces as $place) : ?>
+                        <?php foreach ($places as $place) : ?>
                             <tr>
                                 <td><?php echo $place->getIdPlace(); ?></td>
                                 <td><?php echo $place->getNamePlace(); ?></td>

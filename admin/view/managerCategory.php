@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../../model/Category.php';
 
-$allCategories = Category::getAllCategories();
+
+
 
 ?>
 
@@ -60,7 +60,7 @@ $allCategories = Category::getAllCategories();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($allCategories as $category) : ?>
+                        <?php foreach ($categories as $category) : ?>
                             <tr>
                                 <td><?php echo $category->getIdCategory(); ?></td>
                                 <td><?php echo $category->getNameCategory(); ?></td>
