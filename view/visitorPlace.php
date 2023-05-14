@@ -121,8 +121,8 @@ $mapin = $_SESSION['mapin'];
     </main>
 
     <script src="view/js/visitor.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&libraries=geometry&callback=initMap" async defer></script>
+
     <script>
         function initMap() {
             var placeLocation = {
@@ -131,7 +131,6 @@ $mapin = $_SESSION['mapin'];
             };
 
             var map = new google.maps.Map(document.getElementById('map'), {
-
                 zoom: 15,
                 center: placeLocation,
                 styles: [{
@@ -141,7 +140,6 @@ $mapin = $_SESSION['mapin'];
                     }]
                 }]
             });
-
 
             var placeMarker = new google.maps.Marker({
                 position: placeLocation,
@@ -156,7 +154,6 @@ $mapin = $_SESSION['mapin'];
                         lng: position.coords.longitude
                     };
 
-
                     var userMarker = new google.maps.Marker({
                         position: userLocation,
                         map: map,
@@ -168,7 +165,7 @@ $mapin = $_SESSION['mapin'];
                     });
 
                     var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
-                    var placeLatLng = new google.maps.LatLng(<?php echo $mapin->getLatPlace(); ?>, <?php echo $mapin->getLonPlace(); ?>);
+                    var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
                     var distanceText = (distance / 1000).toFixed(2) + " km";
 
@@ -188,42 +185,9 @@ $mapin = $_SESSION['mapin'];
             } else {
                 alert('Error: Tu navegador no soporta la geolocalización.');
             }
-
-
-            var infoWindow = new google.maps.InfoWindow({
-                content: "<h3><?php echo $mapin->getNamePlace(); ?></h3><p><?php echo $mapin->getInfoPlace(); ?>.</p><a href='https://www.google.com/maps/search/?api=1&query=" + placeLocation.lat + "," + placeLocation.lng + "' target='_blank'>Ir al lugar</a>"
-            });
-
-            // Asocia la infoventana al marcador del lugar
-            placeMarker.addListener('click', function() {
-                infoWindow.open(map, placeMarker);
-            });
-
-
-            // Calcula la distancia entre el usuario y el lugar
-            var userLocation = new google.maps.LatLng(userLocation.lat, userLocation.lng);
-            var placePosition = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
-            var distance = google.maps.geometry.spherical.computeDistanceBetween(userLocation, placePosition);
-
-            // Convierte la distancia a un formato legible
-            var distanceText = (distance / 1000).toFixed(2) + " km";
-
-            // Crea una instancia de infoventana
-            var infoWindowContent = "<h3>Información del lugar</h3><p>Aquí puedes agregar detalles sobre el lugar.</p><p>Distancia desde tu ubicación: " + distanceText + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + placeLocation.lat + "," + placeLocation.lng + "' target='_blank'>Abrir en Google Maps</a>";
-
-            var infoWindow = new google.maps.InfoWindow();
-
-            // Asigna el contenido a la infoventana
-            infoWindow.setContent(infoWindowContent);
-
-            // Agrega un listener de clic al marcador
-            placeMarker.addListener('click', function() {
-                // Abre la infoventana al hacer clic en el marcador
-                infoWindow.open(map, placeMarker);
-            });
-
         }
     </script>
+
 </body>
 
 </html>
