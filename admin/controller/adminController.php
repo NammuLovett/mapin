@@ -88,6 +88,7 @@ class adminController
 
             $nameCategory = $_POST['nameCategory'];
             $descriptionCategory = $_POST['descriptionCategory'];
+
             $category = new Category($idCategory = null, $nameCategory, $descriptionCategory);
             $category->addCategory($nameCategory, $descriptionCategory);
             return $category;
@@ -130,4 +131,42 @@ class adminController
         $this->view = 'managerCategory';
     }
     /* index.php?action=insertCategory */
+
+
+    /* LUGARES */
+
+
+    public function insertPlace()
+    {
+        $this->view = 'managerPlace';
+
+        if (isset($_POST["namePlace"]) && isset($_POST["descriptionPlace"])) {
+
+            $namePlace = $_POST['namePlace'];
+            $infoPlace = $_POST['infoPlace'];
+            $descriptionPlace = $_POST['descriptionPlace'];
+            $addressPlace = $_POST['addressPlace'];
+            $imgPlace = $_POST['imgPlace'];
+            $latPlace = $_POST['latPlace'];
+            $lonPlace = $_POST['lonPlace'];
+            $showPlace = $_POST['showPlace'];
+
+
+            $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = null, $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
+            $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+            return $place;
+
+            var_dump($place);
+        }
+    }
+
+    public function deletePlace()
+    {
+
+        $idPlace = $_GET['id'];
+        $place = new Place($idPlace, null, null, null, null, null, null, null, null, null, null, null);
+        $place->deletePlace($idPlace);
+
+        $this->view = 'managerPlace';
+    }
 }

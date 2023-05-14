@@ -45,37 +45,36 @@
 
                     <div class="container">
                         <h2>Formulario de lugares</h2>
-                        <div class="toggle-container">
+                        <!--    <div class="toggle-container">
                             <label class="switch">
                                 <input type="checkbox" id="theme-toggle" />
                                 <span class="slider round"></span>
                             </label>
                             <span class="toggle-text">Activar/Desactivar</span>
+                        </div> -->
 
-                        </div>
-
-                        <form id="registro-form">
+                        <form id="registro-form" action="index.php?action=insertPlace" method="POST">
                             <div class="icon-placeholder">
                                 <label for="nombre">Nombre del lugar <span>*</span></label>
-                                <input type="text" id="nombre" name="nombre" class="input-field" placeholder="Ej: Parque Central" required />
+                                <input type="text" id="namePlace" name="namePlace" class="input-field" placeholder="Ej: Parque Central" required />
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span class="error">El campo nombre no puede estar vacío</span>
                             </div>
                             <div class="icon-placeholder">
                                 <label for="info">Información <span>*</span></label>
-                                <input type="text" id="info" name="info" class="input-field" placeholder="Ej: Un hermoso parque en el centro de la ciudad." required />
+                                <input type="text" id="infoPlace" name="infoPlace" class="input-field" placeholder="Ej: Un hermoso parque en el centro de la ciudad." required />
                                 <i class="fas fa-info-circle"></i>
                                 <span class="error">El campo información no puede estar vacío</span>
                             </div>
                             <div class="icon-placeholder">
                                 <label for="descripcion">Descripción <span>*</span></label>
-                                <textarea id="descripcion" name="descripcion" class="input-field" placeholder="Ej: El parque central es un lugar icónico de la ciudad..." required></textarea>
+                                <textarea id="descriptionPlace" name="descriptionPlace" class="input-field" placeholder="Ej: El parque central es un lugar icónico de la ciudad..." required></textarea>
                                 <i class="fas fa-pencil-alt"></i>
                                 <span class="error">El campo descripción no puede estar vacío</span>
                             </div>
                             <div class="icon-placeholder">
                                 <label for="direccion">Dirección <span>*</span></label>
-                                <input type="text" id="direccion" name="direccion" class="input-field" placeholder="Ej: Calle 1 # 2-3" required />
+                                <input type="text" id="addressPlace" name="addressPlace" class="input-field" placeholder="Ej: Calle 1 # 2-3" required />
                                 <i class="fas fa-map"></i>
                                 <span class="error">El campo dirección no puede estar vacío</span>
                             </div>
@@ -87,8 +86,8 @@
                             <div class="icon-placeholder">
                                 <label for="mapa">Mapa google para poner latitud y longitud</label>
                                 <i class="fas fa-map-marker-alt"></i>
-                                <input class="input-field" type="text" id="lat" name="lat" readonly />
-                                <input class="input-field" type="text" id="lng" name="lng" readonly />
+                                <input class="input-field" type="text" id="lat" name="latPlace" readonly />
+                                <input class="input-field" type="text" id="lng" name="lonPlace" readonly />
                                 <div id="map" class="map-container"></div>
                             </div>
 

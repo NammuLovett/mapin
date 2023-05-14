@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/Db.php';
 class Place
 {
     private $idPlace;
@@ -14,7 +15,7 @@ class Place
     private $idLocation;
     private array $categories = array();
 
-
+    private $conection;
 
     // Constructor
     public function __construct($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation)
@@ -29,11 +30,19 @@ class Place
         $this->lonPlace = $lonPlace;
         $this->showPlace = $showPlace;
         $this->idLocation = $idLocation;
+
+        $this->getConection();
     }
 
 
 
     // Getters
+
+    public function getConection()
+    {
+        $dbObj = new Db();
+        $this->conection = $dbObj->conection;
+    }
     public function getIdPlace()
     {
         return $this->idPlace;
@@ -140,20 +149,18 @@ class Place
     }
 
     // Métodos para manejar el array de categorías
-    public function addCategory($category)
+    /*     public function addCategory($category)
     {
         array_push($this->categories, $category);
     }
+ */
 
-    public function removeCategory($category)
-    {
-        $index = array_search($category, $this->categories);
-        if ($index !== false) {
-            array_splice($this->categories, $index, 1);
-        }
-    }
+
+
 
     /* FUNCIONES */
+
+
 
     public static function getAllPlaces()
     {
@@ -188,6 +195,30 @@ class Place
             return $place;
         } else {
             return null;
+        }
+    }
+
+
+
+    public function addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation)
+    {
+        $this->getConection();
+        $sql = "INSERT INTO place (namePlace, infoPlace, descriptionPlace, addressPlace, imgPlace, latPlace, lonPlace, showPlace, idLocation) VALUES ('$namePlace', '$infoPlace','$descriptionPlace','$addressPlace', '$imgPlace', '$latPlace', '$lonPlace', '$showPlace', '$idLocation' )";
+
+
+
+        if ($this->conection->query($sql) === false) {
+            echo "Error: " . $sql . "<br>" . $this->conection->error;
+        }
+    }
+
+    public function deletePlace($idPlace)
+    {
+        $this->getConection();
+        $sql = "DELETE FROM place WHERE idPlace = '$idPlace'";
+
+        if ($this->conection->query($sql) === false) {
+            echo "Error: " . $sql . "<br>" . $this->conection->error;
         }
     }
 }
