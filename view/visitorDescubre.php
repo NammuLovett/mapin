@@ -74,10 +74,14 @@
                                     <img src="zimg/places/<?php echo $place->getImgPlace(); ?>" alt="Lugar <?php echo $place->getIdPlace(); ?>" />
                                 </div>
                                 <div class="card-info-c3">
-                                    <p class="card-name-c3"><?php echo $place->getNamePlace(); ?></p>
+                                    <h3 class="card-name-c3"><?php echo $place->getNamePlace(); ?></h3>
                                     <div class="card-date-container-c3">
                                         <i class="fas fa-info"></i>
-                                        <span class="card-date-c3"><?php echo $place->getInfoPlace(); ?></span> <!-- Asegúrate de que esta es la fecha que quieres mostrar -->
+                                        <span class="card-date-c3"><?php echo $place->getInfoPlace(); ?></span>
+                                    </div>
+                                    <div class="card-date-container-c3">
+                                        <i class="fas fa-map"></i>
+                                        <span class="card-date-c3"><?php echo $place->getAddressPlace(); ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -85,23 +89,10 @@
                     <?php endforeach; ?>
 
                     <!-- Card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c3">
-                            <div class="card-image-c3">
-                                <img src="zimg/places/image2.png" alt="Lugar 2" />
-                            </div>
-                            <div class="card-info-c3">
-                                <p class="card-name-c3">Parque Marítimo del Mediterráneo</p>
-                                <div class="card-date-container-c3">
-                                    <i class="fas fa-calendar"></i>
-                                    <span class="card-date-c3">12-05-2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+
                 </div>
                 <!-- paginación -->
-                <div class="pagination-container">
+                <!--   <div class="pagination-container">
                     <ul class="pagination-list">
                         <li class="page-item activo"><a href="#">1</a></li>
                         <li class="page-item"><a href="#">2</a></li>
@@ -109,7 +100,7 @@
                         <li class="page-item"><a href="#">4</a></li>
                         <li class="page-item"><a href="#">5</a></li>
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- Tercera fila: Estadísticas -->
                 <div class="fila-3">
@@ -121,6 +112,14 @@
         <section class="columna-3">
             <!-- c3 :Primera fila: Perfil -->
             <div class="fila-1">
+                <h3>Previsión del tiempo</h3>
+                <div class="previsión">
+                    <img id="weather-img" src="" alt="Imagen del clima">
+                    <p id="weather-description"></p>
+                </div>
+
+            </div>
+            <div class="fila-2">
                 <h3>Tus estadísticas</h3>
                 <div class="estadisticas">
                     <p>
@@ -131,16 +130,9 @@
                         <canvas class="myChart" id="myChart"></canvas>
                     </div>
                 </div>
-
             </div>
             <!-- C3 - Segunda fila: Lugares visitados -->
-            <div class="fila-2">
-                <h3>Previsión del tiempo</h3>
-                <div class="previsión">
-                    <img id="weather-img" src="" alt="Imagen del clima">
-                    <p id="weather-description"></p>
-                </div>
-            </div>
+
         </section>
     </main>
     <script src="view/js/visitor.js"></script>
