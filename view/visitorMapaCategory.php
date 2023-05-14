@@ -138,8 +138,16 @@
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
-            <!-- c3 :Primera fila: Perfil -->
+            <!-- c3 :Primera fila -->
             <div class="fila-1">
+                <h3>Previsión del tiempo</h3>
+                <div class="previsión">
+                    <img id="weather-img" src="" alt="Imagen del clima">
+                    <p id="weather-description"></p>
+                </div>
+
+            </div>
+            <div class="fila-2">
                 <h3>Tus estadísticas</h3>
                 <div class="estadisticas">
                     <p>
@@ -150,16 +158,9 @@
                         <canvas class="myChart" id="myChart"></canvas>
                     </div>
                 </div>
-
             </div>
             <!-- C3 - Segunda fila: Lugares visitados -->
-            <div class="fila-2">
-                <h3>Previsión del tiempo</h3>
-                <div class="previsión">
-                    <img id="weather-img" src="" alt="Imagen del clima">
-                    <p id="weather-description"></p>
-                </div>
-            </div>
+
         </section>
     </main>
 

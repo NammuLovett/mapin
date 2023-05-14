@@ -137,7 +137,6 @@
   
   .columna-2 p {
     font-weight: var(--font-lato-400);
-    color: var(--color-texto);
     line-height: 1.5;
     margin-bottom: 1vh;
   }

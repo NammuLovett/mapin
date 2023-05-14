@@ -26,7 +26,33 @@
                 <a href="index.php?action=verVisitorDashboard"><img src="zimg/logo/logoHOR.svg" alt="Logo MAP!N" /></a>
             </div>
             <!-- Menú de navegación -->
-            <nav>
+            <nav role="navigation" aria-label="Menú de navegación principal">
+                <ul>
+                    <li>
+                        <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorDescubre"><i class="fas fa-paper-plane"></i> Descubre</a>
+                    </li>
+                    <li class="activo">
+                        <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- HAMBURGUESA -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-mobile" role="navigation" aria-labelledby="mobile-menu-label">
                 <ul>
                     <li>
                         <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>
@@ -140,8 +166,16 @@
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
-            <!-- c3 :Primera fila: Perfil -->
+            <!-- c3 :Primera fila -->
             <div class="fila-1">
+                <h3>Previsión del tiempo</h3>
+                <div class="previsión">
+                    <img id="weather-img" src="" alt="Imagen del clima">
+                    <p id="weather-description"></p>
+                </div>
+
+            </div>
+            <div class="fila-2">
                 <h3>Tus estadísticas</h3>
                 <div class="estadisticas">
                     <p>
@@ -152,16 +186,9 @@
                         <canvas class="myChart" id="myChart"></canvas>
                     </div>
                 </div>
+            </div>
 
-            </div>
-            <!-- C3 - Segunda fila: Lugares visitados -->
-            <div class="fila-2">
-                <h3>Previsión del tiempo</h3>
-                <div class="previsión">
-                    <img id="weather-img" src="" alt="Imagen del clima">
-                    <p id="weather-description"></p>
-                </div>
-            </div>
+
         </section>
     </main>
     <script src="view/js/visitor.js"></script>
