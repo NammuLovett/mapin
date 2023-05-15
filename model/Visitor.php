@@ -1,5 +1,6 @@
 <?php
 
+
 class Visitor
 {
     private $idVisitor;
@@ -11,6 +12,7 @@ class Visitor
     private $datebirthVisitor;
     private $cityVisitor;
 
+    private $conection;
     private array $places = array();
     private array $favorites = array();
 
@@ -25,9 +27,16 @@ class Visitor
         $this->genderVisitor = $genderVisitor;
         $this->datebirthVisitor = $datebirthVisitor;
         $this->cityVisitor = $cityVisitor;
+
+        $this->getConection();
     }
 
     // Getters
+    public function getConection()
+    {
+        $dbObj = new Db();
+        $this->conection = $dbObj->conection;
+    }
     public function getIdVisitor()
     {
         return $this->idVisitor;
@@ -121,23 +130,7 @@ class Visitor
 
 
 
-    // Funciones ARRAY
-    /*     public function addPlace($place)
-    {
-        $this->getConection();
-        $sql = "UPDATE `visitorVisitPlace` SET
-        `idVisitor`	= '$this->idvisitor',
-        `idPlace`	= '$this->idPlace',
-        WHERE `visitorVisitPlace`.`idVisitor` = " . $this->idVisitor . ";";
 
-        if ($this->conection->query($sql)) {
-            return $this;
-        } else {
-            return false;
-        }
-        $this->conection->close();
-    }
- */
     public function removePlace($place)
     {
     }
@@ -178,11 +171,20 @@ class Visitor
             return null;
         }
     }
+
+
+    /* FUNCIONES */
+    /* CREATE;  */
+
+    public function addVisitor($nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor)
+    {
+        $this->getConection();
+        $sql = "INSERT INTO visitor (nameVisitor, surnameVisitor, emailVisitor, passwordVisitor, genderVisitor, datebirthVisitor, cityVisitor) VALUES ('$nameVisitor', '$surnameVisitor','$emailVisitor','$passwordVisitor', '$genderVisitor', '$datebirthVisitor', '$cityVisitor')";
+
+
+
+        if ($this->conection->query($sql) === false) {
+            echo "Error: " . $sql . "<br>" . $this->conection->error;
+        }
+    }
 }
-
-
-/* FUNCIONES DE USUARIO  */
-
-
-
-/* CREATE;  */

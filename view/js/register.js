@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('registro-form');
-  const password = document.getElementById('password');
+  const password = document.getElementById('passwordVisitor'); // Corrección aquí
   const confirmPassword = document.getElementById('confirm-password');
   const strengthOutput = document.getElementById('strength-output');
   const passwordStrength = document.getElementById('password-strength');

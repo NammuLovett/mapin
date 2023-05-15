@@ -20,29 +20,29 @@
             <p>
                 Crea una cuenta para acceder a todas las funcionalidades de Mapin!
             </p>
-            <form id="registro-form">
+            <form id="registro-form" action="index.php?action=insertVisitor" method="POST">
                 <div class="icon-placeholder">
                     <label for="nombre">Nombre <span>*</span></label>
-                    <input type="text" id="nombre" name="nombre" class="input-field" placeholder="Ej: Juan" required />
+                    <input type="text" id="nameVisitor" name="nameVisitor" class="input-field" placeholder="Ej: Juan" required />
                     <i class="fas fa-user"></i>
                     <span class="error">El campo nombre no puede estar vacío</span>
                 </div>
                 <div class="icon-placeholder">
                     <label for="apellidos">Apellidos <span>*</span></label>
-                    <input type="text" id="apellidos" name="apellidos" class="input-field" placeholder="Ej: Pérez López" required />
+                    <input type="text" id="surnameVisitor" name="surnameVisitor" class="input-field" placeholder="Ej: Pérez López" required />
                     <i class="fas fa-user"></i>
                     <span class="error">El campo apellidos no puede estar vacío</span>
                 </div>
 
                 <div class="icon-placeholder">
                     <label for="email">Email <span>*</span></label>
-                    <input type="email" id="email" name="email" class="input-field" placeholder="Ej: juan@example.com" required />
+                    <input type="email" id="emailVisitor" name="emailVisitor" class="input-field" placeholder="Ej: juan@example.com" required />
                     <i class="fas fa-envelope"></i>
                     <span class="error">El campo email no puede estar vacío</span>
                 </div>
                 <div class="icon-placeholder">
                     <label for="password">Contraseña <span>*</span></label>
-                    <input type="password" id="password" name="password" class="input-field" placeholder="Ej: Contraseña123" required />
+                    <input type="password" id="passwordVisitor" name="passwordVisitor" class="input-field" placeholder="Ej: Contraseña123" required />
                     <i class="fas fa-lock"></i>
 
                     <span class="error">El campo contraseña no puede estar vacío</span>
@@ -60,20 +60,20 @@
                 </div>
                 <div class="icon-placeholder">
                     <label for="fecha-nacimiento">Fecha de nacimiento <span>*</span></label>
-                    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" class="input-field" required />
+                    <input type="date" id="datebirthVisitor" name="datebirthVisitor" class="input-field" required />
                     <i class="fas fa-calendar"></i>
                     <span class="error">El campo fecha de nacimiento no puede estar vacío</span>
                 </div>
 
                 <label for="genero">Género <span>*</span></label>
-                <select id="genero" name="genero" required>
+                <select id="genderVisitor" name="genderVisitor" required>
                     <option value="">Seleccione una opción</option>
                     <option value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
                 </select>
                 <span class="error">El campo género no puede estar vacío</span>
                 <label for="codigo-postal">Código postal </label>
-                <input type="text" id="codigo-postal" name="codigo-postal" class="input-field" pattern="^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$" maxlength="5" placeholder="Ej: 28012" required />
+                <input type="text" id="cityVisitor" name="cityVisitor" class="input-field" pattern="^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$" maxlength="5" placeholder="Ej: 28012" required />
                 <span class="error">El campo código postal no puede estar vacío</span>
                 <div class="buttons">
                     <button type="reset">Reset</button>
