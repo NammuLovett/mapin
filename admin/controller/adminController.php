@@ -112,6 +112,7 @@ class adminController
     }
 
 
+
     public function verEditCategory()
     {
         $idCategory = $_GET['id'];
@@ -179,6 +180,9 @@ class adminController
 
             $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = null, $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
             $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+
+            global $places;
+            $places = Place::getAllPlaces();
             return $place;
         }
     }
@@ -191,5 +195,9 @@ class adminController
         $place->deletePlace($idPlace);
 
         $this->view = 'managerPlace';
+
+        global $places;
+        $places = Place::getAllPlaces();
+        include_once('view/managerPlace.php');
     }
 }

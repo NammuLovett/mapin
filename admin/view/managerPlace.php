@@ -70,7 +70,7 @@
                                         <span>&#8942;</span>
                                         <div class="dropdown-content">
                                             <a href="">Editar</a>
-                                            <a href="">Borrar</a>
+                                            <a href="index.php?action=deletePlace&id=<?php echo $place->getIdPlace(); ?>">Borrar</a>
                                         </div>
                                     </div>
                                 </td>

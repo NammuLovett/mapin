@@ -170,10 +170,8 @@ class Place
         $places = [];
 
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
-            }
+        while ($row = $result->fetch_assoc()) {
+            $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
         }
 
         return $places;
