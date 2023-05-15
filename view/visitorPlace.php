@@ -122,13 +122,16 @@ $mapin = $_SESSION['mapin'];
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
             <!-- c3 :Primera fila -->
-            <div class="fila-1">
+            <div class="fila-2">
                 <h3>Previsión del tiempo</h3>
                 <div class="previsión">
                     <img id="weather-img" src="" alt="Imagen del clima">
                     <p id="weather-description"></p>
+                    <p id="weather-temperature"></p>
+                    <p id="weather-wind"></p>
+                    <p id="weather-wind-direction"></p>
+                    <p id="weather-humidity"></p>
                 </div>
-
             </div>
             <div class="fila-2">
                 <h3>Tus estadísticas</h3>
