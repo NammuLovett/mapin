@@ -69,8 +69,8 @@
                                     <div class="dropdown-menu">
                                         <span>&#8942;</span>
                                         <div class="dropdown-content">
-                                            <a href="index.php?action=editPlace&id=<?php echo $place->getId(); ?>">Editar</a>
-                                            <a href="index.php?action=deletePlace&id=<?php echo $place->getId(); ?>">Borrar</a>
+                                            <a href="">Editar</a>
+                                            <a href="">Borrar</a>
                                         </div>
                                     </div>
                                 </td>
