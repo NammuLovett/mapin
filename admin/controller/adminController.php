@@ -72,7 +72,7 @@ class adminController
     public function verManagerPlace()
     {
         $places = Place::getAllPlaces();
-
+        var_dump($places);
         $this->view = 'managerPlace';
         include('view/managerPlace.php');
     }

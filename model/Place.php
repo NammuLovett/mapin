@@ -42,6 +42,7 @@ class Place
     {
         $dbObj = new Db();
         $this->conection = $dbObj->conection;
+        var_dump($this->conection);
     }
     public function getIdPlace()
     {
@@ -160,8 +161,6 @@ class Place
 
     /* FUNCIONES */
 
-
-
     public static function getAllPlaces()
     {
         $dbObj = new Db();
@@ -170,6 +169,8 @@ class Place
         $sql = "SELECT * FROM place";
         $result = $conection->query($sql);
         $places = [];
+
+        var_dump($result);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
