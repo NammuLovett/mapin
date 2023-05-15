@@ -68,7 +68,7 @@ class Category
     public function editCategory($idCategory)
     {
         $this->getConection();
-        $sql = "UPDATE category SET nameCategory = '$this->nameCategory', descriptionCategory = '$this->descriptionCategory' WHERE idCategory = '$idCategory'";
+        $sql = "UPDATE category SET nameCategory = '$this->nameCategory', nameCategory = '$this->descriptionCategory' WHERE idCategory = '$idCategory'";
 
         if ($this->conection->query($sql) === false) {
             echo "Error: " . $sql . "<br>" . $this->conection->error;
@@ -94,12 +94,12 @@ class Category
         $result = $conection->query($sql);
         $categories = [];
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $categories[] = new Category($row['idCategory'], $row['nameCategory'], $row['descriptionCategory']);
-            }
+        // Llenar el array con nuevos objetos de la clase Category
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = new Category($row['idCategory'], $row['nameCategory'], $row['descriptionCategory']);
         }
 
+        // Devolver el array de objetos Category
         return $categories;
     }
 

@@ -60,8 +60,13 @@ class adminController
     {
         $this->view = 'managerCategory';
 
+        global $categories;
         $categories = Category::getAllCategories();
-        include('view/managerCategory.php');
+        if (!is_array($categories) && !($categories instanceof Traversable)) {
+            echo 'Error: $categories no es un array o un objeto recorrible.';
+            exit;
+        }
+        include_once('view/managerCategory.php');
     }
 
     public function verManagerCategoryForm()
@@ -72,7 +77,7 @@ class adminController
     public function verManagerPlace()
     {
         $places = Place::getAllPlaces();
-        var_dump($places);
+
         $this->view = 'managerPlace';
         include('view/managerPlace.php');
     }
@@ -98,15 +103,19 @@ class adminController
 
             $category = new Category($idCategory = null, $nameCategory, $descriptionCategory);
             $category->addCategory($nameCategory, $descriptionCategory);
+
+            $categories = Category::getAllCategories();
+            include_once('view/managerCategory.php');
             return $category;
         }
     }
 
+
     public function verEditCategory()
     {
-        /*   $idCategory = $_GET['id'];
+        $idCategory = $_GET['id'];
         $category = Category::getCategoryById($idCategory);
-        $this->view = 'managerCategoryFormEdit'; */
+        $this->view = 'managerCategoryFormEdit';
     }
 
     public function editCategory()
@@ -134,6 +143,9 @@ class adminController
         $categoria->deleteCategory($idCategory);
 
         $this->view = 'managerCategory';
+
+        $categories = Category::getAllCategories();
+        include_once('view/managerCategory.php');
     }
     /* index.php?action=insertCategory */
 
