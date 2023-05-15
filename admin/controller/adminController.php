@@ -104,8 +104,9 @@ class adminController
             $category = new Category($idCategory = null, $nameCategory, $descriptionCategory);
             $category->addCategory($nameCategory, $descriptionCategory);
 
+            global $categories;
             $categories = Category::getAllCategories();
-            include_once('view/managerCategory.php');
+
             return $category;
         }
     }
@@ -115,6 +116,8 @@ class adminController
     {
         $idCategory = $_GET['id'];
         $category = Category::getCategoryById($idCategory);
+        include_once('view/managerCategory.php');
+
         $this->view = 'managerCategoryFormEdit';
     }
 
@@ -130,6 +133,10 @@ class adminController
         }
 
         $this->view = 'managerCategory';
+
+        global $categories;
+        $categories = Category::getAllCategories();
+        include_once('view/managerCategory.php');
     }
 
 
@@ -144,6 +151,7 @@ class adminController
 
         $this->view = 'managerCategory';
 
+        global $categories;
         $categories = Category::getAllCategories();
         include_once('view/managerCategory.php');
     }
@@ -172,8 +180,6 @@ class adminController
             $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = null, $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
             $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
             return $place;
-
-            var_dump($place);
         }
     }
 

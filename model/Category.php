@@ -68,7 +68,7 @@ class Category
     public function editCategory($idCategory)
     {
         $this->getConection();
-        $sql = "UPDATE category SET nameCategory = '$this->nameCategory', nameCategory = '$this->descriptionCategory' WHERE idCategory = '$idCategory'";
+        $sql = "UPDATE category SET nameCategory = '$this->nameCategory', descriptionCategory = '$this->descriptionCategory' WHERE idCategory = '$idCategory'";
 
         if ($this->conection->query($sql) === false) {
             echo "Error: " . $sql . "<br>" . $this->conection->error;
