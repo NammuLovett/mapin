@@ -62,7 +62,6 @@ class Controller
     {
         if (isset($_SESSION['visitor'])) {
             $this->view = 'visitorDashboard';
-            // Obtén la información del visitante
             $visitor = Visitor::getVisitorById($_SESSION['visitor']);
             if ($visitor === null) {
                 die("No se pudo encontrar el visitante con el ID: " . $_SESSION['visitor']);
@@ -122,19 +121,18 @@ class Controller
     {
         $this->view = 'visitorLogin';
 
-        if (isset($_POST["emailVisitor"]) && isset($_POST["passwordVisitor"])) {
+        if (isset($_POST["nameVisitor"]) && isset($_POST["surnameVisitor"]) && isset($_POST["emailVisitor"]) && isset($_POST["passwordVisitor"]) && isset($_POST["genderVisitor"]) && isset($_POST["datebirthVisitor"]) && isset($_POST["cityVisitor"])) {
 
             $nameVisitor = $_POST['nameVisitor'];
             $surnameVisitor = $_POST['surnameVisitor'];
             $emailVisitor = $_POST['emailVisitor'];
-            $passwordVisitorv = $_POST['passwordVisitor'];
+            $passwordVisitor = $_POST['passwordVisitor']; // corregido
             $genderVisitor = $_POST['genderVisitor'];
             $datebirthVisitor = $_POST['datebirthVisitor'];
             $cityVisitor = $_POST['cityVisitor'];
 
-
-            $visitor = new Visitor($idVisitor = null, $nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitorv, $genderVisitor, $datebirthVisitor, $cityVisitor);
-            $visitor->addVisitor($nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitorv, $genderVisitor, $datebirthVisitor, $cityVisitor);
+            $visitor = new Visitor($idVisitor = null, $nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor);
+            $visitor->addVisitor($nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor);
 
             return $visitor;
         }

@@ -28,6 +28,9 @@ class Visitor
         $this->datebirthVisitor = $datebirthVisitor;
         $this->cityVisitor = $cityVisitor;
 
+        /* $this->places = allPlacesVisit(); */
+        /* $this->places = allPlacesfavorite(); */
+
         $this->getConection();
     }
 

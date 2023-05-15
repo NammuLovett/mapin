@@ -66,7 +66,7 @@ const iconLinks = document.querySelectorAll('.icon-link');
 
 // Define un objeto que mapea los textos actuales de los botones a sus estados activo e inactivo
 const buttonTexts = {
-  // Contenido aquí...
+  // cosas
 };
 
 // Recorre todos los elementos 'icon-link'
@@ -98,5 +98,49 @@ document.addEventListener('DOMContentLoaded', function () {
       // Obtén el elemento de descripción y establece su texto a la descripción del clima
       var descriptionElement = document.getElementById('weather-description');
       descriptionElement.textContent = data.weather[0].description;
+
+      // Convierte la temperatura de Kelvin a Celsius
+      var tempCelsius = data.main.temp - 273.15;
+
+      // Obtén el elemento de temperatura y establece su texto a la temperatura en grados centígrados
+      var tempElement = document.getElementById('weather-temperature');
+      tempElement.textContent = tempCelsius.toFixed(2) + ' °C';
+
+      // Añade la velocidad del viento
+      var windSpeed = data.wind.speed;
+
+      // Obtén el elemento del viento y establece su texto a la velocidad del viento
+      var windElement = document.getElementById('weather-wind');
+      windElement.textContent = 'Viento: ' + windSpeed + ' m/s';
+
+      // Añade la humedad
+      var humidity = data.main.humidity;
+
+      // Obtén el elemento de humedad y establece su texto a la humedad
+      var humidityElement = document.getElementById('weather-humidity');
+      humidityElement.textContent = 'Humedad: ' + humidity + ' %';
+
+      // Añade la dirección del viento
+      var windDirection = data.wind.deg;
+      var cardinalDirections = [
+        'N',
+        'NE',
+        'E',
+        'SE',
+        'S',
+        'SO',
+        'O',
+        'NO',
+        'N',
+      ];
+      var cardinalDirection =
+        cardinalDirections[Math.round(windDirection / 45)];
+
+      // Obtén el elemento de dirección del viento y establece su texto a la dirección del viento
+      var windDirectionElement = document.getElementById(
+        'weather-wind-direction'
+      );
+      windDirectionElement.textContent =
+        'Dirección del viento: ' + cardinalDirection;
     });
 });

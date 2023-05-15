@@ -169,9 +169,13 @@ class Place
         $result = $conection->query($sql);
         $places = [];
 
-
-        while ($row = $result->fetch_assoc()) {
-            $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
+        if ($result === false) {
+            // si falla, mostrar el error
+            echo "Error: " . $conection->error;
+        } else {
+            while ($row = $result->fetch_assoc()) {
+                $places[] = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
+            }
         }
 
         return $places;
@@ -217,5 +221,21 @@ class Place
         if ($this->conection->query($sql) === false) {
             echo "Error: " . $sql . "<br>" . $this->conection->error;
         }
+    }
+
+    public function toArray()
+    {
+        return [
+            'idPlace' => $this->idPlace,
+            'namePlace' => $this->namePlace,
+            'infoPlace' => $this->infoPlace,
+            'descriptionPlace' => $this->descriptionPlace,
+            'addressPlace' => $this->addressPlace,
+            'imgPlace' => $this->imgPlace,
+            'latPlace' => $this->latPlace,
+            'lonPlace' => $this->lonPlace,
+            'showPlace' => $this->showPlace,
+            'idLocation' => $this->idLocation
+        ];
     }
 }

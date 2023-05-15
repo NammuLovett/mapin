@@ -111,7 +111,6 @@ class Mapin
             return false;
         }
 
-        // Si no ha habido errores y la ejecución de la función ha llegado al final,
         // se crea una variable de sesión que guarda el id del manager.
         $_SESSION['visitor'] = $row['idVisitor'];
 

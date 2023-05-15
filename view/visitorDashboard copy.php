@@ -1,11 +1,5 @@
 <?php
-
-
-$places = array_map(function ($place) {
-    return $place->toArray();
-}, Place::getAllPlaces());
-$places_json = json_encode($places);
-
+$places = Place::getAllPlaces();
 /* var_dump($places); */
 
 ?>
@@ -139,12 +133,14 @@ $places_json = json_encode($places);
             </div>
         </section>
     </main>
+    <script src="view/js/visitor.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
 
     <script>
         // Función para inicializar el mapa
         function initMap() {
-            var places = <?php echo $places_json; ?>;
+            var places = <?php echo json_encode($places); ?>;
+            <?php echo json_last_error(); ?>;
 
             console.log(places);
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
@@ -196,8 +192,8 @@ $places_json = json_encode($places);
                         // Calcula la distancia entre la ubicación del usuario y el lugar
                         var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
 
-                        // Si la distancia es de 1 km o menos, crea un marcador para el lugar
-                        if (distance <= 1000) {
+                        // Si la distancia es de 10 km o menos, crea un marcador para el lugar
+                        if (distance <= 100000) {
                             var placeMarker = new google.maps.Marker({
                                 position: placeLocation,
                                 map: map,
@@ -225,8 +221,6 @@ $places_json = json_encode($places);
             }
         }
     </script>
-    <script src="view/js/visitor.js"></script>
-
 </body>
 
 </html>
