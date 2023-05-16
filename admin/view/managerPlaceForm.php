@@ -79,6 +79,25 @@
                                 <span class="error">El campo dirección no puede estar vacío</span>
                             </div>
                             <div class="icon-placeholder">
+                                <label for="categorias">Categorías</label>
+                                <div class="checkbox-container">
+                                    <?php
+                                    $categories = Category::getAllCategories();
+                                    foreach ($categories as $category) {
+                                        echo '<div class="checkbox-form">';
+                                        echo '<label class="category-label" for="category' . $category->getIdCategory() . '">';
+                                        echo '<input class="category-checkbox" type="checkbox" id="category' . $category->getIdCategory() . '" name="category[]" value="' . $category->getIdCategory() . '" />';
+                                        echo $category->getNameCategory();
+                                        echo '</label>';
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+
+
+                            <div class="icon-placeholder">
                                 <label for="imagen">Subir imagen</label>
                                 <input type="file" id="imagen" name="imagen" class="input-field" accept="image/*" />
                                 <i class="fas fa-image"></i>
@@ -91,10 +110,7 @@
                                 <div id="map" class="map-container"></div>
                             </div>
 
-                            <div>
-                                <label for="mapa">Categoría</label>
-                                <input type="text" id="mapa" name="mapa" class="input-field" />
-                            </div>
+
                             <div class="buttons">
                                 <button type="reset">Reset</button>
                                 <button type="submit">Guardar</button>

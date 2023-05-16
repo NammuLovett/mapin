@@ -149,11 +149,8 @@ class Place
     }
 
     // Métodos para manejar el array de categorías
-    /*     public function addCategory($category)
-    {
-        array_push($this->categories, $category);
-    }
- */
+
+
 
 
 
@@ -211,6 +208,7 @@ class Place
         if ($this->conection->query($sql) === false) {
             echo "Error: " . $sql . "<br>" . $this->conection->error;
         }
+        return $this->conection->insert_id;
     }
 
     public function deletePlace($idPlace)
@@ -237,5 +235,27 @@ class Place
             'showPlace' => $this->showPlace,
             'idLocation' => $this->idLocation
         ];
+    }
+
+    public function assignCategories($idPlace, $categories)
+
+    {
+        $this->getConection();
+
+        // Validar los valores antes de utilizarlos en la consulta
+        $idPlace = intval($idPlace); // Convertir a entero
+        $categories = array_map('intval', $categories); // Convertir a entero
+
+        echo "idPlace: " . $idPlace . "<br>";
+        echo "categories: ";
+        print_r($categories);
+        echo "<br>";
+
+        foreach ($categories as $idCategory) {
+            $sql = "INSERT INTO placeHaveCategory (idPlace, idCategory) VALUES ('$idPlace', '$idCategory')";
+            if ($this->conection->query($sql) === false) {
+                echo "Error: " . $sql . "<br>" . $this->conection->error;
+            }
+        }
     }
 }

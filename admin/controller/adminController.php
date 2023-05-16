@@ -176,16 +176,22 @@ class adminController
             $latPlace = $_POST['latPlace'];
             $lonPlace = $_POST['lonPlace'];
             $showPlace = $_POST['showPlace'];
-
+            $categories = isset($_POST['category']) ? $_POST['category'] : null;
 
             $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = null, $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
-            $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+            $placeId = $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+            // Si se seleccionaron categorías y el lugar fue insertado correctamente
+            if ($categories && $placeId) {
+                $place->assignCategories($placeId, $categories);
+            }
 
             global $places;
             $places = Place::getAllPlaces();
             return $place;
         }
     }
+
+
 
     public function deletePlace()
     {
