@@ -137,11 +137,24 @@ class Controller
     public function verVisitorMapaCategory()
     {
         $categoryId = $_GET['id'];
-        $places = Place::getPlacesByCategoryId($categoryId);
-        $category = Category::getCategoryById($categoryId); // Asegúrate de tener un método que haga esto
+        $places_objects = Place::getPlacesByCategoryId($categoryId);
+        $category = Category::getCategoryById($categoryId);
 
+        // Convertir cada objeto Place en un array
+        $places = array_map(function ($place) {
+            return $place->toArray();
+        }, $places_objects);
+
+        $places_json = json_encode($places);
+
+        // Console.log para verificar los datos antes de convertir a JSON
+        echo "<script>console.log(" . json_encode($places) . ");</script>";
+
+        // Var_dump para verificar los datos antes de convertir a JSON
+        //var_dump($places);
+
+        // Pasar los datos a la vista
         include 'view/visitorMapaCategory.php';
-
         $this->view = 'visitorMapaCategory';
     }
 }

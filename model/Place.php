@@ -148,11 +148,6 @@ class Place
         $this->idLocation = $idLocation;
     }
 
-    // Métodos para manejar el array de categorías
-
-
-
-
 
 
     /* FUNCIONES */
@@ -210,6 +205,7 @@ class Place
         }
         return $this->conection->insert_id;
     }
+
 
     public function deletePlace($idPlace)
     {

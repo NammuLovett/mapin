@@ -1,6 +1,5 @@
 <?php
 
-
 $places = array_map(function ($place) {
     return $place->toArray();
 }, Place::getAllPlaces());
