@@ -147,14 +147,12 @@ class Controller
 
         $places_json = json_encode($places);
 
+        // Pasar los datos a la vista
+        include 'view/visitorMapaCategory.php';
+
         // Console.log para verificar los datos antes de convertir a JSON
         echo "<script>console.log(" . json_encode($places) . ");</script>";
 
-        // Var_dump para verificar los datos antes de convertir a JSON
-        //var_dump($places);
-
-        // Pasar los datos a la vista
-        include 'view/visitorMapaCategory.php';
         $this->view = 'visitorMapaCategory';
     }
 }

@@ -4,7 +4,7 @@ $places = array_map(function ($place) {
     return $place->toArray();
 }, Place::getAllPlaces());
 $places_json = json_encode($places);
-
+/* var_dump($places_json); */
 /* var_dump($places); */
 
 ?>

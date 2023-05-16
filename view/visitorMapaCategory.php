@@ -1,14 +1,12 @@
 <?php
 $categoryId = $_GET['id'];
 $places = Place::getPlacesByCategoryId($categoryId);
+
 $category = Category::getCategoryById($categoryId);
-$places_json = json_encode($places);
 
 
-/* var_dump($places); */
+/* var_dump($places_json) */
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -135,6 +133,7 @@ $places_json = json_encode($places);
         // Función para inicializar el mapa
         function initMap() {
             var places = JSON.parse('<?php echo $places_json; ?>');
+
             console.log(places);
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
