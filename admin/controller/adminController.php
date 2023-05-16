@@ -178,7 +178,7 @@ class adminController
             $showPlace = $_POST['showPlace'];
             $categories = isset($_POST['category']) ? $_POST['category'] : null;
 
-            $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = null, $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
+            $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = 'image0.png', $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
             $placeId = $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
             // Si se seleccionaron categorías y el lugar fue insertado correctamente
             if ($categories && $placeId) {

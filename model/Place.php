@@ -246,10 +246,6 @@ class Place
         $idPlace = intval($idPlace); // Convertir a entero
         $categories = array_map('intval', $categories); // Convertir a entero
 
-        echo "idPlace: " . $idPlace . "<br>";
-        echo "categories: ";
-        print_r($categories);
-        echo "<br>";
 
         foreach ($categories as $idCategory) {
             $sql = "INSERT INTO placeHaveCategory (idPlace, idCategory) VALUES ('$idPlace', '$idCategory')";
@@ -257,5 +253,28 @@ class Place
                 echo "Error: " . $sql . "<br>" . $this->conection->error;
             }
         }
+    }
+
+
+    public static function getPlacesByCategoryId($idCategory)
+    {
+        $idCategory = intval($idCategory);
+
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT p.* FROM place p JOIN placeHaveCategory pc ON p.idPlace = pc.idPlace WHERE pc.idCategory = '$idCategory'";
+
+        $result = $conection->query($sql);
+
+        $places = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
+                $places[] = $place;
+            }
+        }
+
+        return $places;
     }
 }

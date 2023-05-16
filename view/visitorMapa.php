@@ -79,7 +79,7 @@
             <!-- Primera fila: Bienvenida y búsqueda -->
             <div class="fila-1">
                 <h1>Mapa</h1>
-                <p>Selecciona que quieres ver en el mapa</p>
+                <p>Selecciona la categoría para ver los lugares en el mapa</p>
             </div>
             <!-- Segunda fila: mapa -->
             <div class="fila-2 f2mapa">
@@ -88,7 +88,7 @@
                     $allCategories = Category::getAllCategories();
                     foreach ($allCategories as $category) :
                     ?>
-                        <a href="visitorMapaCategory.php?id=<?php echo $category->getIdCategory(); ?>" class="category-card">
+                        <a href="index.php?action=verVisitorMapaCategory&id=<?php echo $category->getIdCategory(); ?>" class="category-card">
                             <i class="fas fa-landmark"></i>
                             <p><?php echo $category->getNameCategory(); ?></p>
                         </a>

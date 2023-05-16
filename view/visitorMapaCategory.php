@@ -51,88 +51,35 @@
         <section class="columna-2">
             <!-- Primera fila: Bienvenida y búsqueda -->
             <div class="fila-1">
-                <h1>Mapa</h1>
-                <p>Lugares de interés de cada categoría</p>
-            </div>
-            <!-- Segunda fila: mapa -->
-            <div class="fila-2">
-                <div class="estadisticas">
-                    <p>
-                        Has visitado &lt;number&gt; de &lt;number&gt; lugares de interés
-                        de Ceuta.
-                    </p>
-                    <div class="chart-container">
-                        <canvas class="myChart" id="myChart"></canvas>
-                    </div>
-                </div>
-
-
+                <h1> Mapa de <?php echo $category->getNameCategory(); ?></h1>
+                <p>Lugares de interés de la categoría </p>
             </div>
 
             <!-- Tercera fila: Estadísticas -->
             <div class="fila-3">
                 <!-- Card -->
                 <div class="cards-container-c3 ">
-                    <a href="visitorPlace.php">
-                        <div class="card-c3">
-                            <div class="card-image-c3">
-                                <img src="../zimg/places/image1.png" alt="Lugar 1" />
-                            </div>
-                            <div class="card-info-c3">
-                                <p class="card-name-c3">Murallas Reales</p>
-                                <div class="card-date-container-c3">
-                                    <i class="fas fa-calendar"></i>
-                                    <span class="card-date-c3">10-05-2023</span>
+                    <?php foreach ($places as $place) : ?>
+                        <a href="index.php?action=verVisitorPlace&id=<?php echo $place->getIdPlace(); ?>">
+                            <div class="card-c3">
+                                <div class="card-image-c3">
+                                    <img src="zimg/places/<?php echo $place->getImgPlace(); ?>" alt="Lugar <?php echo $place->getIdPlace(); ?>" />
+                                </div>
+                                <div class="card-info-c3">
+                                    <h3 class="card-name-c3"><?php echo $place->getNamePlace(); ?></h3>
+                                    <div class="card-date-container-c3">
+                                        <i class="fas fa-info"></i>
+                                        <span class="card-date-c3"><?php echo $place->getInfoPlace(); ?></span>
+                                    </div>
+                                    <div class="card-date-container-c3">
+                                        <i class="fas fa-map"></i>
+                                        <span class="card-date-c3"><?php echo $place->getAddressPlace(); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                    <!-- Card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c3">
-                            <div class="card-image-c3">
-                                <img src="../zimg/places/image2.png" alt="Lugar 2" />
-                            </div>
-                            <div class="card-info-c3">
-                                <p class="card-name-c3">Parque Marítimo del Mediterráneo</p>
-                                <div class="card-date-container-c3">
-                                    <i class="fas fa-calendar"></i>
-                                    <span class="card-date-c3">12-05-2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c3">
-                            <div class="card-image-c3">
-                                <img src="../zimg/places/image3.png" alt="Lugar 3" />
-                            </div>
-                            <div class="card-info-c3">
-                                <p class="card-name-c3">Casa de los Dragones</p>
-                                <div class="card-date-container-c3">
-                                    <i class="fas fa-calendar"></i>
-                                    <span class="card-date-c3">15-05-2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- card -->
-                    <a href="visitorPlace.php">
-                        <div class="card-c3">
-                            <div class="card-image-c3">
-                                <img src="../zimg/places/image3.png" alt="Lugar 3" />
-                            </div>
-                            <div class="card-info-c3">
-                                <p class="card-name-c3">Casa de los Dragones</p>
-                                <div class="card-date-container-c3">
-                                    <i class="fas fa-calendar"></i>
-                                    <span class="card-date-c3">15-05-2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- termina -->
+                        </a>
+                    <?php endforeach; ?>
+
                 </div>
 
         </section>

@@ -89,10 +89,6 @@ class Controller
         $this->view = 'visitorMapa';
     }
 
-    public function verVisitorMapaCategory()
-    {
-        $this->view = 'visitorMapaCategory';
-    }
 
 
     public function verVisitorPlace()
@@ -136,5 +132,16 @@ class Controller
 
             return $visitor;
         }
+    }
+
+    public function verVisitorMapaCategory()
+    {
+        $categoryId = $_GET['id'];
+        $places = Place::getPlacesByCategoryId($categoryId);
+        $category = Category::getCategoryById($categoryId); // Asegúrate de tener un método que haga esto
+
+        include 'view/visitorMapaCategory.php';
+
+        $this->view = 'visitorMapaCategory';
     }
 }
