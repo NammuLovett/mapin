@@ -119,8 +119,21 @@ class Controller
 
     public function verVisitorFavorito()
     {
+        if (!isset($_SESSION['visitor'])) {
+            // manejar el caso en que no hay un visitante logueado
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $visitor = Visitor::getVisitorById($_SESSION['visitor']);
+        $idVisitor = $visitor->getIdVisitor();
+        $places = Place::getAllFavoritePlacesBy($idVisitor);
+
+        require_once('view/visitorFavorito.php');
         $this->view = 'visitorFavorito';
     }
+
+
     public function verVisitorMapa()
     {
         $this->view = 'visitorMapa';

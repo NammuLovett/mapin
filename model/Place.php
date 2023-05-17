@@ -13,6 +13,7 @@ class Place
     private $lonPlace;
     private $showPlace;
     private $idLocation;
+
     private array $categories = array();
 
     private $conection;
@@ -304,6 +305,28 @@ class Place
         $conection = $dbObj->conection;
 
         $sql = "SELECT p.* FROM place p WHERE p.idPlace IN (SELECT vvp.idPlace FROM visitorVisitPlace vvp WHERE vvp.idVisitor = '$idVisitor')";
+
+        $result = $conection->query($sql);
+
+        $places = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $place = new Place($row['idPlace'], $row['namePlace'], $row['infoPlace'], $row['descriptionPlace'], $row['addressPlace'], $row['imgPlace'], $row['latPlace'], $row['lonPlace'], $row['showPlace'], $row['idLocation']);
+                $places[] = $place;
+            }
+        }
+
+        return $places;
+    }
+
+    public static function getAllFavoritePlacesBy($idVisitor)
+    {
+        $idVisitor = intval($idVisitor);
+
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT p.* FROM place p WHERE p.idPlace IN (SELECT vfp.idPlace FROM visitorFavPlace vfp WHERE vfp.idVisitor = '$idVisitor')";
 
         $result = $conection->query($sql);
 
