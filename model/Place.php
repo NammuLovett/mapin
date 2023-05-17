@@ -359,4 +359,62 @@ class Place
         // Si el visitante no ha visitado el lugar, devuelve null
         return null;
     }
+
+    public function checkIfFavorited($idVisitor, $idPlace)
+    {
+        $idVisitor = intval($idVisitor);
+        $dbObj = new Db();
+
+        $conection = $dbObj->conection;
+        $sql = "SELECT * FROM visitorFavPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
+
+        $result = $conection->query($sql);
+        // Si el visitante ha marcado el lugar como favorito, devuelve la fila de la base de datos
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+
+        // Si el visitante no ha marcado el lugar como favorito, devuelve null
+        return null;
+    }
+
+    public function toggleVisited($idVisitor, $idPlace)
+    {
+        $idVisitor = intval($idVisitor);
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        // Primero, verifica si el lugar ya ha sido visitado
+        $visitedData = $this->checkIfVisited($idVisitor, $idPlace);
+
+        if ($visitedData) {
+            // Si el lugar ya ha sido visitado, borra el registro
+            $sql = "DELETE FROM visitorVisitPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
+        } else {
+            // Si el lugar no ha sido visitado, inserta un nuevo registro
+            $sql = "INSERT INTO visitorVisitPlace (idVisitor, idPlace) VALUES ($idVisitor, $idPlace)";
+        }
+
+        return $conection->query($sql);
+    }
+
+    public function toggleFavorited($idVisitor, $idPlace)
+    {
+        $idVisitor = intval($idVisitor);
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        // Primero, verifica si el lugar ya es favorito
+        $favoritedData = $this->checkIfFavorited($idVisitor, $idPlace);
+
+        if ($favoritedData) {
+            // Si el lugar ya es favorito, borra el registro
+            $sql = "DELETE FROM visitorFavoritedPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
+        } else {
+            // Si el lugar no es favorito, inserta un nuevo registro
+            $sql = "INSERT INTO visitorFavoritedPlace (idVisitor, idPlace) VALUES ($idVisitor, $idPlace)";
+        }
+
+        return $conection->query($sql);
+    }
 }

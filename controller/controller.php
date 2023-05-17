@@ -6,11 +6,25 @@ class Controller
     private $mapin;
 
 
+
     public function __construct()
     {
         $this->view = 'landing';
         $this->mapin = new Mapin();
+
+        if (isset($_GET['action'])) {
+            switch ($_GET['action']) {
+                case 'toggleVisited':
+                    $this->toggleVisited();
+                    break;
+                case 'toggleFavorited':
+                    $this->toggleFavorited();
+                    break;
+            }
+        }
     }
+
+
 
     public function landing()
     {
@@ -163,11 +177,15 @@ class Controller
             // Consulta para verificar si el visitante ha visitado el lugar
             $visitData = $place->checkIfVisited($idVisitor, $idPlace);
 
-            // Pasamos la variable $hasVisited a la vista
+            // Consulta para verificar si el visitante ha marcado el lugar como favorito
+            $favoritedData = $place->checkIfFavorited($idVisitor, $idPlace);
+
+            // Pasamos la variable $hasVisited y $isFavorited a la vista
             $this->view = 'visitorPlace';
             $this->mapin = $place;
             $hasVisited = $visitData ? true : false;
             $visitDate = $visitData ? $visitData['dateVVP'] : null;
+            $isFavorited = $favoritedData ? true : false;
             $_SESSION['mapin'] = $place;
             include 'view/visitorPlace.php';
         } else {
@@ -175,6 +193,31 @@ class Controller
         }
     }
 
+    public function toggleVisited()
+    {
+        if (isset($_POST['idPlace'])) {
+            $idPlace = $_POST['idPlace'];
+            $idVisitor = $_SESSION['visitor'];
+            $place = Place::getPlaceById($idPlace);
+            $result = $place->toggleVisited($idVisitor, $idPlace);
+            echo json_encode(array('success' => $result));
+        } else {
+            echo json_encode(array('success' => false));
+        }
+    }
+
+    public function toggleFavorited()
+    {
+        if (isset($_POST['idPlace'])) {
+            $idPlace = $_POST['idPlace'];
+            $idVisitor = $_SESSION['visitor'];
+            $place = Place::getPlaceById($idPlace);
+            $result = $place->toggleFavorited($idVisitor, $idPlace);
+            echo json_encode(array('success' => $result));
+        } else {
+            echo json_encode(array('success' => false));
+        }
+    }
 
 
 

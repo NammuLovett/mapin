@@ -103,12 +103,21 @@ $mapin = $_SESSION['mapin'];
                             </a>
                         <?php endif; ?>
 
-                        <a href="#" class="icon-link" id="link-favorito">
-                            <div class="circle">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span>Favorito</span>
-                        </a>
+                        <?php if ($isFavorited) : ?>
+                            <a href="#" class="icon-link activo" id="link-favorito">
+                                <div class=" circle">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>Favorito</span>
+                            </a>
+                        <?php else : ?>
+                            <a href="#" class="icon-link" id="link-favorito">
+                                <div class="circle">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>Favorito</span>
+                            </a>
+                        <?php endif; ?>
                     </div>
 
                     <div class="place-info">
@@ -238,22 +247,9 @@ $mapin = $_SESSION['mapin'];
     </script>
 
     <script src="view/js/visitor.js"></script>
-    <script>
-        /* BOTONES  */
-        /*  const iconLinks = document.querySelectorAll('.icon-link');
 
-         iconLinks.forEach((iconLink) => {
-             iconLink.addEventListener('click', (event) => {
-                 event.preventDefault();
 
-                 if (iconLink.classList.contains('activo')) {
-                     iconLink.classList.remove('activo');
-                 } else {
-                     iconLink.classList.add('activo');
-                 }
-             });
-         }); */
-    </script>
+
 
 </body>
 
