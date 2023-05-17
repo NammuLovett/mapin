@@ -340,4 +340,23 @@ class Place
 
         return $places;
     }
+
+
+    public function checkIfVisited($idVisitor, $idPlace)
+    {
+        $idVisitor = intval($idVisitor);
+        $dbObj = new Db();
+
+        $conection = $dbObj->conection;
+        $sql = "SELECT * FROM visitorVisitPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
+
+        $result = $conection->query($sql);
+        // Si el visitante ha visitado el lugar, devuelve la fila de la base de datos
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+
+        // Si el visitante no ha visitado el lugar, devuelve null
+        return null;
+    }
 }

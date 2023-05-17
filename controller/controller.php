@@ -158,17 +158,24 @@ class Controller
 
             $place = Place::getPlaceById($idPlace);
 
+            $idVisitor = $_SESSION['visitor'];
 
+            // Consulta para verificar si el visitante ha visitado el lugar
+            $visitData = $place->checkIfVisited($idVisitor, $idPlace);
+
+            // Pasamos la variable $hasVisited a la vista
             $this->view = 'visitorPlace';
             $this->mapin = $place;
-
-
-
+            $hasVisited = $visitData ? true : false;
+            $visitDate = $visitData ? $visitData['dateVVP'] : null;
             $_SESSION['mapin'] = $place;
+            include 'view/visitorPlace.php';
         } else {
             echo "ERROR: ";
         }
     }
+
+
 
 
 

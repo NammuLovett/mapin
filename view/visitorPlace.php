@@ -85,26 +85,32 @@ $mapin = $_SESSION['mapin'];
             </div>
             <?php if ($mapin) : ?>
                 <div class="place-details">
-
                     <div class="icon-links-container">
+                        <?php if ($hasVisited) : ?>
+                            <a href="#" class="icon-link activo" id="link-visitado" onclick="/* llamar a funcion */">
+                                <div class="circle">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span>Visitado</span>
+                                <span> <?php echo $visitDate; ?></span>
+                            </a>
+                        <?php else : ?>
+                            <a href="#" class="icon-link" id="link-no-visitado" onclick="/* llamar a funcion */">
+                                <div class="circle">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                                <span>No visitado</span>
+                            </a>
+                        <?php endif; ?>
 
-                        <a href="#" class="icon-link" id="link-visitado" onclick="">
-                            <div class="circle">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <span>No Visitado</span>
-                        </a>
                         <a href="#" class="icon-link" id="link-favorito">
                             <div class="circle">
                                 <i class="fas fa-star"></i>
                             </div>
-                            <span>No Favorito</span>
+                            <span>Favorito</span>
                         </a>
-
                     </div>
 
-
-                    <!-- --- -->
                     <div class="place-info">
                         <h1 class="place-title"><?php echo $mapin->getNamePlace(); ?></h1>
                         <p class="place-location"><i class="fa-solid fa-location-dot"></i> Ceuta, España</p>
@@ -114,9 +120,9 @@ $mapin = $_SESSION['mapin'];
                         <p><?php echo $mapin->getDescriptionPlace(); ?></p>
                     </div>
                     <div id="map" style="height: 400px; width: 100%;"></div>
-
                 </div>
             <?php endif; ?>
+
 
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
@@ -150,7 +156,6 @@ $mapin = $_SESSION['mapin'];
         </section>
     </main>
 
-    <script src="view/js/visitor.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&libraries=geometry&callback=initMap" async defer></script>
 
     <script>
@@ -232,6 +237,23 @@ $mapin = $_SESSION['mapin'];
         }
     </script>
 
+    <script src="view/js/visitor.js"></script>
+    <script>
+        /* BOTONES  */
+        /*  const iconLinks = document.querySelectorAll('.icon-link');
+
+         iconLinks.forEach((iconLink) => {
+             iconLink.addEventListener('click', (event) => {
+                 event.preventDefault();
+
+                 if (iconLink.classList.contains('activo')) {
+                     iconLink.classList.remove('activo');
+                 } else {
+                     iconLink.classList.add('activo');
+                 }
+             });
+         }); */
+    </script>
 
 </body>
 

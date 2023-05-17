@@ -61,21 +61,7 @@ const myChart = new Chart(ctx, {
   },
 });
 
-// Selecciona todos los elementos con la clase 'icon-link'
-const iconLinks = document.querySelectorAll('.icon-link');
-
-// Define un objeto que mapea los textos actuales de los botones a sus estados activo e inactivo
-const buttonTexts = {
-  // cosas
-};
-
-// Recorre todos los elementos 'icon-link'
-iconLinks.forEach((iconLink) => {
-  // Añade un escuchador de eventos 'click' a cada elemento 'icon-link'
-  iconLink.addEventListener('click', (event) => {
-    // Código para manejar el evento click aquí...
-  });
-});
+/* MAPA */
 
 // Añade un escuchador de eventos 'DOMContentLoaded' al documento
 document.addEventListener('DOMContentLoaded', function () {
