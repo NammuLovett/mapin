@@ -1,9 +1,3 @@
-<?php
-/* echo $_SESSION['visitor'];
-var_dump($_SESSION);
- */
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,7 +17,6 @@ var_dump($_SESSION);
 </head>
 
 <body>
-
     <!-- Contenedor principal -->
     <main class="grid-container">
         <!-- Primera columna: Navegación -->
@@ -92,9 +85,9 @@ var_dump($_SESSION);
 
                 <div class="categorias-container">
                     <ul class="categorias-list">
-                        <li class="categoria activo"><a href="index.php?action=verVisitorDescubre">Todos</a></li>
-                        <li class="categoria"><a href="index.php?action=verVisitorDescubreV">Visitados</a></li>
-                        <li class="categoria"><a href="index.php?action=verVisitorDescubreNV">No visitados</a></li>
+                        <li class="categoria"><a href="index.php?action=verVisitorDescubre">Todos</a></li>
+                        <li class="categoria activo"><a href="index.php?action=verVisitorDescubreV">Visitados</a></li>
+                        <li class="categoria "><a href="index.php?action=verVisitorDescubreNV">No visitados</a></li>
 
                     </ul>
                 </div>
@@ -115,6 +108,7 @@ var_dump($_SESSION);
                                     <div class="card-date-container-c3">
                                         <i class="fas fa-map"></i>
                                         <span class="card-date-c3"><?php echo $place->getAddressPlace(); ?></span>
+
                                     </div>
                                 </div>
                             </div>

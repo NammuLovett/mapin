@@ -23,8 +23,6 @@ class Controller
     }
 
 
-
-
     /* LOGIN */
 
     public function login()
@@ -44,6 +42,7 @@ class Controller
 
         if ($logeo !== false) {
             $this->verVisitorDashboard();
+            $_SESSION['idVisitor'] = $logeo->getIdVisitor();
             return $logeo;
         } else {
             $this->login();
@@ -78,8 +77,46 @@ class Controller
         $places = Place::getAllPlaces();
 
         $this->view = 'visitorDescubre';
-        include('view/visitorDescubre.php');
+        require_once('view/visitorDescubre.php');
     }
+
+
+    public function verVisitorDescubreV()
+    {
+        if (!isset($_SESSION['visitor'])) {
+            // manejar el caso en que no hay un visitante logueado
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $visitor = Visitor::getVisitorById($_SESSION['visitor']);
+        $idVisitor = $visitor->getIdVisitor();
+        $places = Place::getAllPlacesVisitedBy($idVisitor);
+
+        require_once('view/visitorDescubreV.php');
+        $this->view = 'visitorDescubreV';
+    }
+
+    public function verVisitorDescubreNV()
+    {
+        if (!isset($_SESSION['visitor'])) {
+            // manejar el caso en que no hay un visitante logueado
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $visitor = Visitor::getVisitorById($_SESSION['visitor']);
+        $idVisitor = $visitor->getIdVisitor();
+        $places = Place::getAllPlacesNotVisitedBy($idVisitor);
+
+        require_once('view/visitorDescubreNV.php');
+        $this->view = 'visitorDescubreNV';
+    }
+
+
+
+
+
     public function verVisitorFavorito()
     {
         $this->view = 'visitorFavorito';
@@ -88,7 +125,6 @@ class Controller
     {
         $this->view = 'visitorMapa';
     }
-
 
 
     public function verVisitorPlace()
