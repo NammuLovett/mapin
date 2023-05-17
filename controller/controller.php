@@ -120,16 +120,27 @@ class Controller
     public function verVisitorFavorito()
     {
         if (!isset($_SESSION['visitor'])) {
-            // manejar el caso en que no hay un visitante logueado
             header('Location: index.php?action=login');
             exit();
         }
 
         $visitor = Visitor::getVisitorById($_SESSION['visitor']);
         $idVisitor = $visitor->getIdVisitor();
-        $places = Place::getAllFavoritePlacesBy($idVisitor);
+        $places_objects = Place::getAllFavoritePlacesBy($idVisitor);
 
-        require_once('view/visitorFavorito.php');
+        // Convertir cada objeto Place en un array
+        $places = array_map(function ($place) {
+            return $place->toArray();
+        }, $places_objects);
+
+        $places_json = json_encode($places);
+
+        // Pasar los datos a la vista
+        include 'view/visitorFavorito.php';
+
+        // Console.log para verificar los datos antes de convertir a JSON
+        echo "<script>console.log(" . json_encode($places) . ");</script>";
+
         $this->view = 'visitorFavorito';
     }
 

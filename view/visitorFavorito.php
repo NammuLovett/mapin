@@ -1,3 +1,10 @@
+<?php
+$visitorId = $_SESSION['visitor']; // Asegúrate de tener una sesión iniciada para obtener el ID del visitante.
+$places = Place::getAllFavoritePlacesBy($visitorId);
+
+/* var_dump($places_json) */
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -79,6 +86,9 @@
             <div class="fila-1">
                 <h1>Favoritos</h1>
                 <p>Busca tus lugares favoritos de la ciudad</p>
+            </div>
+            <div class="fila-2">
+                <div id="map" style="width: 100%; height: 500px;"></div> <!-- Ajusta el tamaño según lo necesites -->
             </div>
             <!-- Segunda fila: Lugares destacados -->
             <h3>Lugares favoritos</h3>
@@ -166,6 +176,81 @@
 
         </section>
     </main>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
+    <script>
+        // Función para inicializar el mapa
+        function initMap() {
+            var places = JSON.parse('<?php echo $places_json; ?>');
+
+            console.log(places);
+            // Comprueba si la geolocalización está habilitada en el navegador del usuario
+            if (navigator.geolocation) {
+                // Obtén la ubicación actual del usuario
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    // Define las coordenadas de la ubicación del usuario
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Crea una nueva instancia del mapa de Google Maps centrada en la ubicación del usuario
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: userLocation,
+                        styles: [{
+                            featureType: 'poi',
+                            stylers: [{
+                                visibility: 'off'
+                            }]
+                        }]
+                    });
+
+                    // Crea un nuevo marcador en el mapa para la ubicación del usuario
+                    var userMarker = new google.maps.Marker({
+                        position: userLocation,
+
+                        map: map,
+                        title: "Tu ubicación",
+                        icon: {
+                            url: 'zimg/avatar/avatar.png',
+                            scaledSize: new google.maps.Size(40, 40)
+                        }
+                    });
+
+                    // Para cada lugar, crea un marcador en el mapa
+                    places.forEach(function(place) {
+                        var placeLocation = {
+                            lat: parseFloat(place.latPlace),
+                            lng: parseFloat(place.lonPlace)
+                        };
+
+                        var placeMarker = new google.maps.Marker({
+                            position: placeLocation,
+                            map: map,
+                            title: place.namePlace
+                        });
+
+                        /* Ventana de información */
+                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
+
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: infoWindowContent
+                        });
+
+                        placeMarker.addListener('click', function() {
+                            infoWindow.open(map, placeMarker);
+                        });
+                    });
+                }, function() {
+                    // Muestra una alerta si la geolocalización no está habilitada o ha sido desactivada
+                    alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
+                });
+            } else {
+                // Muestra una alerta si el navegador no soporta la geolocalización
+                alert('Error: Tu navegador no soporta la geolocalización.');
+            }
+        }
+    </script>
     <script src="view/js/visitor.js"></script>
 </body>
 
