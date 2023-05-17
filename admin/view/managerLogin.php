@@ -20,8 +20,7 @@
             </div>
             <h1>Manager - Login </h1>
             <p>
-                Inicie sesión ahora para poder acceder a la plataforma y registrar sus
-                visitas.
+                Inicie sesión para poder acceder a la plataforma.
             </p>
             <form action="index.php?action=logearUsuario" method="post">
                 <div class="icon-placeholder">
