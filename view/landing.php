@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Agregar más tarjetas aquí -->
+
                 <div class="card">
                     <img src="zimg/places/image2.png" alt="Lugar de interés 1" />
                     <div class="card-info">
