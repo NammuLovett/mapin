@@ -76,15 +76,33 @@ class Controller
         if (isset($_SESSION['visitor'])) {
             $this->view = 'visitorDashboard';
             $visitor = Visitor::getVisitorById($_SESSION['visitor']);
+            $idVisitor = $_SESSION['visitor']; // Asegúrate de definir $idVisitor aquí
             if ($visitor === null) {
                 die("No se pudo encontrar el visitante con el ID: " . $_SESSION['visitor']);
             }
+
+            // Consulta para obtener las categorías de lugares visitados por el visitante
+            $visitedCategoriesData = Place::getVisitedPlacesCategoriesCountByVisitor($idVisitor);
+
+            // Calcular el porcentaje de lugares visitados
+            $totalPlaces = Place::getTotalPlaces();
+            $visitedPlacesCount = Place::getVisitedPlacesCount($idVisitor);
+            $percentageVisited = round(($visitedPlacesCount / $totalPlaces) * 100);
+
+            // Obtén todos los lugares y conviértelos a arrays
+            $places = array_map(function ($place) {
+                return $place->toArray();
+            }, Place::getAllPlaces());
+            $places_json = json_encode($places);
+
             // Pasa la información del visitante a la vista
             include 'view/visitorDashboard.php';  // Asegúrate de que este es el path correcto a tu archivo de vista
         } else {
             $this->login();
         }
     }
+
+
 
     public function verVisitorDescubre()
     {
@@ -188,14 +206,6 @@ class Controller
             $isFavorited = $favoritedData ? true : false;
             $_SESSION['mapin'] = $place;
 
-            // Consulta para obtener las categorías de lugares visitados por el visitante
-            $visitedCategoriesData = Place::getVisitedPlacesCategoriesCountByVisitor($idVisitor);
-
-
-            // Calcular el porcentaje de lugares visitados
-            $totalPlaces = Place::getTotalPlaces();
-            $visitedPlacesCount = Place::getVisitedPlacesCount($idVisitor);
-            $percentageVisited = round(($visitedPlacesCount / $totalPlaces) * 100);
 
 
             include 'view/visitorPlace.php';

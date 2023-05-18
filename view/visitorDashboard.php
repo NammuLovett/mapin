@@ -96,7 +96,10 @@ var_dump($_SESSION); */
             <div class="fila-2">
 
                 <div class="estadisticas">
-
+                    <div class="chart-container">
+                        <h2>Categorías</h2>
+                        <canvas class="myChart" id="myChart"></canvas>
+                    </div>
                     <div id="percentage">
                         <p>Has visitado el <?= $percentageVisited ?>% de los lugares disponibles.</p>
                     </div>
@@ -104,10 +107,7 @@ var_dump($_SESSION); */
                         <canvas id="totalChart"></canvas>
                     </div>
 
-                    <div class="chart-container">
-                        <h2>Categorías</h2>
-                        <canvas class="myChart" id="myChart"></canvas>
-                    </div>
+
 
                 </div>
             </div>
@@ -287,7 +287,7 @@ var_dump($_SESSION); */
                 }, ],
             },
             options: {
-                // Configuraciones adicionales
+
             },
         });
     </script>
