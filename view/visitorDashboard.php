@@ -1,12 +1,5 @@
 <?php
 
-
-
-$places = array_map(function ($place) {
-    return $place->toArray();
-}, Place::getAllPlaces());
-$places_json = json_encode($places);
-
 /* var_dump($places_json); */
 /* var_dump($places); */
 
@@ -99,6 +92,25 @@ var_dump($_SESSION); */
             </div>
 
             <div id="map" style="width: 100%; height: 500px;"></div>
+            <h3>Tus estadísticas</h3>
+            <div class="fila-2">
+
+                <div class="estadisticas">
+
+                    <div id="percentage">
+                        <p>Has visitado el <?= $percentageVisited ?>% de los lugares disponibles.</p>
+                    </div>
+                    <div>
+                        <canvas id="totalChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h2>Categorías</h2>
+                        <canvas class="myChart" id="myChart"></canvas>
+                    </div>
+
+                </div>
+            </div>
 
 
 
@@ -129,18 +141,6 @@ var_dump($_SESSION); */
             </div>
 
 
-            <!-- C3 - Segunda fila: Lugares visitados -->
-            <div class="fila-2">
-                <div class="estadisticas">
-                    <p>
-                        Has visitado &lt;number&gt; de &lt;number&gt; lugares de interés
-                        de Ceuta.
-                    </p>
-                    <div class="chart-container">
-                        <canvas class="myChart" id="myChart"></canvas>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
@@ -231,6 +231,67 @@ var_dump($_SESSION); */
             }
         }
     </script>
+
+    <script>
+        const totalCtx = document.getElementById('totalChart').getContext('2d');
+
+        const totalChart = new Chart(totalCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Total', 'Visitado'],
+                datasets: [{
+                    data: [<?= $totalPlaces ?>, <?= $visitedPlacesCount ?>],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(255, 99, 132, 0.5)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
+    </script>
+
+
+    <script>
+        // Obtén el contexto de dibujo en un elemento canvas con id 'myChart'
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Crea un nuevo gráfico PolarArea utilizando la biblioteca Chart.js
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: <?php echo json_encode(array_column($visitedCategoriesData, 'nameCategory')); ?>, // Etiquetas de los datos
+                datasets: [{
+                    data: <?php echo json_encode(array_column($visitedCategoriesData, 'visitedPlaces')); ?>, // Los datos a graficar, // Los datos a graficar
+                    // Colores de fondo para cada dato
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(255, 205, 86, 0.5)',
+                        'rgba(201, 203, 207, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                    ],
+                    // Colores de los bordes para cada dato
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 205, 86, 1)',
+                        'rgba(201, 203, 207, 1)',
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    borderWidth: 2, // Ancho del borde
+                }, ],
+            },
+            options: {
+                // Configuraciones adicionales
+            },
+        });
+    </script>
+
     <script src="view/js/visitor.js"></script>
 
 </body>
