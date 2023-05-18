@@ -105,8 +105,8 @@ var_dump($_SESSION); */
                     </div>
                     <h2>Categorías</h3>
                         <div class="chart-container">
-                            <canvas class="myChart" id="myChart"></canvas>
                             <canvas id="totalChart"></canvas>
+                            <canvas class="myChart" id="myChart"></canvas>
                         </div>
 
                 </div>
