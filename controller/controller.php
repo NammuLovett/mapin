@@ -152,6 +152,7 @@ class Controller
     public function verVisitorFavorito()
     {
         if (!isset($_SESSION['visitor'])) {
+            // manejar el caso en que no hay un visitante logueado
             header('Location: index.php?action=login');
             exit();
         }
@@ -160,6 +161,9 @@ class Controller
         $idVisitor = $visitor->getIdVisitor();
         $places_objects = Place::getAllFavoritePlacesBy($idVisitor);
 
+
+
+
         // Convertir cada objeto Place en un array
         $places = array_map(function ($place) {
             return $place->toArray();
@@ -167,14 +171,14 @@ class Controller
 
         $places_json = json_encode($places);
 
-        // Pasar los datos a la vista
-        include 'view/visitorFavorito.php';
-
         // Console.log para verificar los datos antes de convertir a JSON
         echo "<script>console.log(" . json_encode($places) . ");</script>";
 
+        // Pasar los datos a la vista
+        include('view/visitorFavorito.php');
         $this->view = 'visitorFavorito';
     }
+
 
 
     public function verVisitorMapa()
@@ -205,6 +209,7 @@ class Controller
             $visitDate = $visitData ? $visitData['dateVVP'] : null;
             $isFavorited = $favoritedData ? true : false;
             $_SESSION['mapin'] = $place;
+
 
 
 
@@ -242,8 +247,6 @@ class Controller
             echo json_encode(array('success' => false));
         }
     }
-
-
 
 
 

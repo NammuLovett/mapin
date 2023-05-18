@@ -36,7 +36,33 @@ $category = Category::getCategoryById($categoryId);
                 <a href="index.php?action=verVisitorDashboard"><img src="zimg/logo/logoHOR.svg" alt="Logo MAP!N" /></a>
             </div>
             <!-- Menú de navegación -->
-            <nav>
+            <nav role="navigation" aria-label="Menú de navegación principal">
+                <ul>
+                    <li>
+                        <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorDescubre"><i class="fas fa-paper-plane"></i> Descubre</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
+                    </li>
+                    <li class="activo">
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- HAMBURGUESA -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-mobile" role="navigation" aria-labelledby="mobile-menu-label">
                 <ul>
                     <li>
                         <a href="index.php?action=verVisitorDashboard"><i class="fas fa-home"></i> Dashboard</a>

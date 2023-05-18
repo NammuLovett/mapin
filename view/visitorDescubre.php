@@ -93,8 +93,8 @@ var_dump($_SESSION);
                 <div class="categorias-container">
                     <ul class="categorias-list">
                         <li class="categoria activo"><a href="index.php?action=verVisitorDescubre">Todos</a></li>
-                        <li class="categoria"><a href="index.php?action=verVisitorDescubreV">Visitados</a></li>
                         <li class="categoria"><a href="index.php?action=verVisitorDescubreNV">No visitados</a></li>
+                        <li class="categoria"><a href="index.php?action=verVisitorDescubreV">Visitados</a></li>
 
                     </ul>
                 </div>

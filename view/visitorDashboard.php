@@ -287,7 +287,7 @@ var_dump($_SESSION); */
                 }, ],
             },
             options: {
-
+                // Configuraciones adicionales
             },
         });
     </script>

@@ -18,7 +18,6 @@
 
 <body>
     <!-- Contenedor principal -->
-    <!-- Contenedor principal -->
     <main class="grid-container">
         <!-- Primera columna: Navegación -->
         <section class="columna-1">

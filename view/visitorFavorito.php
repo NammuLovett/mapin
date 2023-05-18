@@ -1,9 +1,10 @@
 <?php
-$visitorId = $_SESSION['visitor']; // Asegúrate de tener una sesión iniciada para obtener el ID del visitante.
+$visitorId = $_SESSION['visitor'];
 $places = Place::getAllFavoritePlacesBy($visitorId);
 
 /* var_dump($places_json) */
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -88,7 +89,7 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                 <p>Busca tus lugares favoritos de la ciudad</p>
             </div>
             <div class="fila-2">
-                <div id="map" style="width: 100%; height: 500px;"></div> <!-- Ajusta el tamaño según lo necesites -->
+                <div id="map" style="width: 100%; height: 500px;"></div>
             </div>
             <!-- Segunda fila: Lugares destacados -->
             <h3>Lugares favoritos</h3>
@@ -175,7 +176,8 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
     <script>
         // Función para inicializar el mapa
         function initMap() {
-            var places = JSON.parse('<?php echo $places_json; ?>');
+            var places = <?php echo $places_json; ?>;
+
 
             console.log(places);
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
