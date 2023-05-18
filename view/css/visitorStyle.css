@@ -57,7 +57,7 @@ body {
   margin-bottom: 6vh;
   position: absolute;
   top: 2vh;
-  width: 20%;
+  width: 40%;
 }
 
 .logo img {
@@ -122,8 +122,9 @@ body {
   border-radius: 2.5vh;
   padding: 2vh;
   margin: 1vh 0;
-  height: 100vh;
   width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .columna-2 h1 {
@@ -160,7 +161,7 @@ body {
   padding: 1rem;
 }
 
-.card-c2 {
+/* .card-c2 {
   width: 5vh;
   height: 8vw;
   background-color: #ffffff;
@@ -213,8 +214,7 @@ body {
   border-radius: 20px;
   z-index: 1;
 }
-
-.card-c2:hover .card-name-c2 {
+*/ .card-c2:hover .card-name-c2 {
   color: #ffffff;
   display: flex;
 }
@@ -234,18 +234,46 @@ body {
   border-radius: 20px;
   padding: 2vh;
   margin-top: 2vh;
+  width: 100%;
 }
 
 .chart-container {
-  max-width: 100vw;
   margin: 0 auto;
 
-  width: 100%;
+  width: 40%;
   height: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .myChart {
   width: 100%;
   height: 100%;
+}
+
+/* PROGRESS BAR */
+
+.estadisticas h2 {
+  color: var(--primary-color);
+}
+.estadisticas span {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: var(--font-lato-700);
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #ddd;
+  height: 30px;
+}
+
+.progress-bar {
+  width: 1%;
+  height: 30px;
+  background-color: var(--primary-color);
 }
 
 /* PREVISIÓN */
@@ -350,6 +378,7 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
 /* CARDS C3 */
 .cards-container-c3 {
   display: flex;
@@ -836,15 +865,15 @@ nav.nav-mobile ul {
 
   .logo {
     min-height: 100px;
-    width: 100%; /* Asegúrate de que el logo ocupe todo el ancho de la columna */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .logo img {
-    max-width: 80%; /* Ajusta según lo necesites */
-    height: auto; /* Mantiene la relación de aspecto de la imagen */
+    max-width: 80%;
+    height: auto;
   }
 
   .columna-1 nav ul li {
@@ -873,6 +902,11 @@ nav.nav-mobile ul {
     width: 80%;
     height: 80%;
     margin: auto;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    width: 100%;
   }
 }
 

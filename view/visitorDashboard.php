@@ -96,18 +96,18 @@ var_dump($_SESSION); */
             <div class="fila-2">
 
                 <div class="estadisticas">
-                    <div class="chart-container">
-                        <h2>Categorías</h2>
-                        <canvas class="myChart" id="myChart"></canvas>
-                    </div>
                     <div id="percentage">
-                        <p>Has visitado el <?= $percentageVisited ?>% de los lugares disponibles.</p>
+                        <h2>Progreso del Viajero</h3>
+                            <div id="progress-container" class="progress-container">
+                                <div id="progress-bar" class="progress-bar"></div>
+                            </div>
+                            <p>Has visitado el <span><?= $percentageVisited ?>%</span> de los lugares de Ceuta.</p>
                     </div>
-                    <div>
-                        <canvas id="totalChart"></canvas>
-                    </div>
-
-
+                    <h2>Categorías</h3>
+                        <div class="chart-container">
+                            <canvas class="myChart" id="myChart"></canvas>
+                            <canvas id="totalChart"></canvas>
+                        </div>
 
                 </div>
             </div>
@@ -290,6 +290,11 @@ var_dump($_SESSION); */
                 // Configuraciones adicionales
             },
         });
+    </script>
+    <script>
+        var percentageVisited = <?= $percentageVisited ?>;
+
+        document.getElementById('progress-bar').style.width = percentageVisited + '%';
     </script>
 
     <script src="view/js/visitor.js"></script>
