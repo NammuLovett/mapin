@@ -137,6 +137,12 @@ $mapin = $_SESSION['mapin'];
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
             <!-- c3 :Primera fila -->
+            <div class="fila-1">
+                <div class="avatar">
+
+                </div>
+                <p>Amante de los viajes</p>
+            </div>
             <div class="fila-2">
                 <h3>Previsión del tiempo</h3>
                 <div class="previsión">
@@ -149,6 +155,9 @@ $mapin = $_SESSION['mapin'];
                 </div>
             </div>
 
+            </div>
+
+            <!-- C3 - Segunda fila: Lugares visitados -->
 
         </section>
     </main>

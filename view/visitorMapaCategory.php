@@ -101,6 +101,12 @@ $category = Category::getCategoryById($categoryId);
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
             <!-- c3 :Primera fila -->
+            <div class="fila-1">
+                <div class="avatar">
+
+                </div>
+                <p>Amante de los viajes</p>
+            </div>
             <div class="fila-2">
                 <h3>Previsión del tiempo</h3>
                 <div class="previsión">
@@ -112,18 +118,9 @@ $category = Category::getCategoryById($categoryId);
                     <p id="weather-humidity"></p>
                 </div>
             </div>
-            <div class="fila-2">
-                <h3>Tus estadísticas</h3>
-                <div class="estadisticas">
-                    <p>
-                        Has visitado &lt;number&gt; de &lt;number&gt; lugares de interés
-                        de Ceuta.
-                    </p>
-                    <div class="chart-container">
-                        <canvas class="myChart" id="myChart"></canvas>
-                    </div>
-                </div>
+
             </div>
+
             <!-- C3 - Segunda fila: Lugares visitados -->
 
         </section>
