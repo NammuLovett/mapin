@@ -25,42 +25,6 @@ document.addEventListener('click', function (event) {
   }
 });
 
-// Obtén el contexto de dibujo en un elemento canvas con id 'myChart'
-const ctx = document.getElementById('myChart').getContext('2d');
-
-// Crea un nuevo gráfico PolarArea utilizando la biblioteca Chart.js
-const myChart = new Chart(ctx, {
-  type: 'polarArea', // Especifica el tipo de gráfico
-  data: {
-    labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'], // Etiquetas de los datos
-    datasets: [
-      {
-        data: [12, 19, 3, 17, 28], // Los datos a graficar
-        // Colores de fondo para cada dato
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.5)',
-          'rgba(75, 192, 192, 0.5)',
-          'rgba(255, 205, 86, 0.5)',
-          'rgba(201, 203, 207, 0.5)',
-          'rgba(54, 162, 235, 0.5)',
-        ],
-        // Colores de los bordes para cada dato
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(255, 205, 86, 1)',
-          'rgba(201, 203, 207, 1)',
-          'rgba(54, 162, 235, 1)',
-        ],
-        borderWidth: 2, // Ancho del borde
-      },
-    ],
-  },
-  options: {
-    // Configuraciones adicionales
-  },
-});
-
 /* MAPA */
 
 // Añade un escuchador de eventos 'DOMContentLoaded' al documento

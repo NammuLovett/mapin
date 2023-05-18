@@ -187,11 +187,25 @@ class Controller
             $visitDate = $visitData ? $visitData['dateVVP'] : null;
             $isFavorited = $favoritedData ? true : false;
             $_SESSION['mapin'] = $place;
+
+            // Consulta para obtener las categorías de lugares visitados por el visitante
+            $visitedCategoriesData = Place::getVisitedPlacesCategoriesCountByVisitor($idVisitor);
+
+
+            // Calcular el porcentaje de lugares visitados
+            $totalPlaces = Place::getTotalPlaces();
+            $visitedPlacesCount = Place::getVisitedPlacesCount($idVisitor);
+            $percentageVisited = round(($visitedPlacesCount / $totalPlaces) * 100);
+
+
             include 'view/visitorPlace.php';
         } else {
             echo "ERROR: ";
         }
     }
+
+
+
 
     public function toggleVisited()
     {

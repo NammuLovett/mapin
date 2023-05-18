@@ -417,4 +417,66 @@ class Place
 
         return $conection->query($sql);
     }
+
+    public static function getVisitedPlacesCategoriesCountByVisitor($idVisitor)
+    {
+        $idVisitor = intval($idVisitor);
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT c.idCategory, c.nameCategory, COUNT(*) as visitedPlaces 
+                FROM category c 
+                JOIN placeHaveCategory pc ON c.idCategory = pc.idCategory
+                JOIN visitorVisitPlace vvp ON pc.idPlace = vvp.idPlace 
+                WHERE vvp.idVisitor = '$idVisitor' 
+                GROUP BY c.idCategory, c.nameCategory";
+
+        $result = $conection->query($sql);
+        $categories = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $categories[] = $row;
+            }
+        }
+        return $categories;
+    }
+
+
+    public static function getTotalPlaces()
+    {
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT COUNT(*) as totalPlaces FROM place";
+
+        $result = $conection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['totalPlaces'];
+        }
+
+        return 0;
+    }
+
+    public static function getVisitedPlacesCount($idVisitor)
+    {
+        $idVisitor = intval($idVisitor);
+
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT COUNT(DISTINCT idPlace) as visitedCount 
+            FROM visitorVisitPlace
+            WHERE idVisitor = $idVisitor";
+
+        $result = $conection->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['visitedCount'];
+        }
+
+        return 0;
+    }
 }
