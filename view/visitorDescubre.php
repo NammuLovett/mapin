@@ -45,7 +45,7 @@ var_dump($_SESSION);
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -71,7 +71,7 @@ var_dump($_SESSION);
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -82,7 +82,7 @@ var_dump($_SESSION);
 
         <!-- Segunda columna: Contenido principal -->
         <section class="columna-2">
-            <!-- Primera fila: Bienvenida y búsqueda -->
+            <!-- Primera fila: Bienvenida  -->
             <div class="fila-1">
                 <h1>Descubre los lugares</h1>
                 <p>¿Qué nuevos lugares quieres ver?</p>
@@ -124,16 +124,7 @@ var_dump($_SESSION);
                     <!-- Card -->
 
                 </div>
-                <!-- paginación -->
-                <!--   <div class="pagination-container">
-                    <ul class="pagination-list">
-                        <li class="page-item activo"><a href="#">1</a></li>
-                        <li class="page-item"><a href="#">2</a></li>
-                        <li class="page-item"><a href="#">3</a></li>
-                        <li class="page-item"><a href="#">4</a></li>
-                        <li class="page-item"><a href="#">5</a></li>
-                    </ul>
-                </div> -->
+
 
                 <!-- Tercera fila: Estadísticas -->
                 <div class="fila-3">

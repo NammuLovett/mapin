@@ -48,7 +48,7 @@ var_dump($_SESSION); */
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -74,7 +74,7 @@ var_dump($_SESSION); */
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -85,15 +85,15 @@ var_dump($_SESSION); */
 
         <!-- Segunda columna: Contenido principal -->
         <section class="columna-2">
-            <!-- Primera fila: Bienvenida y búsqueda -->
+            <!-- Primera fila: Bienvenida -->
             <div class="fila-1">
                 <h1>Hola, <?php echo $visitor->getNameVisitor(); ?>!</h1>
-                <p>Te damos la bienvenida a la exploración.</p>
+                <p>Mira qué lugares están a un kilómetro a tu alrededor</p>
             </div>
-
+            <!-- Mapa google -->
             <div id="map" style="width: 100%; height: 500px;"></div>
-            <h3>Tus estadísticas</h3>
             <div class="fila-2">
+                <h3>Tus estadísticas</h3>
 
                 <div class="estadisticas">
                     <div id="percentage">
@@ -111,9 +111,6 @@ var_dump($_SESSION); */
 
                 </div>
             </div>
-
-
-
         </section>
         <!-- Tercera columna: Perfil y lugares visitados -->
         <section class="columna-3">
@@ -139,12 +136,11 @@ var_dump($_SESSION); */
                     <p id="weather-humidity"></p>
                 </div>
             </div>
-
-
         </section>
     </main>
+    <!-- Api KEY google -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
-
+    <!-- Mapa Google -->
     <script>
         // Función para inicializar el mapa
         function initMap() {
@@ -231,7 +227,7 @@ var_dump($_SESSION); */
             }
         }
     </script>
-
+    <!-- Gráfico totales -->
     <script>
         const totalCtx = document.getElementById('totalChart').getContext('2d');
 
@@ -255,7 +251,7 @@ var_dump($_SESSION); */
         });
     </script>
 
-
+    <!-- Gráfico categorías -->
     <script>
         // Obtén el contexto de dibujo en un elemento canvas con id 'myChart'
         const ctx = document.getElementById('myChart').getContext('2d');

@@ -38,7 +38,7 @@
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li class="activo">
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -64,7 +64,7 @@
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li class="activo">
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -75,9 +75,9 @@
 
         <!-- Segunda columna: Contenido principal -->
         <section class="columna-2">
-            <!-- Primera fila: Bienvenida y búsqueda -->
+            <!-- Primera fila: Bienvenida  -->
             <div class="fila-1">
-                <h1>Mapa</h1>
+                <h1>Categorías</h1>
                 <p>Selecciona la categoría para ver los lugares en el mapa</p>
             </div>
             <!-- Segunda fila: mapa -->
@@ -94,22 +94,16 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-
-            <!-- Tercera fila: Estadísticas -->
-            <div class="fila-3">
-
-            </div>
-
         </section>
-        <!-- Tercera columna: Perfil y lugares visitados -->
+        <!-- Tercera columna: Perfil -->
         <section class="columna-3">
             <!-- c3 :Primera fila -->
             <div class="fila-1">
                 <div class="avatar">
-
                 </div>
                 <p>Amante de los viajes</p>
             </div>
+            <!-- fila 2 -->
             <div class="fila-2">
                 <h3>Previsión del tiempo</h3>
                 <div class="previsión">
@@ -121,11 +115,6 @@
                     <p id="weather-humidity"></p>
                 </div>
             </div>
-
-            </div>
-
-            <!-- C3 - Segunda fila: Lugares visitados -->
-
         </section>
     </main>
 

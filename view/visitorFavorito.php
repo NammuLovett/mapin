@@ -46,7 +46,7 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -72,7 +72,7 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                         <a href="index.php?action=verVisitorFavorito"><i class="fas fa-star"></i> Favoritos</a>
                     </li>
                     <li>
-                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Mapa</a>
+                        <a href="index.php?action=verVisitorMapa"><i class="fas fa-map"></i> Categorías</a>
                     </li>
                     <li>
                         <a href="index.php?action=cerrarSesion"><i class="fas fa-sign-out-alt"></i> Logout</a>
