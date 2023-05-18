@@ -24,8 +24,6 @@ class Controller
         }
     }
 
-
-
     public function landing()
     {
         $this->view = 'landing';
@@ -96,7 +94,7 @@ class Controller
             $places_json = json_encode($places);
 
             // Pasa la información del visitante a la vista
-            include 'view/visitorDashboard.php';  // Asegúrate de que este es el path correcto a tu archivo de vista
+            include 'view/visitorDashboard.php';
         } else {
             $this->login();
         }
@@ -116,7 +114,6 @@ class Controller
     public function verVisitorDescubreV()
     {
         if (!isset($_SESSION['visitor'])) {
-            // manejar el caso en que no hay un visitante logueado
             header('Location: index.php?action=login');
             exit();
         }
@@ -132,7 +129,6 @@ class Controller
     public function verVisitorDescubreNV()
     {
         if (!isset($_SESSION['visitor'])) {
-            // manejar el caso en que no hay un visitante logueado
             header('Location: index.php?action=login');
             exit();
         }
@@ -152,7 +148,6 @@ class Controller
     public function verVisitorFavorito()
     {
         if (!isset($_SESSION['visitor'])) {
-            // manejar el caso en que no hay un visitante logueado
             header('Location: index.php?action=login');
             exit();
         }
@@ -171,8 +166,7 @@ class Controller
 
         $places_json = json_encode($places);
 
-        // Console.log para verificar los datos antes de convertir a JSON
-        echo "<script>console.log(" . json_encode($places) . ");</script>";
+        /* echo "<script>console.log(" . json_encode($places) . ");</script>"; */
 
         // Pasar los datos a la vista
         include('view/visitorFavorito.php');
@@ -185,7 +179,6 @@ class Controller
     {
         $this->view = 'visitorMapa';
     }
-
 
     public function verVisitorPlace()
     {
@@ -210,16 +203,11 @@ class Controller
             $isFavorited = $favoritedData ? true : false;
             $_SESSION['mapin'] = $place;
 
-
-
-
             include 'view/visitorPlace.php';
         } else {
             echo "ERROR: ";
         }
     }
-
-
 
 
     public function toggleVisited()
@@ -247,7 +235,6 @@ class Controller
             echo json_encode(array('success' => false));
         }
     }
-
 
 
     public function insertVisitor()

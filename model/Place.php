@@ -218,6 +218,7 @@ class Place
         }
     }
 
+    /* Conversión datos del array de BD a Array asociativo para que funcione JSON */
     public function toArray()
     {
         return [
@@ -234,6 +235,7 @@ class Place
         ];
     }
 
+    /* Formulario categorías */
     public function assignCategories($idPlace, $categories)
 
     {
@@ -252,7 +254,7 @@ class Place
         }
     }
 
-
+    /* Vista categorías */
     public static function getPlacesByCategoryId($idCategory)
     {
         $idCategory = intval($idCategory);
@@ -275,6 +277,7 @@ class Place
         return $places;
     }
 
+    /* vista descubre NV */
     public static function getAllPlacesNotVisitedBy($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -297,6 +300,8 @@ class Place
 
         return $places;
     }
+
+    /* vista descubre V*/
     public static function getAllPlacesVisitedBy($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -319,6 +324,7 @@ class Place
         return $places;
     }
 
+    /* vista favorito */
     public static function getAllFavoritePlacesBy($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -341,7 +347,7 @@ class Place
         return $places;
     }
 
-
+    /* vista detalle place */
     public function checkIfVisited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -359,7 +365,7 @@ class Place
         // Si el visitante no ha visitado el lugar, devuelve null
         return null;
     }
-
+    /* vista detalle place */
     public function checkIfFavorited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -378,6 +384,7 @@ class Place
         return null;
     }
 
+    /* vista detalle place */
     public function toggleVisited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -397,7 +404,7 @@ class Place
 
         return $conection->query($sql);
     }
-
+    /* vista detalle place */
     public function toggleFavorited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -418,12 +425,14 @@ class Place
         return $conection->query($sql);
     }
 
+    /* Gráfica */
     public static function getVisitedPlacesCategoriesCountByVisitor($idVisitor)
     {
         $idVisitor = intval($idVisitor);
         $dbObj = new Db();
         $conection = $dbObj->conection;
 
+        //El consultón de la base de datos
         $sql = "SELECT c.idCategory, c.nameCategory, COUNT(*) as visitedPlaces 
                 FROM category c 
                 JOIN placeHaveCategory pc ON c.idCategory = pc.idCategory
@@ -441,7 +450,7 @@ class Place
         return $categories;
     }
 
-
+    /* Gráfica */
     public static function getTotalPlaces()
     {
         $dbObj = new Db();
@@ -459,6 +468,7 @@ class Place
         return 0;
     }
 
+    /* gráfica */
     public static function getVisitedPlacesCount($idVisitor)
     {
         $idVisitor = intval($idVisitor);

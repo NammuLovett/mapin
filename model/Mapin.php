@@ -69,25 +69,18 @@ class Mapin
 
     public function login($email, $password)
     {
-        // Consulta a la base de datos.
         $sql = "SELECT * FROM `manager` WHERE `emailManager` = '$email'";
-
-        // Resultado de la consulta.
         $result = $this->conection->query($sql);
 
         // Si la consulta no devuelve nada, la función devuelve false.
         if ($result->num_rows < 1) return false;
 
-        // Se guarda la fila.
+
         $row = $result->fetch_assoc();
 
-        // Si la contraseña (encriptada) no coincide con la introducida, la función devuelve false.
         if ($password != $row['passwordManager']) {
             return false;
         }
-
-        // Si no ha habido errores y la ejecución de la función ha llegado al final,
-        // se crea una variable de sesión que guarda el id del manager.
         $_SESSION['manager'] = $row['idManager'];
 
         return new Manager($row['idManager'], $row['nameManager'], $row['surnameManager'], $row['emailManager'], $row['passwordManager'], $row['showManager'], $row['idLocation']);
@@ -106,7 +99,6 @@ class Mapin
         // Se guarda la fila.
         $row = $result->fetch_assoc();
 
-        // Si la contraseña (encriptada) no coincide con la introducida, la función devuelve false.
         if ($password != $row['passwordVisitor']) {
             return false;
         }

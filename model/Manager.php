@@ -100,7 +100,4 @@ class Manager
     {
         $this->idLocation = $idLocation;
     }
-
-    // Métodos para manejar el array de lugares
-
 }

@@ -28,8 +28,6 @@ class Visitor
         $this->datebirthVisitor = $datebirthVisitor;
         $this->cityVisitor = $cityVisitor;
 
-        /* $this->places = allPlacesVisit(); */
-        /* $this->places = allPlacesfavorite(); */
 
         $this->getConection();
     }
@@ -131,32 +129,6 @@ class Visitor
         $this->cityVisitor = $cityVisitor;
     }
 
-
-
-
-    public function removePlace($place)
-    {
-    }
-
-    /*    public function addFavorite($favorite)
-    {
-        $sql = "UPDATE `visitorVisitPlace` SET
-        `idVisitor`	= '$this->idvisitor',
-        `idPlace`	= '$this->idPlace',
-        WHERE `visitorVisitPlace`.`idVisitor` = " . $this->idVisitor . ";";
-
-        if ($this->conection->query($sql)) {
-            return $this;
-        } else {
-            return false;
-        }
-        $this->conection->close();
-    } */
-
-    public function removeFavorite($favorite)
-    {
-    }
-
     public static function getVisitorById($idVisitor)
     {
         $dbObj = new Db();
@@ -177,7 +149,7 @@ class Visitor
 
 
     /* FUNCIONES */
-    /* CREATE;  */
+
 
     public function addVisitor($nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor)
     {
