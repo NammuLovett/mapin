@@ -60,7 +60,7 @@ class adminController
     {
         $this->view = 'managerCategory';
 
-        global $categories;
+
         $categories = Category::getAllCategories();
         if (!is_array($categories) && !($categories instanceof Traversable)) {
             echo 'Error: $categories no es un array o un objeto recorrible.';
@@ -84,8 +84,6 @@ class adminController
 
     public function verManagerPlaceForm()
     {
-
-
         $this->view = 'managerPlaceForm';
     }
 
@@ -117,9 +115,8 @@ class adminController
     {
         $idCategory = $_GET['id'];
         $category = Category::getCategoryById($idCategory);
-        include_once('view/managerCategory.php');
-
         $this->view = 'managerCategoryFormEdit';
+        include_once 'view/managerCategoryFormEdit.php';
     }
 
     public function editCategory()
@@ -133,11 +130,9 @@ class adminController
             $categoria->editCategory($idCategory);
         }
 
-        $this->view = 'managerCategory';
-
-        global $categories;
         $categories = Category::getAllCategories();
         include_once('view/managerCategory.php');
+        $this->view = 'managerCategory';
     }
 
 

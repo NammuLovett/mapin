@@ -39,17 +39,17 @@
             <div class="outer-container">
                 <div class="form-container">
                     <h2>Formulario de Categorías</h2>
-                    <form id="registro-form" action="index.php?action=managerCategory" method="POST">
+                    <form id="registro-form" action="index.php?action=editCategory&id=<?php echo $category->getIdCategory(); ?>" method="POST">
                         <div class="icon-placeholder">
                             <label for="nombre">Nombre de la categoría <span>*</span></label>
-                            <input type="text" id="nameCategory" name="nameCategory" class="input-field" placeholder="Ej: Parque Central" value="<?php echo $this->vars['category']->getNameCategory(); ?>" required />
+                            <input type="text" id="nameCategory" name="nameCategory" class="input-field" placeholder="Ej: Parque Central" value="<?php echo $category->getNameCategory(); ?> " required />
 
                             <i class=" fas fa-map-marker-alt"></i>
                             <span class="error">El campo nombre no puede estar vacío</span>
                         </div>
                         <div class="icon-placeholder">
                             <label for="info">Descripción <span>*</span></label>
-                            <input type="text" id="descriptionCategory" name="descriptionCategory" class="input-field" placeholder="Ej: Un hermoso parque en el centro de la ciudad." value="<?php echo $this->vars['category']->getDescriptionCategory(); ?>" required />
+                            <input type="text" id="descriptionCategory" name="descriptionCategory" class="input-field" placeholder="Ej: Un hermoso parque en el centro de la ciudad." value="<?php echo $category->getDescriptionCategory(); ?> " required />
                         </div>
 
                         <div class=" buttons">

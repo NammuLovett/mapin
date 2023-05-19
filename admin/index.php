@@ -9,6 +9,8 @@ require_once '../model/Manager.php';
 require_once '../model/Mapin.php';
 require_once '../model/Place.php';
 
+require_once 'controller/adminController.php';
+
 
 
 if (!isset($_GET["controller"])) $_GET["controller"] = constant("DEFAULT_CONTROLLER_ADMIN");
