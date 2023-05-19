@@ -58,6 +58,7 @@
                 <div id="password-strength" class="password-strength">
                     <p>Fuerza de la contraseña: <span id="strength-output"></span></p>
                 </div>
+
                 <div class="icon-placeholder">
                     <label for="fecha-nacimiento">Fecha de nacimiento <span>*</span></label>
                     <input type="date" id="datebirthVisitor" name="datebirthVisitor" class="input-field" required />
@@ -87,7 +88,7 @@
             </div>
         </div>
     </main>
-    <script src="view/js/register.js"></script>
+    <script src="view/js/register.js" defer></script>
 
 </body>
 

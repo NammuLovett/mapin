@@ -9,6 +9,7 @@
 
 :root {
   --color-primario: #00ac8d;
+  --color-blanco: #fff;
 }
 body {
   font-family: 'Lato', sans-serif;
@@ -59,8 +60,9 @@ label {
   display: block;
   margin-bottom: 5px;
 }
+/* Marcador campo oblig */
 label > span {
-  color: red;
+  color: rgb(255, 75, 59);
 }
 .input-field,
 select {
@@ -100,7 +102,7 @@ input[type='date'] {
   padding-left: 35px !important;
 }
 .error {
-  color: red;
+  color: rgb(216, 61, 61);
   font-size: 0.9em;
   display: none;
 }
@@ -141,4 +143,25 @@ button[type='reset'] {
 .loginReg a {
   color: var(--color-primario);
   padding: 5%;
+}
+
+/* Contraseña semáforo */
+
+.strong {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.medium {
+  background-color: rgb(245, 203, 51);
+  color: var(--color-blanco);
+  font-size: 1.5rem;
+}
+
+.weak {
+  background-color: rgb(222, 63, 63);
+  color: var(--color-blanco);
+  font-size: 1.5rem;
 }
