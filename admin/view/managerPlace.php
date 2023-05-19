@@ -69,7 +69,7 @@
                                     <div class="dropdown-menu">
                                         <span>&#8942;</span>
                                         <div class="dropdown-content">
-                                            <a href="">Editar</a>
+                                            <a href="index.php?action=verEditPlace&id=<?php echo $place->getIdPlace(); ?>">Editar</a>
                                             <a href="index.php?action=deletePlace&id=<?php echo $place->getIdPlace(); ?>">Borrar</a>
                                         </div>
                                     </div>
@@ -79,13 +79,6 @@
                     </tbody>
                 </table>
 
-                <!--    <div class="pagination">
-                    <a href="#">&laquo;</a>
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">&raquo;</a>
-                </div> -->
             </div>
         </main>
     </div>

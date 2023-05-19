@@ -56,6 +56,7 @@ class adminController
     }
 
     /* CARGAR VISTAS MANAGER*/
+
     public function verManagerCategory()
     {
         $this->view = 'managerCategory';
@@ -200,5 +201,40 @@ class adminController
         global $places;
         $places = Place::getAllPlaces();
         include_once('view/managerPlace.php');
+    }
+
+
+    public function verEditPlace()
+    {
+        $idPlace = $_GET['id'];
+        $place = Place::getPlaceById($idPlace);
+        $this->view = 'managerPlaceFormEdit';
+        include_once 'view/managerPlaceFormEdit.php';
+    }
+
+    public function editPlace()
+    {
+        $idPlace = $_GET['id'];
+        if (isset($_POST['namePlace']) && isset($_POST['infoPlace']) && isset($_POST['descriptionPlace']) && isset($_POST['addressPlace']) && isset($_POST['latPlace']) && isset($_POST['lonPlace']) && isset($_POST['imgPlace']) && isset($_POST['showPlace']) && isset($_POST['idLocation'])) {
+            $namePlace = $_POST['namePlace'];
+            $infoPlace = $_POST['infoPlace'];
+            $descriptionPlace = $_POST['descriptionPlace'];
+            $addressPlace = $_POST['addressPlace'];
+            $latPlace = $_POST['latPlace'];
+            $lonPlace = $_POST['lonPlace'];
+            $imgPlace = $_POST['imgPlace'];
+            $showPlace = $_POST['showPlace'];
+            $idLocation = $_POST['idLocation'];
+
+            echo "Valores de las variables:<br>";
+            var_dump($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+
+            $place = new Place($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+            $place->editPlace($idPlace);
+        }
+
+        $places = Place::getAllPlaces();
+        include_once('view/managerPlace.php');
+        $this->view = 'managerPlace';
     }
 }

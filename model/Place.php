@@ -207,6 +207,23 @@ class Place
         return $this->conection->insert_id;
     }
 
+    public function editPlace($idPlace)
+    {
+        $this->getConection();
+
+        echo "Valores de las variables en la clase Place:<br>";
+        var_dump($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation, $this->idPlace);
+
+        $sql = "UPDATE place SET namePlace = '$this->$namePlace', infoPlace = '$this->$infoPlace', descriptionPlace = '$this->$descriptionPlace', addressPlace = '$this->$addressPlace', imgPlace = '$this->$imgPlace', latPlace = '$this->$latPlace', lonPlace = '$this->$lonPlace', showPlace = '$this->$showPlace', idLocation = '$this->$idLocation' WHERE idPlace = '$idPlace'";
+
+        if ($this->conection->query($sql) === false) {
+            echo "Error: " . $sql . "<br>" . $this->conection->error;
+        }
+        echo $sql;
+    }
+
+
+
 
     public function deletePlace($idPlace)
     {
@@ -488,5 +505,26 @@ class Place
         }
 
         return 0;
+    }
+
+    public static function getCategoriesByPlaceId($idPlace)
+    {
+        $idPlace = intval($idPlace);
+
+        $dbObj = new Db();
+        $conection = $dbObj->conection;
+
+        $sql = "SELECT c.idCategory FROM category c JOIN placeHaveCategory pc ON c.idCategory = pc.idCategory WHERE pc.idPlace = '$idPlace'";
+
+        $result = $conection->query($sql);
+
+        $categories = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $categories[] = $row['idCategory'];
+            }
+        }
+
+        return $categories;
     }
 }
