@@ -18,7 +18,7 @@ body {
 
 /* Layout */
 
-.wrapper {
+.container {
   display: flex;
 }
 

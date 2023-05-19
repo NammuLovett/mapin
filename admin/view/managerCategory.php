@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="container">
         <nav class="sidebar">
             <div class="logo">
                 <img src="../zimg/logo/typo.svg" alt="Logo de Map!n" />
