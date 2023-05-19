@@ -140,6 +140,7 @@ table tr:nth-child(even) {
 
 .add-button:hover {
   background-color: var(--primary-color);
+  opacity: 0.8;
 }
 
 /* Dropdown */

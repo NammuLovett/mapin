@@ -44,7 +44,6 @@
                             <label for="nombre">Nombre de la categoría <span>*</span></label>
                             <input type="text" id="nameCategory" name="nameCategory" class="input-field" placeholder="Ej: Parque Central" required />
                             <i class="fas fa-map-marker-alt"></i>
-                            <span class="error">El campo nombre no puede estar vacío</span>
                         </div>
                         <div class="icon-placeholder">
                             <label for="info">Descripción <span>*</span></label>
