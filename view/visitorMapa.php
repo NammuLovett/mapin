@@ -104,6 +104,7 @@
                 <p>Amante de los viajes</p>
             </div>
             <!-- fila 2 -->
+            <!-- PRevisión -->
             <div class="fila-2">
                 <h3>Previsión del tiempo</h3>
                 <div class="previsión">

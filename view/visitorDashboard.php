@@ -117,8 +117,7 @@ var_dump($_SESSION); */
             <!-- c3 :Primera fila: Perfil -->
             <div class="fila-1">
                 <div class="avatar">
-                    <!--                     <img src="../zimg/avatar/avatar.png" alt="Avatar de usuario" />
- -->
+                    <!--   <img src="../zimg/avatar/avatar.png" alt="Avatar de usuario" /> -->
                 </div>
                 <h4><?php echo $visitor->getNameVisitor(); ?></h4>
                 <p>Amante de los viajes</p>
@@ -145,13 +144,12 @@ var_dump($_SESSION); */
         // Función para inicializar el mapa
         function initMap() {
             var places = <?php echo $places_json; ?>;
-
             console.log(places);
+
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
                 // Obtén la ubicación actual del usuario
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    // Define las coordenadas de la ubicación del usuario
                     var userLocation = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
@@ -169,7 +167,6 @@ var_dump($_SESSION); */
                         }]
                     });
 
-                    // Crea un nuevo marcador en el mapa para la ubicación del usuario
                     var userMarker = new google.maps.Marker({
                         position: userLocation,
                         map: map,
@@ -180,23 +177,21 @@ var_dump($_SESSION); */
                         }
                     });
 
-                    // Crea un nuevo LatLng para la ubicación del usuario
                     var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
 
-                    // Para cada lugar, crea un marcador si está a 1 km o menos de distancia
+                    // Mantén una referencia a la ventana de información abierta actual
+                    var currentInfoWindow = null;
+
                     places.forEach(function(place) {
                         var placeLocation = {
                             lat: parseFloat(place.latPlace),
                             lng: parseFloat(place.lonPlace)
                         };
 
-                        // Crea un nuevo LatLng para la ubicación del lugar
                         var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
 
-                        // Calcula la distancia entre la ubicación del usuario y el lugar
                         var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
 
-                        // Si la distancia es de 1 km o menos, crea un marcador para el lugar
                         if (distance <= 1000) {
                             var placeMarker = new google.maps.Marker({
                                 position: placeLocation,
@@ -204,29 +199,40 @@ var_dump($_SESSION); */
                                 title: place.namePlace
                             });
 
-                            /* Ventana de información */
                             var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + (distance / 1000).toFixed(2) + " km</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
-
 
                             var infoWindow = new google.maps.InfoWindow({
                                 content: infoWindowContent
                             });
 
                             placeMarker.addListener('click', function() {
+                                // Cierra la ventana de información abierta actual
+                                if (currentInfoWindow) {
+                                    currentInfoWindow.close();
+                                }
+
                                 infoWindow.open(map, placeMarker);
+                                currentInfoWindow = infoWindow;
                             });
                         }
                     });
+
+                    google.maps.event.addListener(map, 'click', function() {
+                        if (currentInfoWindow) {
+                            currentInfoWindow.close();
+                        }
+                    });
+
                 }, function() {
-                    // Muestra una alerta si la geolocalización no está habilitada o ha sido desactivada
                     alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
                 });
             } else {
-                // Muestra una alerta si el navegador no soporta la geolocalización
                 alert('Error: Tu navegador no soporta la geolocalización.');
             }
         }
     </script>
+
+
     <!-- Gráfico totales -->
     <script>
         const totalCtx = document.getElementById('totalChart').getContext('2d');
