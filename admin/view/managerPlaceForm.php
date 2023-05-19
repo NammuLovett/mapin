@@ -67,6 +67,11 @@
                                 <i class="fas fa-map"></i>
                             </div>
                             <div class="icon-placeholder">
+                                <label for="imagen">Subir imagen</label>
+                                <input type="file" id="imagen" name="imagen" class="input-field" accept="image/*" />
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="icon-placeholder">
                                 <label for="categorias">Categorías</label>
                                 <div class="checkbox-container">
                                     <?php
@@ -82,20 +87,13 @@
                                     ?>
                                 </div>
                             </div>
-
-
-
-                            <div class="icon-placeholder">
-                                <label for="imagen">Subir imagen</label>
-                                <input type="file" id="imagen" name="imagen" class="input-field" accept="image/*" />
-                                <i class="fas fa-image"></i>
-                            </div>
+                            <hr>
                             <div class="icon-placeholder">
                                 <label for="mapa">Mapa google para poner latitud y longitud</label>
                                 <i class="fas fa-map-marker-alt"></i>
+                                <div id="map" class="map-container"></div>
                                 <input class="input-field" type="text" id="lat" name="latPlace" readonly />
                                 <input class="input-field" type="text" id="lng" name="lonPlace" readonly />
-                                <div id="map" class="map-container"></div>
                             </div>
 
 

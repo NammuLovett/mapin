@@ -302,6 +302,9 @@ input[type='date'] {
   padding-left: 35px !important;
 }
 
+hr {
+  margin: 5%;
+}
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 200px;
