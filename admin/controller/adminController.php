@@ -108,7 +108,6 @@ class adminController
     }
 
 
-
     public function verEditCategory()
     {
         $idCategory = $_GET['id'];
@@ -173,7 +172,7 @@ class adminController
 
             $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = 'image0.png', $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
             $placeId = $place->addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
-            // Si se seleccionaron categorías y el lugar fue insertado correctamente
+            // Si se seleccionaron categorías y el lugar se ha insertado correctamente
             if ($categories && $placeId) {
                 $place->assignCategories($placeId, $categories);
             }
@@ -212,22 +211,24 @@ class adminController
     public function editPlace()
     {
         $idPlace = $_GET['id'];
-        if (isset($_POST['namePlace']) && isset($_POST['infoPlace']) && isset($_POST['descriptionPlace']) && isset($_POST['addressPlace']) && isset($_POST['latPlace']) && isset($_POST['lonPlace']) && isset($_POST['imgPlace']) && isset($_POST['showPlace']) && isset($_POST['idLocation'])) {
-            $namePlace = $_POST['namePlace'];
-            $infoPlace = $_POST['infoPlace'];
-            $descriptionPlace = $_POST['descriptionPlace'];
-            $addressPlace = $_POST['addressPlace'];
-            $latPlace = $_POST['latPlace'];
-            $lonPlace = $_POST['lonPlace'];
-            $imgPlace = $_POST['imgPlace'];
-            $showPlace = $_POST['showPlace'];
-            $idLocation = $_POST['idLocation'];
 
-            echo "Valores de las variables:<br>";
-            var_dump($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+        $namePlace = isset($_POST['namePlace']) ? $_POST['namePlace'] : '';
+        $infoPlace = isset($_POST['infoPlace']) ? $_POST['infoPlace'] : '';
+        $descriptionPlace = isset($_POST['descriptionPlace']) ? $_POST['descriptionPlace'] : '';
+        $addressPlace = isset($_POST['addressPlace']) ? $_POST['addressPlace'] : '';
+        $latPlace = isset($_POST['latPlace']) ? $_POST['latPlace'] : '';
+        $lonPlace = isset($_POST['lonPlace']) ? $_POST['lonPlace'] : '';
+        $imgPlace = isset($_POST['imgPlace']) ? $_POST['imgPlace'] : '';
+        $showPlace = isset($_POST['showPlace']) ? $_POST['showPlace'] : 1;
+        $idLocation = isset($_POST['idLocation']) ? $_POST['idLocation'] : '1';
+        $categories = isset($_POST['category']) ? $_POST['category'] : null;
 
-            $place = new Place($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
-            $place->editPlace($idPlace);
+        $place = new Place($idPlace, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation);
+        $place->editPlace($idPlace);
+
+        // Si se seleccionaron categorías, actualiza las categorías del lugar
+        if ($categories) {
+            $place->assignCategories($idPlace, $categories);  // Deberás crear esta función
         }
 
         $places = Place::getAllPlaces();

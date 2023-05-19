@@ -211,19 +211,28 @@ class Place
     {
         $this->getConection();
 
-        echo "Valores de las variables en la clase Place:<br>";
-        var_dump($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation, $this->idPlace);
+        $sql = "UPDATE place SET 
+            namePlace = '{$this->namePlace}', 
+            infoPlace = '{$this->infoPlace}', 
+            descriptionPlace = '{$this->descriptionPlace}', 
+            addressPlace = '{$this->addressPlace}', 
+            imgPlace = '{$this->imgPlace}', 
+            latPlace = '{$this->latPlace}', 
+            lonPlace = '{$this->lonPlace}', 
+            showPlace = '{$this->showPlace}', 
+            idLocation = '{$this->idLocation}' 
+        WHERE idPlace = '{$idPlace}'";
 
-        $sql = "UPDATE place SET namePlace = '$this->$namePlace', infoPlace = '$this->$infoPlace', descriptionPlace = '$this->$descriptionPlace', addressPlace = '$this->$addressPlace', imgPlace = '$this->$imgPlace', latPlace = '$this->$latPlace', lonPlace = '$this->$lonPlace', showPlace = '$this->$showPlace', idLocation = '$this->$idLocation' WHERE idPlace = '$idPlace'";
-
-        if ($this->conection->query($sql) === false) {
+        if ($this->conection->query($sql)) {
+            if ($this->conection->affected_rows === 0) {
+                echo "No se ha actualizado la fila.";
+            } else {
+                echo $this->conection->affected_rows . " row(s) updated.";
+            }
+        } else {
             echo "Error: " . $sql . "<br>" . $this->conection->error;
         }
-        echo $sql;
     }
-
-
-
 
     public function deletePlace($idPlace)
     {
@@ -252,7 +261,7 @@ class Place
         ];
     }
 
-    /* Formulario categorías */
+    /* Formulario categorías / Editar Categorías */
     public function assignCategories($idPlace, $categories)
 
     {
