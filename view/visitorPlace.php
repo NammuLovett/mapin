@@ -86,6 +86,8 @@ $mapin = $_SESSION['mapin'];
             <?php if ($mapin) : ?>
                 <div class="place-details">
                     <div class="icon-links-container">
+
+                        <!-- VISITADO -->
                         <?php if ($hasVisited) : ?>
                             <a href="#" class="icon-link activo" id="link-visitado" onclick="/* llamar a funcion */">
                                 <div class="circle">
@@ -102,7 +104,7 @@ $mapin = $_SESSION['mapin'];
                                 <span>No visitado</span>
                             </a>
                         <?php endif; ?>
-
+                        <!-- FAVORITO -->
                         <?php if ($isFavorited) : ?>
                             <a href="#" class="icon-link activo" id="link-favorito">
                                 <div class=" circle">
@@ -243,11 +245,7 @@ $mapin = $_SESSION['mapin'];
         }
     </script>
 
-
-
     <script src="view/js/visitor.js"></script>
-
-
 
 
 </body>
