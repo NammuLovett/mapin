@@ -183,7 +183,6 @@ $category = Category::getCategoryById($categoryId);
                     // Crea un nuevo marcador en el mapa para la ubicación del usuario
                     var userMarker = new google.maps.Marker({
                         position: userLocation,
-
                         map: map,
                         title: "Tu ubicación",
                         icon: {
@@ -191,6 +190,11 @@ $category = Category::getCategoryById($categoryId);
                             scaledSize: new google.maps.Size(40, 40)
                         }
                     });
+
+                    var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+
+                    // Mantén una referencia a la ventana de información abierta actual
+                    var currentInfoWindow = null;
 
                     // Para cada lugar, crea un marcador en el mapa
                     places.forEach(function(place) {
@@ -205,16 +209,34 @@ $category = Category::getCategoryById($categoryId);
                             title: place.namePlace
                         });
 
+                        var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
+
+                        // Calcula la distancia entre la ubicación del usuario y el lugar
+                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng) / 1000;
+
                         /* Ventana de información */
-                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
+                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + distance.toFixed(2) + " km</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
 
                         var infoWindow = new google.maps.InfoWindow({
                             content: infoWindowContent
                         });
 
                         placeMarker.addListener('click', function() {
+                            // Cierra la ventana de información abierta actual
+                            if (currentInfoWindow) {
+                                currentInfoWindow.close();
+                            }
+
                             infoWindow.open(map, placeMarker);
+                            currentInfoWindow = infoWindow;
                         });
+                    });
+
+                    // Añade un listener al mapa para cerrar la ventana de información abierta cuando se haga clic en cualquier parte del mapa
+                    google.maps.event.addListener(map, 'click', function() {
+                        if (currentInfoWindow) {
+                            currentInfoWindow.close();
+                        }
                     });
                 }, function() {
                     // Muestra una alerta si la geolocalización no está habilitada o ha sido desactivada

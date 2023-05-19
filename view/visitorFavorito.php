@@ -128,17 +128,6 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                 <!-- -- -->
             </div>
 
-            <!-- paginación -->
-            <!--    <div class="pagination-container">
-                <ul class="pagination-list">
-                    <li class="page-item activo"><a href="#">1</a></li>
-                    <li class="page-item"><a href="#">2</a></li>
-                    <li class="page-item"><a href="#">3</a></li>
-                    <li class="page-item"><a href="#">4</a></li>
-                    <li class="page-item"><a href="#">5</a></li>
-                </ul>
-            </div> -->
-
             <!-- Tercera fila: Estadísticas -->
             <div class="fila-3">
 
@@ -173,13 +162,13 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
         </section>
     </main>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
+
     <script>
         // Función para inicializar el mapa
         function initMap() {
             var places = <?php echo $places_json; ?>;
-
-
             console.log(places);
+
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
                 // Obtén la ubicación actual del usuario
@@ -205,7 +194,6 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                     // Crea un nuevo marcador en el mapa para la ubicación del usuario
                     var userMarker = new google.maps.Marker({
                         position: userLocation,
-
                         map: map,
                         title: "Tu ubicación",
                         icon: {
@@ -213,6 +201,11 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                             scaledSize: new google.maps.Size(40, 40)
                         }
                     });
+
+                    var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+
+                    // Mantén una referencia a la ventana de información abierta actual
+                    var currentInfoWindow = null;
 
                     // Para cada lugar, crea un marcador en el mapa
                     places.forEach(function(place) {
@@ -227,17 +220,36 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                             title: place.namePlace
                         });
 
+                        var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
+
+                        // Calcula la distancia entre la ubicación del usuario y el lugar
+                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng) / 1000;
+
                         /* Ventana de información */
-                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
+                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + distance.toFixed(2) + " km</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
 
                         var infoWindow = new google.maps.InfoWindow({
                             content: infoWindowContent
                         });
 
                         placeMarker.addListener('click', function() {
+                            // Cierra la ventana de información abierta actual
+                            if (currentInfoWindow) {
+                                currentInfoWindow.close();
+                            }
+
                             infoWindow.open(map, placeMarker);
+                            currentInfoWindow = infoWindow;
+                        });
+
+                        // Añade un listener al mapa para cerrar la ventana de información abierta cuando se haga clic en cualquier parte del mapa
+                        google.maps.event.addListener(map, 'click', function() {
+                            if (currentInfoWindow) {
+                                currentInfoWindow.close();
+                            }
                         });
                     });
+
                 }, function() {
                     // Muestra una alerta si la geolocalización no está habilitada o ha sido desactivada
                     alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
