@@ -87,8 +87,8 @@
             </div>
         </div>
     </main>
-    <!--     <script src="view/js/register.js"></script>
- -->
+    <script src="view/js/register.js"></script>
+
 </body>
 
 </html>

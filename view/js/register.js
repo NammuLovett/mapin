@@ -45,27 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    let hasErrors = false;
-    const inputs = form.querySelectorAll('input, select');
-
-    for (const input of inputs) {
-      if (!input.checkValidity()) {
-        hasErrors = true;
-        showError(input);
-      } else {
-        hideError(input);
-      }
-    }
-
-    if (!hasErrors) {
-      alert('Formulario enviado correctamente');
-      form.reset();
-    }
-  });
-
   confirmPassword.addEventListener('input', checkPasswordsMatch);
   password.addEventListener('input', checkPasswordStrength);
 });
