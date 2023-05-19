@@ -63,10 +63,7 @@ class adminController
 
 
         $categories = Category::getAllCategories();
-        if (!is_array($categories) && !($categories instanceof Traversable)) {
-            echo 'Error: $categories no es un array o un objeto recorrible.';
-            exit;
-        }
+
         include_once('view/managerCategory.php');
     }
 

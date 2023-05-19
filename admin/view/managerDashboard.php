@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="layout">
         <nav class="sidebar">
             <div class="logo">
                 <img src="../zimg/logo/typo.svg" alt="Logo de Map!n" />
