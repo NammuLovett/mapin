@@ -203,18 +203,24 @@ class Controller
 
     public function toggleVisited()
     {
-        if (isset($_POST['idPlace'])) {
-            $idPlace = $_POST['idPlace'];
+        if (isset($_GET['idPlace'])) {
+            $idPlace = $_GET['idPlace'];
             $idVisitor = $_SESSION['visitor'];
             $place = Place::getPlaceById($idPlace);
             $result = $place->toggleVisited($idVisitor, $idPlace);
-            echo json_encode(array('success' => $result));
-            $this->view = 'visitorPlace';
+
+            if ($result) {
+                $visitData = $place->checkIfVisited($idVisitor, $idPlace);
+                echo json_encode(array('success' => true, 'Visitado' => $visitData ? true : false, 'Fecha' => $visitData ? $visitData['dateVVP'] : null));
+            } else {
+                echo json_encode(array('success' => false, 'error' => 'Error de consulta SQL'));
+            }
         } else {
-            echo json_encode(array('success' => false));
-            $this->view = 'visitorPlace';
+            echo json_encode(array('success' => false, 'error' => 'ID No encontrado'));
         }
+        exit;
     }
+
 
     public function toggleFavorited()
     {

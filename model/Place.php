@@ -383,13 +383,14 @@ class Place
         $sql = "SELECT * FROM visitorVisitPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
 
         $result = $conection->query($sql);
-        // Si el visitante ha visitado el lugar, devuelve la fila de la base de datos
+
+        // Si el visitante ha marcado el lugar como visitado, devuelve la fila completa
         if ($result->num_rows > 0) {
             return $result->fetch_assoc();
         }
 
-        // Si el visitante no ha visitado el lugar, devuelve null
-        return null;
+        // Si el visitante no ha marcado el lugar como visitado, devuelve false
+        return false;
     }
     /* vista detalle place si es favort*/
     public function checkIfFavorited($idVisitor, $idPlace)
@@ -426,10 +427,15 @@ class Place
             $sql = "DELETE FROM visitorVisitPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
         } else {
             // Si el lugar no ha sido visitado, inserta un nuevo registro
-            $sql = "INSERT INTO visitorVisitPlace (idVisitor, idPlace) VALUES ($idVisitor, $idPlace)";
+            $sql = "INSERT INTO visitorVisitPlace (idVisitor, idPlace, dateVVP) VALUES ($idVisitor, $idPlace, NOW())";
         }
 
-        return $conection->query($sql);
+        if ($conection->query($sql)) {
+            $visitedData = $this->checkIfVisited($idVisitor, $idPlace);
+            return array('success' => true, 'Visitado' => $visitedData ? true : false, 'Fecha' => $visitedData ? $visitedData['dateVVP'] : null);
+        } else {
+            return array('success' => false, 'error' => 'Error de consulta SQL');
+        }
     }
     /* vista detalle place */
     public function toggleFavorited($idVisitor, $idPlace)

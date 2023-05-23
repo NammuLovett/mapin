@@ -88,44 +88,26 @@ $mapin = $_SESSION['mapin'];
                 <div class="place-details">
                     <div class="icon-links-container">
                         <p id="mensaje"></p>
-                        <!-- VISITADO -->
-                        <?php if ($hasVisited) : ?>
-                            <a href="#" class="icon-link activo" id="link-visitado" onclick="/* llamar a funcion */">
-                                <div class="circle">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <span>Visitado</span>
-                                <span> <?php echo $visitDate; ?></span>
-                            </a>
-                        <?php else : ?>
-                            <a href="#" class="icon-link activo" id="link-visitado" onclick="/* llamar a funcion */">
-                                <div class="circle">
-                                    <i class="fas fa-times"></i>
-                                </div>
-                                <span>No visitado</span>
-                                <!-- Tooltip -->
-                                <div class="tooltip">
-                                    <span class="tooltiptext">Debes estar a menos de 30 metros del lugar para poder marcarlo como visitado</span>
-                                </div>
 
-                            </a>
-                        <?php endif; ?>
+                        <!-- VISITADO -->
+                        <a href="index.php?action=toggleVisited&idPlace=<?php echo $idPlace; ?>" class="icon-link <?php echo $hasVisited ? 'activo' : ''; ?>" id="link-visitado" data-place="<?php echo $idPlace; ?>" onclick="toggleVisited(event)">
+                            <div class="circle">
+                                <i class="fas fa-<?php echo $hasVisited ? 'check' : 'times'; ?>"></i>
+                            </div>
+                            <span><?php echo $hasVisited ? 'Visitado' : 'No visitado'; ?></span>
+                            <?php if ($hasVisited) : ?>
+                                <span> <?php echo $visitDate; ?></span>
+                            <?php endif; ?>
+                        </a>
+
+
                         <!-- FAVORITO -->
-                        <?php if ($isFavorited) : ?>
-                            <a href="index.php?action=toggleFavorited&idPlace=<?php echo $idPlace; ?>" class="icon-link activo" id="link-favorito" data-place="<?php echo $idPlace; ?>" onclick="toggleFavorited(event)">
-                                <div class=" circle">
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span>Favorito</span>
-                            </a>
-                        <?php else : ?>
-                            <a href="index.php?action=toggleFavorited&idPlace=<?php echo $idPlace; ?>" class="icon-link" id="link-favorito" data-place="<?php echo $idPlace; ?>" onclick="toggleFavorited(event)">
-                                <div class="circle">
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span>Favorito</span>
-                            </a>
-                        <?php endif; ?>
+                        <a href="index.php?action=toggleFavorited&idPlace=<?php echo $idPlace; ?>" class="icon-link <?php echo $isFavorited ? 'activo' : ''; ?>" id="link-favorito" data-place="<?php echo $idPlace; ?>" onclick="toggleFavorited(event)">
+                            <div class="circle">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>Favorito</span>
+                        </a>
 
                     </div>
 
@@ -251,29 +233,7 @@ $mapin = $_SESSION['mapin'];
             }
         }
     </script>
-    <!-- Botón favo -->
-    <script>
-        function toggleFavorited(event) {
-            event.preventDefault();
 
-            var link = event.target.closest('a');
-            var idPlace = link.getAttribute('data-place');
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "index.php?action=toggleFavorited&idPlace=" + idPlace, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        link.classList.toggle('activo', response.favorited);
-                    } else {
-                        console.error(response.error);
-                    }
-                }
-            }
-            xhr.send();
-        }
-    </script>
 
 
     <script src="view/js/visitor.js"></script>
