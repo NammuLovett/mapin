@@ -25,7 +25,7 @@ document.addEventListener('click', function (event) {
   }
 });
 
-/* MAPA */
+/* TIEMPO */
 
 // Añade un escuchador de eventos 'DOMContentLoaded' al documento
 document.addEventListener('DOMContentLoaded', function () {

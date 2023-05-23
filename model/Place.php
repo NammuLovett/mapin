@@ -373,7 +373,7 @@ class Place
         return $places;
     }
 
-    /* vista detalle place */
+    /* vista detalle place Comprobar si se ha visitado*/
     public function checkIfVisited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -391,7 +391,7 @@ class Place
         // Si el visitante no ha visitado el lugar, devuelve null
         return null;
     }
-    /* vista detalle place */
+    /* vista detalle place si es favort*/
     public function checkIfFavorited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -442,10 +442,10 @@ class Place
 
         if ($favoritedData) {
             // Si el lugar ya es favorito, borra el registro
-            $sql = "DELETE FROM visitorFavoritedPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
+            $sql = "DELETE FROM visitorFavPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
         } else {
             // Si el lugar no es favorito, inserta un nuevo registro
-            $sql = "INSERT INTO visitorFavoritedPlace (idVisitor, idPlace) VALUES ($idVisitor, $idPlace)";
+            $sql = "INSERT INTO visitorFavPlace (idVisitor, idPlace) VALUES ($idVisitor, $idPlace)";
         }
 
         return $conection->query($sql);

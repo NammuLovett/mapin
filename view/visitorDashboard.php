@@ -293,6 +293,7 @@ var_dump($_SESSION); */
             },
         });
     </script>
+    <!-- Progress bar -->
     <script>
         var percentageVisited = <?= $percentageVisited ?>;
 

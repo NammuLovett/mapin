@@ -1,4 +1,7 @@
 <?php
+/* ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); */
 
 class Controller
 {
@@ -11,17 +14,6 @@ class Controller
     {
         $this->view = 'landing';
         $this->mapin = new Mapin();
-
-        if (isset($_GET['action'])) {
-            switch ($_GET['action']) {
-                case 'toggleVisited':
-                    $this->toggleVisited();
-                    break;
-                case 'toggleFavorited':
-                    $this->toggleFavorited();
-                    break;
-            }
-        }
     }
 
     public function landing()
@@ -49,7 +41,6 @@ class Controller
 
     public function logearUsuario()
     {
-        // Primero, verificamos que se haya enviado tanto el correo electrónico como la contraseña.
         $logeo = $this->mapin->loginV($_POST['email'], $_POST['password']);
 
         if ($logeo !== false) {
@@ -74,12 +65,12 @@ class Controller
         if (isset($_SESSION['visitor'])) {
             $this->view = 'visitorDashboard';
             $visitor = Visitor::getVisitorById($_SESSION['visitor']);
-            $idVisitor = $_SESSION['visitor']; // Asegúrate de definir $idVisitor aquí
+            $idVisitor = $_SESSION['visitor'];
             if ($visitor === null) {
                 die("No se pudo encontrar el visitante con el ID: " . $_SESSION['visitor']);
             }
 
-            // Consulta para obtener las categorías de lugares visitados por el visitante
+            //categorías de lugares visitados por el visitante
             $visitedCategoriesData = Place::getVisitedPlacesCategoriesCountByVisitor($idVisitor);
 
             // Calcular el porcentaje de lugares visitados
@@ -87,7 +78,7 @@ class Controller
             $visitedPlacesCount = Place::getVisitedPlacesCount($idVisitor);
             $percentageVisited = round(($visitedPlacesCount / $totalPlaces) * 100);
 
-            // Obtén todos los lugares y conviértelos a arrays
+            // todos los lugares y conviértelos a arrays
             $places = array_map(function ($place) {
                 return $place->toArray();
             }, Place::getAllPlaces());
@@ -199,13 +190,13 @@ class Controller
             $this->view = 'visitorPlace';
             $this->mapin = $place;
             $hasVisited = $visitData ? true : false;
-            $visitDate = $visitData ? $visitData['dateVVP'] : null;
             $isFavorited = $favoritedData ? true : false;
+            $visitDate = $visitData ? $visitData['dateVVP'] : null;
             $_SESSION['mapin'] = $place;
 
             include 'view/visitorPlace.php';
         } else {
-            echo "ERROR: ";
+            echo "ERROR: La vista no se ha cargado correctamente";
         }
     }
 
@@ -218,24 +209,37 @@ class Controller
             $place = Place::getPlaceById($idPlace);
             $result = $place->toggleVisited($idVisitor, $idPlace);
             echo json_encode(array('success' => $result));
+            $this->view = 'visitorPlace';
         } else {
             echo json_encode(array('success' => false));
+            $this->view = 'visitorPlace';
         }
     }
 
     public function toggleFavorited()
+
     {
-        if (isset($_POST['idPlace'])) {
-            $idPlace = $_POST['idPlace'];
+        if (isset($_GET['idPlace'])) {
+            $idPlace = $_GET['idPlace'];
             $idVisitor = $_SESSION['visitor'];
             $place = Place::getPlaceById($idPlace);
             $result = $place->toggleFavorited($idVisitor, $idPlace);
-            echo json_encode(array('success' => $result));
+
+
+            if ($result) {
+                echo json_encode(array('success' => true));
+
+                include 'view/visitorPlace.php';
+                $this->view = 'visitorFavorito';
+            } else {
+                echo json_encode(array('success' => false, 'error' => 'Error de consulta SQL'));
+            }
         } else {
-            echo json_encode(array('success' => false));
+            echo json_encode(array('success' => false, 'error' => 'ID No encontrado'));
         }
     }
 
+    /* Añadir a la BD Visitor */
 
     public function insertVisitor()
     {
@@ -246,7 +250,7 @@ class Controller
             $nameVisitor = $_POST['nameVisitor'];
             $surnameVisitor = $_POST['surnameVisitor'];
             $emailVisitor = $_POST['emailVisitor'];
-            $passwordVisitor = $_POST['passwordVisitor']; // corregido
+            $passwordVisitor = $_POST['passwordVisitor'];
             $genderVisitor = $_POST['genderVisitor'];
             $datebirthVisitor = $_POST['datebirthVisitor'];
             $cityVisitor = $_POST['cityVisitor'];
@@ -274,7 +278,7 @@ class Controller
         // Pasar los datos a la vista
         include 'view/visitorMapaCategory.php';
 
-        // Console.log para verificar los datos antes de convertir a JSON
+        //depurasión
         echo "<script>console.log(" . json_encode($places) . ");</script>";
 
         $this->view = 'visitorMapaCategory';

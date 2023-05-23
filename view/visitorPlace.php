@@ -81,12 +81,13 @@ $mapin = $_SESSION['mapin'];
         <section class="columna-2">
 
             <div class="place-image">
-                <img src="zimg/places/image4.jpg" alt="" srcset="" class="place-image-img">
+                <img src="zimg/places/<?php echo $mapin->getImgPlace(); ?>" alt="" srcset="" class="place-image-img">
             </div>
+
             <?php if ($mapin) : ?>
                 <div class="place-details">
                     <div class="icon-links-container">
-
+                        <p id="mensaje"></p>
                         <!-- VISITADO -->
                         <?php if ($hasVisited) : ?>
                             <a href="#" class="icon-link activo" id="link-visitado" onclick="/* llamar a funcion */">
@@ -97,29 +98,35 @@ $mapin = $_SESSION['mapin'];
                                 <span> <?php echo $visitDate; ?></span>
                             </a>
                         <?php else : ?>
-                            <a href="#" class="icon-link" id="link-no-visitado" onclick="/* llamar a funcion */">
+                            <a href="#" class="icon-link activo" id="link-visitado" onclick="/* llamar a funcion */">
                                 <div class="circle">
                                     <i class="fas fa-times"></i>
                                 </div>
                                 <span>No visitado</span>
+                                <!-- Tooltip -->
+                                <div class="tooltip">
+                                    <span class="tooltiptext">Debes estar a menos de 30 metros del lugar para poder marcarlo como visitado</span>
+                                </div>
+
                             </a>
                         <?php endif; ?>
                         <!-- FAVORITO -->
                         <?php if ($isFavorited) : ?>
-                            <a href="#" class="icon-link activo" id="link-favorito">
+                            <a href="index.php?action=toggleFavorited&idPlace=<?php echo $idPlace; ?>" class="icon-link activo" id="link-favorito" data-place="<?php echo $idPlace; ?>" onclick="toggleFavorited(event)">
                                 <div class=" circle">
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <span>Favorito</span>
                             </a>
                         <?php else : ?>
-                            <a href="#" class="icon-link" id="link-favorito">
+                            <a href="index.php?action=toggleFavorited&idPlace=<?php echo $idPlace; ?>" class="icon-link" id="link-favorito" data-place="<?php echo $idPlace; ?>" onclick="toggleFavorited(event)">
                                 <div class="circle">
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <span>Favorito</span>
                             </a>
                         <?php endif; ?>
+
                     </div>
 
                     <div class="place-info">
@@ -165,7 +172,7 @@ $mapin = $_SESSION['mapin'];
     </main>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&libraries=geometry&callback=initMap" async defer></script>
-
+    <!-- Mapita -->
     <script>
         // Función para inicializar el mapa
         function initMap() {
@@ -244,6 +251,8 @@ $mapin = $_SESSION['mapin'];
             }
         }
     </script>
+    <!-- Botón favo -->
+
 
     <script src="view/js/visitor.js"></script>
 
