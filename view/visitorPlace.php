@@ -252,6 +252,28 @@ $mapin = $_SESSION['mapin'];
         }
     </script>
     <!-- Botón favo -->
+    <script>
+        function toggleFavorited(event) {
+            event.preventDefault();
+
+            var link = event.target.closest('a');
+            var idPlace = link.getAttribute('data-place');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "index.php?action=toggleFavorited&idPlace=" + idPlace, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        link.classList.toggle('activo', response.favorited);
+                    } else {
+                        console.error(response.error);
+                    }
+                }
+            }
+            xhr.send();
+        }
+    </script>
 
 
     <script src="view/js/visitor.js"></script>

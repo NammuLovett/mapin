@@ -401,14 +401,15 @@ class Place
         $sql = "SELECT * FROM visitorFavPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
 
         $result = $conection->query($sql);
-        // Si el visitante ha marcado el lugar como favorito, devuelve la fila de la base de datos
+        // Si el visitante ha marcado el lugar como favorito, devuelve true
         if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
+            return true;
         }
 
-        // Si el visitante no ha marcado el lugar como favorito, devuelve null
-        return null;
+        // Si el visitante no ha marcado el lugar como favorito, devuelve false
+        return false;
     }
+
 
     /* vista detalle place */
     public function toggleVisited($idVisitor, $idPlace)

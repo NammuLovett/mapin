@@ -217,7 +217,6 @@ class Controller
     }
 
     public function toggleFavorited()
-
     {
         if (isset($_GET['idPlace'])) {
             $idPlace = $_GET['idPlace'];
@@ -225,19 +224,17 @@ class Controller
             $place = Place::getPlaceById($idPlace);
             $result = $place->toggleFavorited($idVisitor, $idPlace);
 
-
             if ($result) {
-                echo json_encode(array('success' => true));
-
-                include 'view/visitorPlace.php';
-                $this->view = 'visitorFavorito';
+                echo json_encode(array('success' => true, 'favorited' => $place->checkIfFavorited($idVisitor, $idPlace)));
             } else {
                 echo json_encode(array('success' => false, 'error' => 'Error de consulta SQL'));
             }
         } else {
             echo json_encode(array('success' => false, 'error' => 'ID No encontrado'));
         }
+        exit;
     }
+
 
     /* Añadir a la BD Visitor */
 
