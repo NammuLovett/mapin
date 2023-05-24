@@ -163,11 +163,11 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
     </main>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
 
+    <!-- Mapita favo -->
     <script>
         // Función para inicializar el mapa
         function initMap() {
             var places = <?php echo $places_json; ?>;
-            console.log(places);
 
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
@@ -185,6 +185,7 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                         center: userLocation,
                         styles: [{
                             featureType: 'poi',
+                            gestureHandling: 'cooperative',
                             stylers: [{
                                 visibility: 'off'
                             }]
@@ -223,10 +224,13 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                         var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
 
                         // Calcula la distancia entre la ubicación del usuario y el lugar
-                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng) / 1000;
+                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
+
+                        // Si la distancia es menor a 1 km, se muestra en metros. En caso contrario, en km.
+                        var displayDistance = distance < 1000 ? (distance).toFixed(2) + " metros" : (distance / 1000).toFixed(2) + " km";
 
                         /* Ventana de información */
-                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + distance.toFixed(2) + " km</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
+                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + displayDistance + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
 
                         var infoWindow = new google.maps.InfoWindow({
                             content: infoWindowContent
@@ -238,6 +242,7 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                                 currentInfoWindow.close();
                             }
 
+                            // Abre la ventana de información para el lugar seleccionado
                             infoWindow.open(map, placeMarker);
                             currentInfoWindow = infoWindow;
                         });
@@ -260,6 +265,7 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
             }
         }
     </script>
+
     <script src="view/js/visitor.js"></script>
 </body>
 

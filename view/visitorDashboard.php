@@ -192,6 +192,9 @@ var_dump($_SESSION); */
 
                         var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
 
+                        // Decide cómo se muestra la distancia dependiendo de si es más o menos de 1 km
+                        var displayDistance = distance < 1000 ? distance.toFixed(2) + " metros" : (distance / 1000).toFixed(2) + " km";
+
                         if (distance <= 1000) {
                             var placeMarker = new google.maps.Marker({
                                 position: placeLocation,
@@ -199,7 +202,7 @@ var_dump($_SESSION); */
                                 title: place.namePlace
                             });
 
-                            var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + (distance / 1000).toFixed(2) + " km</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
+                            var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + displayDistance + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a>";
 
                             var infoWindow = new google.maps.InfoWindow({
                                 content: infoWindowContent
@@ -217,6 +220,7 @@ var_dump($_SESSION); */
                         }
                     });
 
+                    // Cierra la ventana de información cuando se hace clic en cualquier lugar del mapa
                     google.maps.event.addListener(map, 'click', function() {
                         if (currentInfoWindow) {
                             currentInfoWindow.close();
@@ -231,6 +235,7 @@ var_dump($_SESSION); */
             }
         }
     </script>
+
 
 
     <!-- Gráfico totales -->

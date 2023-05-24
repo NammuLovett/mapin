@@ -152,12 +152,12 @@ $category = Category::getCategoryById($categoryId);
         </section>
     </main>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
+    <!-- Mapita Categorizado -->
     <script>
         // Función para inicializar el mapa
         function initMap() {
             var places = JSON.parse('<?php echo $places_json; ?>');
 
-            console.log(places);
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
                 // Obtén la ubicación actual del usuario
@@ -174,6 +174,7 @@ $category = Category::getCategoryById($categoryId);
                         center: userLocation,
                         styles: [{
                             featureType: 'poi',
+                            gestureHandling: 'cooperative',
                             stylers: [{
                                 visibility: 'off'
                             }]
@@ -212,10 +213,13 @@ $category = Category::getCategoryById($categoryId);
                         var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
 
                         // Calcula la distancia entre la ubicación del usuario y el lugar
-                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng) / 1000;
+                        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
+
+                        // Si la distancia es menor a 1 km, se muestra en metros. En caso contrario, en km.
+                        var displayDistance = distance < 1000 ? (distance.toFixed(2) + " m") : (distance / 1000).toFixed(2) + " km";
 
                         /* Ventana de información */
-                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + distance.toFixed(2) + " km</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
+                        var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + displayDistance + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
 
                         var infoWindow = new google.maps.InfoWindow({
                             content: infoWindowContent
@@ -227,16 +231,17 @@ $category = Category::getCategoryById($categoryId);
                                 currentInfoWindow.close();
                             }
 
+                            // Abre la ventana de información para el lugar seleccionado
                             infoWindow.open(map, placeMarker);
                             currentInfoWindow = infoWindow;
                         });
-                    });
 
-                    // Añade un listener al mapa para cerrar la ventana de información abierta cuando se haga clic en cualquier parte del mapa
-                    google.maps.event.addListener(map, 'click', function() {
-                        if (currentInfoWindow) {
-                            currentInfoWindow.close();
-                        }
+                        // Añade un listener al mapa para cerrar la ventana de información abierta cuando se haga clic en cualquier parte del mapa
+                        google.maps.event.addListener(map, 'click', function() {
+                            if (currentInfoWindow) {
+                                currentInfoWindow.close();
+                            }
+                        });
                     });
                 }, function() {
                     // Muestra una alerta si la geolocalización no está habilitada o ha sido desactivada
@@ -248,6 +253,7 @@ $category = Category::getCategoryById($categoryId);
             }
         }
     </script>
+
 
     <script src="view/js/visitor.js"></script>
 
