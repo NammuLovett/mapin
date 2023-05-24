@@ -183,9 +183,9 @@ $places = Place::getAllFavoritePlacesBy($visitorId);
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 15,
                         center: userLocation,
+                        gestureHandling: 'cooperative',
                         styles: [{
                             featureType: 'poi',
-                            gestureHandling: 'cooperative',
                             stylers: [{
                                 visibility: 'off'
                             }]

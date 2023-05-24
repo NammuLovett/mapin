@@ -268,13 +268,6 @@ $mapin = $_SESSION['mapin'];
     </script>
 
 
-
-
-
-
-
-
-
     <script src="view/js/visitor.js"></script>
 
 
