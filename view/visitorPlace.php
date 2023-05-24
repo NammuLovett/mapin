@@ -81,7 +81,7 @@ $mapin = $_SESSION['mapin'];
         <section class="columna-2">
 
             <div class="place-image">
-                <img src="zimg/places/<?php echo $mapin->getImgPlace(); ?>" alt="" srcset="" class="place-image-img">
+                <img src="zimg/places/<?php echo $mapin->getImgPlace(); ?>" alt="Imagen del lugar" srcset="" class="place-image-img">
             </div>
 
             <?php if ($mapin) : ?>
