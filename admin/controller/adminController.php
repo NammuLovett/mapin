@@ -164,10 +164,10 @@ class adminController
             $infoPlace = $_POST['infoPlace'];
             $descriptionPlace = $_POST['descriptionPlace'];
             $addressPlace = $_POST['addressPlace'];
-            $imgPlace = $_POST['imgPlace'];
+            $imgPlace = isset($_POST['imgPlace']) ? $_POST['imgPlace'] : 'image0.png';
             $latPlace = $_POST['latPlace'];
             $lonPlace = $_POST['lonPlace'];
-            $showPlace = $_POST['showPlace'];
+            $showPlace = isset($_POST['showPlace']) ? $_POST['showPlace'] : 1;
             $categories = isset($_POST['category']) ? $_POST['category'] : null;
 
             $place = new Place($idPlace = null, $namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace = 'image0.png', $latPlace, $lonPlace, $showPlace = 1, $idLocation = 1);
