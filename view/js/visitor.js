@@ -161,7 +161,7 @@ function toggleFavorited(event) {
     });
 }
 /* BOTÓN VISITADO */
-
+/* BOTÓN VISITADO */
 // Función que se ejecuta cuando se hace clic en el botón de visitado
 function toggleVisited(event) {
   event.preventDefault();
@@ -169,6 +169,7 @@ function toggleVisited(event) {
   let link = event.target.closest('a');
   let icon = link.querySelector('i');
   let span = link.querySelector('span');
+  let dateSpan = link.querySelector('span[data-date]');
   let idPlace = link.getAttribute('data-place');
 
   fetch('index.php?action=toggleVisited&idPlace=' + idPlace)
@@ -184,6 +185,20 @@ function toggleVisited(event) {
         icon.classList.toggle('fa-check');
         icon.classList.toggle('fa-times');
         span.textContent = json.Visitado ? 'Visitado' : 'No visitado';
+
+        if (json.Visitado) {
+          if (!dateSpan) {
+            // Si no existe un span para la fecha, créalo.
+            dateSpan = document.createElement('span');
+            link.appendChild(dateSpan);
+          }
+          dateSpan.textContent = json.fecha;
+          dateSpan.style.display = 'inline';
+        } else {
+          if (dateSpan) {
+            dateSpan.style.display = 'none';
+          }
+        }
 
         icon.animate(
           [

@@ -432,11 +432,16 @@ class Place
 
         if ($conection->query($sql)) {
             $visitedData = $this->checkIfVisited($idVisitor, $idPlace);
-            return array('success' => true, 'Visitado' => $visitedData ? true : false, 'Fecha' => $visitedData ? $visitedData['dateVVP'] : null);
+            return array(
+                'success' => true,
+                'Visitado' => $visitedData ? true : false,
+                'fecha' => $visitedData ? $visitedData['dateVVP'] : null
+            );
         } else {
             return array('success' => false, 'error' => 'Error de consulta SQL');
         }
     }
+
     /* vista detalle place */
     public function toggleFavorited($idVisitor, $idPlace)
     {

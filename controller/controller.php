@@ -211,7 +211,12 @@ class Controller
 
             if ($result) {
                 $visitData = $place->checkIfVisited($idVisitor, $idPlace);
-                echo json_encode(array('success' => true, 'Visitado' => $visitData ? true : false, 'Fecha' => $visitData ? $visitData['dateVVP'] : null));
+                $visitDate = null;
+                if ($visitData) {
+                    $visitDate = $visitData['dateVVP'];
+                    $visitDate = date('m/d/Y', strtotime($visitDate)); //formateo fecha datetime
+                }
+                echo json_encode(array('success' => true, 'Visitado' => $visitData ? true : false, 'fecha' => $visitDate));
             } else {
                 echo json_encode(array('success' => false, 'error' => 'Error de consulta SQL'));
             }

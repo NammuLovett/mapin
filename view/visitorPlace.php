@@ -95,8 +95,13 @@ $mapin = $_SESSION['mapin'];
                                 <i class="fas fa-<?php echo $hasVisited ? 'check' : 'times'; ?>"></i>
                             </div>
                             <span><?php echo $hasVisited ? 'Visitado' : 'No visitado'; ?></span>
-                            <span data-date style="display: <?php echo $hasVisited ? 'inline' : 'none'; ?>"><?php echo $visitDate; ?></span>
+                            <?php if ($hasVisited) : ?>
+                                <span data-date style="display: inline;"><?php echo date('m/d/Y', strtotime($visitDate)); ?></span>
+                            <?php else : ?>
+                                <span data-date style="display: none;"></span>
+                            <?php endif; ?>
                         </a>
+
 
 
 
