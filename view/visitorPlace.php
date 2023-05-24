@@ -160,15 +160,12 @@ $mapin = $_SESSION['mapin'];
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&libraries=geometry&callback=initMap" async defer></script>
     <!-- Mapita -->
     <script>
-        // Función para inicializar el mapa
         function initMap() {
-            // Define las coordenadas del lugar
             var placeLocation = {
                 lat: <?php echo $mapin->getLatPlace(); ?>,
                 lng: <?php echo $mapin->getLonPlace(); ?>
             };
 
-            // Crea una nueva instancia del mapa de Google Maps
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
                 center: placeLocation,
@@ -180,24 +177,22 @@ $mapin = $_SESSION['mapin'];
                 }]
             });
 
-            // Crea un nuevo marcador en el mapa para el lugar
             var placeMarker = new google.maps.Marker({
                 position: placeLocation,
                 map: map,
                 title: "<?php echo $mapin->getNamePlace(); ?>"
             });
 
-            // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
-                // Obtén la ubicación actual del usuario
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    // Define las coordenadas de la ubicación del usuario
+                var visitedLink = document.getElementById('link-visitado');
+                var visitedSpan = visitedLink.querySelector('span');
+
+                var watchID = navigator.geolocation.watchPosition(function(position) {
                     var userLocation = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
 
-                    // Crea un nuevo marcador en el mapa para la ubicación del usuario
                     var userMarker = new google.maps.Marker({
                         position: userLocation,
                         map: map,
@@ -208,35 +203,32 @@ $mapin = $_SESSION['mapin'];
                         }
                     });
 
-                    // Calcula la distancia entre la ubicación del usuario y el lugar
                     var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
                     var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
-                    var distanceText = (distance / 1000).toFixed(2) + " km";
 
-                    // Crea una ventana de información para el marcador del lugar
-                    var infoWindowContent = "<h3><?php echo $mapin->getNamePlace(); ?></h3><p><?php echo $mapin->getInfoPlace(); ?>.</p><p>Distancia desde tu ubicación: " + distanceText + "</p><a href='https://www.google.com/maps/search/?api=1&query=<?php echo $mapin->getLatPlace(); ?>,<?php echo $mapin->getLonPlace(); ?>' target='_blank'>Ir al lugar</a>";
-
-                    // Crea una instancia de la ventana de información
-                    var infoWindow = new google.maps.InfoWindow({
-                        content: infoWindowContent
-                    });
-
-                    // Asocia un evento de clic al marcador del lugar para abrir la ventana de información
-                    placeMarker.addListener('click', function() {
-                        infoWindow.open(map, placeMarker);
-                    });
-
+                    if (distance > 100) {
+                        visitedLink.classList.add('lejos');
+                        if (visitedLink.classList.contains('activo')) {
+                            visitedSpan.innerText = 'Visitado';
+                        } else {
+                            visitedSpan.innerText = 'Estás lejos para visitarlo';
+                        }
+                    } else {
+                        visitedLink.classList.remove('lejos');
+                        visitedSpan.innerText = visitedLink.classList.contains('activo') ? 'Visitado' : 'No visitado';
+                    }
                 }, function() {
-                    // Muestra una alerta si la geolocalización no está habilitada o ha sido desactivada
                     alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
                 });
             } else {
-                // Muestra una alerta si el navegador no soporta la geolocalización
                 alert('Error: Tu navegador no soporta la geolocalización.');
             }
         }
     </script>
+
+
+
 
 
 

@@ -82,7 +82,7 @@ class Controller
             $places = array_map(function ($place) {
                 return $place->toArray();
             }, Place::getAllPlaces());
-            $places_json = json_encode($places);
+            $places_json = json_encode($places); //convertir datos en PHP a una cadena en formato JSON 
 
             // Pasa la información del visitante a la vista
             include 'view/visitorDashboard.php';
@@ -200,61 +200,73 @@ class Controller
         }
     }
 
-
+    // Esta función se usa para marcar o desmarcar un lugar como visitado
     public function toggleVisited()
     {
+        // Verificar si se ha proporcionado el id del lugar a través de GET
         if (isset($_GET['idPlace'])) {
             $idPlace = $_GET['idPlace'];
-            $idVisitor = $_SESSION['visitor'];
-            $place = Place::getPlaceById($idPlace);
-            $result = $place->toggleVisited($idVisitor, $idPlace);
+            $idVisitor = $_SESSION['visitor'];  // ID del visitante actual
+            $place = Place::getPlaceById($idPlace);  // Obtener el objeto Lugar correspondiente
+            $result = $place->toggleVisited($idVisitor, $idPlace);  // Cambiar el estado de visitado
 
+            // Verificar si la operación fue exitosa
             if ($result) {
+                // Comprobar si el lugar ha sido visitado y obtener la fecha de la visita
                 $visitData = $place->checkIfVisited($idVisitor, $idPlace);
                 $visitDate = null;
                 if ($visitData) {
                     $visitDate = $visitData['dateVVP'];
-                    $visitDate = date('m/d/Y', strtotime($visitDate)); //formateo fecha datetime
+                    $visitDate = date('m/d/Y', strtotime($visitDate)); // Formatear la fecha
                 }
+                // Devolver un JSON con el resultado de la operación
                 echo json_encode(array('success' => true, 'Visitado' => $visitData ? true : false, 'fecha' => $visitDate));
             } else {
+                // Devolver un JSON con un error
                 echo json_encode(array('success' => false, 'error' => 'Error de consulta SQL'));
             }
         } else {
+            // Devolver un JSON con un error
             echo json_encode(array('success' => false, 'error' => 'ID No encontrado'));
         }
         exit;
     }
 
-
+    // Esta función se usa para marcar o desmarcar un lugar como favorito
     public function toggleFavorited()
     {
+        // Verificar si se ha proporcionado el id del lugar a través de GET
         if (isset($_GET['idPlace'])) {
             $idPlace = $_GET['idPlace'];
-            $idVisitor = $_SESSION['visitor'];
-            $place = Place::getPlaceById($idPlace);
-            $result = $place->toggleFavorited($idVisitor, $idPlace);
+            $idVisitor = $_SESSION['visitor'];  // ID del visitante actual
+            $place = Place::getPlaceById($idPlace);  // Obtener el objeto Lugar correspondiente
+            $result = $place->toggleFavorited($idVisitor, $idPlace);  // Cambiar el estado de favorito
 
+            // Verificar si la operación fue exitosa
             if ($result) {
+                // Devolver un JSON con el resultado de la operación
                 echo json_encode(array('success' => true, 'favorited' => $place->checkIfFavorited($idVisitor, $idPlace)));
             } else {
+                // Devolver un JSON con un error
                 echo json_encode(array('success' => false, 'error' => 'Error de consulta SQL'));
             }
         } else {
+            // Devolver un JSON con un error
             echo json_encode(array('success' => false, 'error' => 'ID No encontrado'));
         }
         exit;
     }
 
-
-    /* Añadir a la BD Visitor */
-
+    // Esta función se usa para insertar un nuevo visitante en la base de datos
     public function insertVisitor()
     {
+        // Establecer la vista
         $this->view = 'visitorLogin';
 
+        // Verificar si se han proporcionado todos los datos necesarios a través de POST
         if (isset($_POST["nameVisitor"]) && isset($_POST["surnameVisitor"]) && isset($_POST["emailVisitor"]) && isset($_POST["passwordVisitor"]) && isset($_POST["genderVisitor"]) && isset($_POST["datebirthVisitor"]) && isset($_POST["cityVisitor"])) {
 
+            // Obtener los datos del visitante
             $nameVisitor = $_POST['nameVisitor'];
             $surnameVisitor = $_POST['surnameVisitor'];
             $emailVisitor = $_POST['emailVisitor'];
@@ -263,32 +275,41 @@ class Controller
             $datebirthVisitor = $_POST['datebirthVisitor'];
             $cityVisitor = $_POST['cityVisitor'];
 
+            // Crear un nuevo objeto Visitante
             $visitor = new Visitor($idVisitor = null, $nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor);
+            // Insertar el visitante en la base de datos
             $visitor->addVisitor($nameVisitor, $surnameVisitor, $emailVisitor, $passwordVisitor, $genderVisitor, $datebirthVisitor, $cityVisitor);
 
+            // Devolver el objeto Visitante
             return $visitor;
         }
     }
 
+    // Esta función muestra un mapa con los lugares de una categoría específica
     public function verVisitorMapaCategory()
     {
+        // Obtener el id de la categoría a través de GET
         $categoryId = $_GET['id'];
+        // Obtener todos los lugares de la categoría
         $places_objects = Place::getPlacesByCategoryId($categoryId);
+        // Obtener el objeto Categoría correspondiente
         $category = Category::getCategoryById($categoryId);
 
-        // Convertir cada objeto Place en un array
+        // Convertir cada objeto Lugar en un array
         $places = array_map(function ($place) {
             return $place->toArray();
         }, $places_objects);
 
+        // Codificar los lugares en JSON
         $places_json = json_encode($places);
 
         // Pasar los datos a la vista
         include 'view/visitorMapaCategory.php';
 
-        //depurasión
+        // Debugging
         echo "<script>console.log(" . json_encode($places) . ");</script>";
 
+        // Establecer la vista
         $this->view = 'visitorMapaCategory';
     }
 }

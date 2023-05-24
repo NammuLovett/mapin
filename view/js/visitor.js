@@ -133,11 +133,10 @@ function toggleFavorited(event) {
         // Añade la animación al icono
         icon.animate(
           [
-            // Estado inicial de la animación
             { transform: 'scale(1)', opacity: 1 },
-            // Estado intermedio de la animación
-            { transform: 'scale(1.5)', opacity: 0.5 },
-            // Estado final de la animación
+
+            { transform: 'scale(1.8)', opacity: 0.5 },
+
             { transform: 'scale(1)', opacity: 1 },
           ],
           {
@@ -160,7 +159,7 @@ function toggleFavorited(event) {
       console.error('Error en la solicitud');
     });
 }
-/* BOTÓN VISITADO */
+
 /* BOTÓN VISITADO */
 // Función que se ejecuta cuando se hace clic en el botón de visitado
 function toggleVisited(event) {
@@ -171,6 +170,11 @@ function toggleVisited(event) {
   let span = link.querySelector('span');
   let dateSpan = link.querySelector('span[data-date]');
   let idPlace = link.getAttribute('data-place');
+
+  // Verificar si el enlace tiene la clase 'lejos' y si el lugar no ha sido visitado
+  if (link.classList.contains('lejos') && !link.classList.contains('activo')) {
+    return; // Si está lejos y el lugar no ha sido visitado, simplemente regresar y no hacer nada
+  }
 
   fetch('index.php?action=toggleVisited&idPlace=' + idPlace)
     .then((response) => {
@@ -184,7 +188,13 @@ function toggleVisited(event) {
         link.classList.toggle('activo');
         icon.classList.toggle('fa-check');
         icon.classList.toggle('fa-times');
-        span.textContent = json.Visitado ? 'Visitado' : 'No visitado';
+
+        // Agregado: Actualizar el texto cuando se está lejos y se ha desmarcado como visitado
+        if (!json.Visitado && link.classList.contains('lejos')) {
+          span.textContent = 'Estás lejos';
+        } else {
+          span.textContent = json.Visitado ? 'Visitado' : 'No visitado';
+        }
 
         if (json.Visitado) {
           if (!dateSpan) {
@@ -203,7 +213,7 @@ function toggleVisited(event) {
         icon.animate(
           [
             { transform: 'scale(1)', opacity: 1 },
-            { transform: 'scale(1.3)', opacity: 0.5 },
+            { transform: 'scale(1.8)', opacity: 0.5 },
             { transform: 'scale(1)', opacity: 1 },
           ],
           {
