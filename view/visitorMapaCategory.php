@@ -3,9 +3,11 @@ $categoryId = $_GET['id'];
 $places = Place::getPlacesByCategoryId($categoryId);
 
 $category = Category::getCategoryById($categoryId);
+/* echo '<pre>', var_dump($places), '</pre>';
+echo '<pre>', ($places_json), '</pre>'; */
 
 
-/* var_dump($places_json) */
+
 ?>
 
 <!DOCTYPE html>

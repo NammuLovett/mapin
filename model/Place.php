@@ -288,7 +288,7 @@ class Place
         $dbObj = new Db();
         $conection = $dbObj->conection;
 
-        $sql = "SELECT p.* FROM place p JOIN placeHaveCategory pc ON p.idPlace = pc.idPlace WHERE pc.idCategory = '$idCategory'";
+        $sql = "SELECT DISTINCT p.* FROM place p JOIN placeHaveCategory pc ON p.idPlace = pc.idPlace WHERE pc.idCategory = '$idCategory'";
 
         $result = $conection->query($sql);
 
