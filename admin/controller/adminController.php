@@ -218,7 +218,7 @@ class adminController
         $addressPlace = isset($_POST['addressPlace']) ? $_POST['addressPlace'] : '';
         $latPlace = isset($_POST['latPlace']) ? $_POST['latPlace'] : '';
         $lonPlace = isset($_POST['lonPlace']) ? $_POST['lonPlace'] : '';
-        $imgPlace = isset($_POST['imgPlace']) ? $_POST['imgPlace'] : '';
+        $imgPlace = isset($_POST['imgPlace']) ? $_POST['imgPlace'] : 'image0.png';
         $showPlace = isset($_POST['showPlace']) ? $_POST['showPlace'] : 1;
         $idLocation = isset($_POST['idLocation']) ? $_POST['idLocation'] : '1';
         $categories = isset($_POST['category']) ? $_POST['category'] : null;
@@ -228,7 +228,7 @@ class adminController
 
         // Si se seleccionaron categorías, actualiza las categorías del lugar
         if ($categories) {
-            $place->assignCategories($idPlace, $categories);  // Deberás crear esta función
+            $place->assignCategories($idPlace, $categories);
         }
 
         $places = Place::getAllPlaces();
