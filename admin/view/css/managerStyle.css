@@ -83,6 +83,15 @@ body {
   margin-right: 10px;
 }
 
+.dashboard {
+  height: 100vh;
+}
+.dashboard img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
 /* Propiedades de la tabla */
 
 .table-container {
