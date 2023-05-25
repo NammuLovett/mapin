@@ -533,7 +533,7 @@ body {
 
 /* VISTA LUGARES DETALLE*/
 .place-image {
-  height: 40vh;
+  height: 45vh;
   background-position: center center;
   background-size: cover;
   object-fit: cover;
@@ -798,6 +798,9 @@ nav.nav-mobile ul {
   .chart-container {
     flex-direction: column;
     width: 100%;
+  }
+  .place-image {
+    height: 33vh;
   }
 }
 
