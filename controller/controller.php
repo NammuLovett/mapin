@@ -295,6 +295,7 @@ class Controller
         // Obtener el objeto Categoría correspondiente
         $category = Category::getCategoryById($categoryId);
 
+
         // Convertir cada objeto Lugar en un array
         $places = array_map(function ($place) {
             return $place->toArray();
