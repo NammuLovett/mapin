@@ -147,9 +147,6 @@ class Controller
         $idVisitor = $visitor->getIdVisitor();
         $places_objects = Place::getAllFavoritePlacesBy($idVisitor);
 
-
-
-
         // Convertir cada objeto Place en un array
         $places = array_map(function ($place) {
             return $place->toArray();
