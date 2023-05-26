@@ -153,6 +153,8 @@ class Place
 
     /* FUNCIONES */
 
+    /* Obtener todos los lugares */
+
     public static function getAllPlaces()
     {
         $dbObj = new Db();
@@ -163,7 +165,7 @@ class Place
         $places = [];
 
         if ($result === false) {
-            // si falla, mostrar el error
+            // si falla, muestra el error
             echo "Error: " . $conection->error;
         } else {
             while ($row = $result->fetch_assoc()) {
@@ -174,6 +176,7 @@ class Place
         return $places;
     }
 
+    /* Obtener lugares por el ID */
     public static function getPlaceById($idPlace)
     {
         $dbObj = new Db();
@@ -193,12 +196,11 @@ class Place
     }
 
 
-
+    /* añadir Lugares */
     public function addPlace($namePlace, $infoPlace, $descriptionPlace, $addressPlace, $imgPlace, $latPlace, $lonPlace, $showPlace, $idLocation)
     {
         $this->getConection();
         $sql = "INSERT INTO place (namePlace, infoPlace, descriptionPlace, addressPlace, imgPlace, latPlace, lonPlace, showPlace, idLocation) VALUES ('$namePlace', '$infoPlace','$descriptionPlace','$addressPlace', '$imgPlace', '$latPlace', '$lonPlace', '$showPlace', '$idLocation' )";
-
 
 
         if ($this->conection->query($sql) === false) {
@@ -207,6 +209,7 @@ class Place
         return $this->conection->insert_id;
     }
 
+    /* Editar Lugares */
     public function editPlace($idPlace)
     {
         $this->getConection();
@@ -234,6 +237,7 @@ class Place
         }
     }
 
+    /* Borrar Lugares */
     public function deletePlace($idPlace)
     {
         $this->getConection();
@@ -280,7 +284,8 @@ class Place
         }
     }
 
-    /* Vista categorías */
+
+    /* Vista categorías - Obtener Lugares por ID Categoría*/
     public static function getPlacesByCategoryId($idCategory)
     {
         $idCategory = intval($idCategory);
@@ -304,6 +309,7 @@ class Place
     }
 
     /* vista descubre NV */
+    /* Obtener todos los lugares no visitados con el ID del visitante */
     public static function getAllPlacesNotVisitedBy($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -322,12 +328,11 @@ class Place
                 $places[] = $place;
             }
         }
-
-
         return $places;
     }
 
     /* vista descubre V*/
+    /* Obtener todos los lugares  visitados con el ID del visitante */
     public static function getAllPlacesVisitedBy($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -351,6 +356,7 @@ class Place
     }
 
     /* vista favorito */
+    /* Obtener todos los lugares favoritos del idVisitor */
     public static function getAllFavoritePlacesBy($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -392,6 +398,7 @@ class Place
         // Si el visitante no ha marcado el lugar como visitado, devuelve false
         return false;
     }
+
     /* vista detalle place si es favort*/
     public function checkIfFavorited($idVisitor, $idPlace)
     {
@@ -413,6 +420,7 @@ class Place
 
 
     /* vista detalle place */
+    /* Marcar como visitado */
     public function toggleVisited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -443,6 +451,7 @@ class Place
     }
 
     /* vista detalle place */
+    /* Marcar como favorito */
     public function toggleFavorited($idVisitor, $idPlace)
     {
         $idVisitor = intval($idVisitor);
@@ -464,6 +473,7 @@ class Place
     }
 
     /* Gráfica */
+    /* Obtener categorías de lugares visitados contando por el ID del visitor */
     public static function getVisitedPlacesCategoriesCountByVisitor($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -489,6 +499,7 @@ class Place
     }
 
     /* Gráfica */
+    /* Obtiene el total de sitios  */
     public static function getTotalPlaces()
     {
         $dbObj = new Db();
@@ -507,6 +518,7 @@ class Place
     }
 
     /* gráfica */
+    /* Obtener los la cuenta de los lugares visitados por el IDvisitor */
     public static function getVisitedPlacesCount($idVisitor)
     {
         $idVisitor = intval($idVisitor);
@@ -528,6 +540,8 @@ class Place
         return 0;
     }
 
+
+    /* Obtener categorías por el ID del lugar */
     public static function getCategoriesByPlaceId($idPlace)
     {
         $idPlace = intval($idPlace);

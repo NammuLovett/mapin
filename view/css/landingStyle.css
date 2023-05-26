@@ -38,7 +38,10 @@ header {
   padding: 20px;
   background-color: var(--color-cuaternario);
 }
-
+.logo {
+  top: 2%;
+  width: 20%;
+}
 .logo img {
   max-width: 220px;
   display: flex;
@@ -287,7 +290,7 @@ nav.nav-mobile ul {
 
 .opiniones {
   background-color: var(--color-cuaternario);
-  padding: 10% 10%;
+  padding: 5% 5%;
 }
 
 .opiniones h2 {

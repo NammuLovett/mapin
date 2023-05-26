@@ -60,6 +60,8 @@ class Controller
     }
 
     /* CARGAR VISTAS  VISITOR */
+
+    /* DASHBOARD */
     public function verVisitorDashboard()
     {
         if (isset($_SESSION['visitor'])) {
@@ -85,38 +87,42 @@ class Controller
             $places_json = json_encode($places); //convertir datos en PHP a una cadena en formato JSON 
 
             // Pasa la información del visitante a la vista
-            include 'view/visitorDashboard.php';
+            include_once 'view/visitorDashboard.php';
         } else {
             $this->login();
         }
     }
 
 
-
+    /* DESCUBRE Total */
     public function verVisitorDescubre()
     {
+        // Obtiene todos los lugares disponibles
         $places = Place::getAllPlaces();
 
         $this->view = 'visitorDescubre';
         require_once('view/visitorDescubre.php');
     }
 
-
+    /* DESCUBRE visitado */
     public function verVisitorDescubreV()
     {
         if (!isset($_SESSION['visitor'])) {
             header('Location: index.php?action=login');
             exit();
         }
-
+        // Recupera el visitante actual a través de la ID de sesión del visitante
         $visitor = Visitor::getVisitorById($_SESSION['visitor']);
+        // Obtiene la ID del visitante
         $idVisitor = $visitor->getIdVisitor();
+        // Obtiene todos los lugares que ha visitado el visitante
         $places = Place::getAllPlacesVisitedBy($idVisitor);
 
         require_once('view/visitorDescubreV.php');
         $this->view = 'visitorDescubreV';
     }
 
+    /* DESCUBRE No visitado */
     public function verVisitorDescubreNV()
     {
         if (!isset($_SESSION['visitor'])) {
@@ -133,25 +139,27 @@ class Controller
     }
 
 
-
-
-
+    /* FAVORITO  */
     public function verVisitorFavorito()
     {
+        // Comprueba si el visitante ha iniciado sesión. Si no es así, redirige a la página de inicio de sesión.
         if (!isset($_SESSION['visitor'])) {
             header('Location: index.php?action=login');
             exit();
         }
-
+        // Recupera el visitante actual usando la ID de la sesión del visitante
         $visitor = Visitor::getVisitorById($_SESSION['visitor']);
         $idVisitor = $visitor->getIdVisitor();
+
+        // Recupera todos los lugares favoritos del visitante
         $places_objects = Place::getAllFavoritePlacesBy($idVisitor);
 
-        // Convertir cada objeto Place en un array
+        // Convertir cada objeto Places en un array
         $places = array_map(function ($place) {
             return $place->toArray();
         }, $places_objects);
 
+        // Convierte los lugares en formato JSON
         $places_json = json_encode($places);
 
         /* echo "<script>console.log(" . json_encode($places) . ");</script>"; */
@@ -162,17 +170,20 @@ class Controller
     }
 
 
-
+    /* VISTA CATEGORÍAS */
     public function verVisitorMapa()
     {
         $this->view = 'visitorMapa';
     }
+
+    /* VISTA DETALLE DE LUGAR */
 
     public function verVisitorPlace()
     {
         if (isset($_GET['id'])) {
             $idPlace = $_GET['id'];
 
+            // Obtiene los detalles del lugar a través de su ID
             $place = Place::getPlaceById($idPlace);
 
             $idVisitor = $_SESSION['visitor'];
@@ -186,8 +197,12 @@ class Controller
             // Pasamos la variable $hasVisited y $isFavorited a la vista
             $this->view = 'visitorPlace';
             $this->mapin = $place;
+
+            // Determina si el visitante ha visitado el lugar y si lo ha marcado como favorito
             $hasVisited = $visitData ? true : false;
             $isFavorited = $favoritedData ? true : false;
+
+            // Recupera la fecha de la visita, si existe
             $visitDate = $visitData ? $visitData['dateVVP'] : null;
             $_SESSION['mapin'] = $place;
 
@@ -197,7 +212,7 @@ class Controller
         }
     }
 
-    // Esta función se usa para marcar o desmarcar un lugar como visitado
+    // Se usa para marcar o desmarcar un lugar como visitado
     public function toggleVisited()
     {
         // Verificar si se ha proporcionado el id del lugar a través de GET
@@ -214,7 +229,7 @@ class Controller
                 $visitDate = null;
                 if ($visitData) {
                     $visitDate = $visitData['dateVVP'];
-                    $visitDate = date('m/d/Y', strtotime($visitDate)); // Formatear la fecha
+                    $visitDate = date('d/m/Y', strtotime($visitDate)); // Formatear la fecha
                 }
                 // Devolver un JSON con el resultado de la operación
                 echo json_encode(array('success' => true, 'Visitado' => $visitData ? true : false, 'fecha' => $visitDate));
@@ -253,6 +268,8 @@ class Controller
         }
         exit;
     }
+
+
 
     // Esta función se usa para insertar un nuevo visitante en la base de datos
     public function insertVisitor()

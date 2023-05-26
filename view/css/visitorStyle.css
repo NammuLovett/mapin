@@ -110,7 +110,6 @@ body {
 }
 
 /* COLUMNA 2 */
-
 .columna-2 {
   display: grid;
   grid-template-rows: repeat(4, auto);
@@ -318,6 +317,7 @@ body {
   object-fit: cover;
 }
 
+/* DESCUBRE */
 /* CARDS HORIZONTALES*/
 .cards-container-c3 {
   display: flex;
@@ -343,7 +343,7 @@ body {
 
 .card-image-c3 {
   flex: 0 0 auto;
-  width: 30%;
+  width: 40%;
   height: 100%;
   overflow: hidden;
   border-radius: 5px;
@@ -400,16 +400,6 @@ body {
 .card-date-container-star i {
   color: var(--color-star);
   padding: 5%;
-}
-
-.cards-container-c3 a {
-  color: inherit;
-}
-
-.cards-container-c3 a:hover,
-.cards-container-c3 a:focus,
-.cards-container-c3 a:active {
-  color: inherit;
 }
 
 /* HOVER CARDS HORIZ*/
@@ -801,6 +791,10 @@ nav.nav-mobile ul {
   }
   .place-image {
     height: 33vh;
+  }
+  .category-cards-container {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 

@@ -96,7 +96,7 @@ $mapin = $_SESSION['mapin'];
                             </div>
                             <span><?php echo $hasVisited ? 'Visitado' : 'No visitado'; ?></span>
                             <?php if ($hasVisited) : ?>
-                                <span data-date style="display: inline;"><?php echo date('m/d/Y', strtotime($visitDate)); ?></span>
+                                <span data-date style="display: inline;"><?php echo date('d/m/Y', strtotime($visitDate)); ?></span>
                             <?php else : ?>
                                 <span data-date style="display: none;"></span>
                             <?php endif; ?>

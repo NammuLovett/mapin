@@ -114,9 +114,9 @@
                 </div>
 
                 <div class="card">
-                    <img src="zimg/places/image2.png" alt="Lugar de interés 1" />
+                    <img src="zimg/places/image4.png" alt="Lugar de interés 1" />
                     <div class="card-info">
-                        <h3>Parque Marítimo</h3>
+                        <h3>Puerta Califal</h3>
                         <div class="rating">
                             <span>4.5</span>
                             <span class="star">★</span>
@@ -126,7 +126,7 @@
                 </div>
                 <!-- asd -->
                 <div class="card">
-                    <img src="zimg/places/image3.png" alt="Lugar de interés 1" />
+                    <img src="zimg/places/image2.png" alt="Lugar de interés 1" />
                     <div class="card-info">
                         <h3>Casa de los dragones</h3>
                         <div class="rating">
@@ -178,10 +178,10 @@
         <div class="opiniones-contenedor">
             <div class="opinion">
                 <div class="foto-opinion">
-                    <img src="zimg/places/image3.png" alt="avatar" />
+                    <img src="zimg/avatar/avatar.png" alt="avatar" />
                 </div>
                 <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
-                <p class="autor">Paco Benítez</p>
+                <p class="autor">Lucía Ramos</p>
                 <p class="ciudad">Sevilla</p>
                 <div class="estrellas">
                     <span class="star">&#9733;</span>
@@ -195,10 +195,10 @@
             <!-- opinion -->
             <div class="opinion">
                 <div class="foto-opinion">
-                    <img src="zimg/places/image3.png" alt="avatar" />
+                    <img src="zimg/avatar/avatar2.png" alt="avatar" />
                 </div>
-                <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
-                <p class="autor">Nombre del usuario</p>
+                <p class="texto-opinion">"Encontrar lugares especiales nunca ha sido tan divertido" </p>
+                <p class="autor">Juan Benítez</p>
                 <p class="ciudad">Ciudad del usuario</p>
                 <div class="estrellas">
                     <span class="star">&#9733;</span>
@@ -211,11 +211,11 @@
             <!-- opinion -->
             <div class="opinion">
                 <div class="foto-opinion">
-                    <img src="zimg/places/image3.png" alt="avatar" />
+                    <img src="zimg/avatar/john.jpg" alt="avatar" />
                 </div>
-                <p class="texto-opinion">"La APP me ha facilitado mucho el encontrar los lugares de interés" </p>
-                <p class="autor">Nombre del usuario</p>
-                <p class="ciudad">Ciudad del usuario</p>
+                <p class="texto-opinion">yippy yay hey!</p>
+                <p class="autor">John McClane</p>
+                <p class="ciudad">NY City</p>
                 <div class="estrellas">
                     <span class="star">&#9733;</span>
                     <span class="star">&#9733;</span>
