@@ -9,6 +9,7 @@ require_once 'model/Location.php';
 require_once 'model/Manager.php';
 require_once 'model/Place.php';
 require_once 'model/Visitor.php';
+
 /* controlador */
 require_once 'controller/controller.php';
 
