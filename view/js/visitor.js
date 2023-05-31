@@ -1,5 +1,5 @@
 //HAMBURGUESITA
-
+//idem landing
 document.addEventListener('DOMContentLoaded', function () {
   const hamburger = document.querySelector('.hamburger');
   const navMobile = document.querySelector('.nav-mobile');
@@ -45,28 +45,28 @@ document.addEventListener('DOMContentLoaded', function () {
       var imgElement = document.getElementById('weather-img');
       imgElement.src = iconUrl;
 
-      // Obtén el elemento de descripción y establece su texto a la descripción del clima
+      // Obtiene el elemento de descripción y establece su texto en el clima
       var descriptionElement = document.getElementById('weather-description');
       descriptionElement.textContent = data.weather[0].description;
 
       // Convierte la temperatura de Kelvin a Celsius
       var tempCelsius = data.main.temp - 273.15;
 
-      // Obtén el elemento de temperatura y establece su texto a la temperatura en grados centígrados
+      // Obtiene el elemento de temperatura y establece el texto para la temperatura en grados centígrados
       var tempElement = document.getElementById('weather-temperature');
       tempElement.textContent = tempCelsius.toFixed(2) + ' °C';
 
       // Añade la velocidad del viento
       var windSpeed = data.wind.speed;
 
-      // Obtén el elemento del viento y establece su texto a la velocidad del viento
+      // Obtiene el elemento del viento y establece el texto con la velocidad
       var windElement = document.getElementById('weather-wind');
       windElement.textContent = 'Viento: ' + windSpeed + ' m/s';
 
       // Añade la humedad
       var humidity = data.main.humidity;
 
-      // Obtén el elemento de humedad y establece su texto a la humedad
+      // Obtiene el elemento de humedad y establece el texto
       var humidityElement = document.getElementById('weather-humidity');
       humidityElement.textContent = 'Humedad: ' + humidity + ' %';
 
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var cardinalDirection =
         cardinalDirections[Math.round(windDirection / 45)];
 
-      // Obtén el elemento de dirección del viento y establece su texto a la dirección del viento
+      // Obtiene el elemento de dirección del viento y establece el texto
       var windDirectionElement = document.getElementById(
         'weather-wind-direction'
       );
@@ -111,23 +111,22 @@ function toggleFavorited(event) {
   // Obtiene el id del lugar del atributo 'data-place' del enlace
   let idPlace = link.getAttribute('data-place');
 
-  // Realiza una solicitud GET al servidor para marcar/desmarcar el lugar como favorito
+  // Realiza una solicitud GET al controlador para marcar/desmarcar el lugar como favorito
   fetch('index.php?action=toggleFavorited&idPlace=' + idPlace)
     // Una vez que la respuesta ha sido recibida
     .then((response) => {
-      // Si la respuesta no es exitosa (el código de estado HTTP no está en el rango 200-299)
+      // Si la respuesta no es exitosa
       if (!response.ok) {
-        // Lanza un error que será capturado por la promesa más cercana con un bloque catch
+        // Lanza un error
         throw new Error('HTTP error ' + response.status);
       }
-      // Si la respuesta es exitosa, parsea el cuerpo de la respuesta como JSON
+      // Si la respuesta es exitosa, respuesta como JSON
       return response.json();
     })
-    // Una vez que el cuerpo de la respuesta ha sido parseado
     .then((json) => {
       // Si la respuesta indica que la operación fue exitosa
       if (json.success) {
-        // Cambia la clase 'activo' del enlace según si el lugar es favorito o no
+        // Cambia la clase 'activo' del enlace dependiendo de si el lugar es favorito o no
         link.classList.toggle('activo', json.favorited);
 
         // Añade la animación al icono
@@ -142,12 +141,12 @@ function toggleFavorited(event) {
           {
             // Duración de la animación
             duration: 500,
-            // Función de suavizado de la animación
+            // Función de movimiento de la animación
             easing: 'ease-in-out',
           }
         );
 
-        // Si la respuesta indica que hubo un error
+        // Si en la respuesta  hubo un error
       } else {
         // Escribe el mensaje de error en la consola
         console.error(json.error);
@@ -161,10 +160,12 @@ function toggleFavorited(event) {
 }
 
 /* BOTÓN VISITADO */
-// Función que se ejecuta cuando se hace clic en el botón de visitado
+// Se ejecuta cuando se hace clic en el botón de visitado
 function toggleVisited(event) {
+  // Evita que se ejecute la acción por defecto del evento, que sería navegar al href del enlace
   event.preventDefault();
 
+  //idem fav
   let link = event.target.closest('a');
   let icon = link.querySelector('i');
   let span = link.querySelector('span');
@@ -173,23 +174,27 @@ function toggleVisited(event) {
 
   // Verificar si el enlace tiene la clase 'lejos' y si el lugar no ha sido visitado
   if (link.classList.contains('lejos') && !link.classList.contains('activo')) {
-    return; // Si está lejos y el lugar no ha sido visitado, simplemente regresar y no hacer nada
+    return; // Si está lejos y el lugar no ha sido visitado, regresar y no hacer nada
   }
 
+  // Realiza una solicitud GET al controlador para marcar/desmarcar el lugar como Visitado
   fetch('index.php?action=toggleVisited&idPlace=' + idPlace)
     .then((response) => {
+      //si la respuesta es KO, muestra error
       if (!response.ok) {
         throw new Error('HTTP error ' + response.status);
       }
+      //respuesta es OK, convierte la respuesta en JSON
       return response.json();
     })
     .then((json) => {
       if (json.success) {
+        //Cambia la clase 'activo' del enlace, cambia elicono
         link.classList.toggle('activo');
         icon.classList.toggle('fa-check');
         icon.classList.toggle('fa-times');
 
-        // Agregado: Actualizar el texto cuando se está lejos y se ha desmarcado como visitado
+        // Actualizar el texto cuando está lejos y se ha desmarcado como visitado
         if (!json.Visitado && link.classList.contains('lejos')) {
           span.textContent = 'Estás lejos';
         } else {
@@ -198,17 +203,21 @@ function toggleVisited(event) {
 
         if (json.Visitado) {
           if (!dateSpan) {
-            // Si no existe un span para la fecha, créalo.
+            // Si no existe un span para la fecha, se añade.
             dateSpan = document.createElement('span');
             link.appendChild(dateSpan);
           }
+          // Asigna la fecha de visita al elemento 'span' y se muestra
           dateSpan.textContent = json.fecha;
           dateSpan.style.display = 'inline';
         } else {
+          // Si no se ha visitado, oculta el elemento 'span' de la fecha
           if (dateSpan) {
             dateSpan.style.display = 'none';
           }
         }
+
+        // Añade la animación al icono
 
         icon.animate(
           [
@@ -222,10 +231,12 @@ function toggleVisited(event) {
           }
         );
       } else {
+        //imprime errores por consola
         console.error(json.error);
       }
     })
     .catch(function (error) {
+      //imprime errores por consola
       console.error('Error en la solicitud:', error);
     });
 }
