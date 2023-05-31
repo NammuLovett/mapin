@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Escucha el evento del botón hamburguesa.
   hamburger.addEventListener('click', function () {
-    /* console.log('Hamburger clicked'); */
+    console.log('Hamburger clicked');
     // Cambia la clase 'open' en el botón hamburguesa.
     hamburger.classList.toggle('open');
     // Cambia la clase 'visible' en el menú móvil.
