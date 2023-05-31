@@ -189,6 +189,7 @@ var_dump($_SESSION); */
                             lat: parseFloat(place.latPlace),
                             lng: parseFloat(place.lonPlace)
                         };
+
                         // Crea un objeto placeLatLng con la ubicación del lugar
                         var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
                         // Calcula la distancia entre la ubicación del usuario y la ubicación del lugar

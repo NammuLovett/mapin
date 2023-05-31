@@ -83,6 +83,7 @@
             <!-- Segunda fila: mapa -->
             <div class="fila-2 f2mapa">
                 <div class="category-cards-container">
+                    <!-- Itera todas las Categorías con un enlace a cada una de estas -->
                     <?php
                     $allCategories = Category::getAllCategories();
                     foreach ($allCategories as $category) :
