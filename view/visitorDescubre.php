@@ -100,6 +100,7 @@ var_dump($_SESSION);
                 </div>
                 <!-- Card -->
                 <div class="cards-container-c3 ">
+                    <!-- Itera y muestra todos los lugares de la plataforma con sus datos-->
                     <?php foreach ($places as $place) : ?>
                         <a href="index.php?action=verVisitorPlace&id=<?php echo $place->getIdPlace(); ?>">
                             <div class="card-c3">
@@ -121,7 +122,6 @@ var_dump($_SESSION);
                         </a>
                     <?php endforeach; ?>
 
-                    <!-- Card -->
 
                 </div>
 
