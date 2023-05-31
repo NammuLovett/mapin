@@ -230,7 +230,7 @@ $mapin = $_SESSION['mapin'];
                         content: infoWindowContent
                     });
 
-                    // Abre la ventana de información cuando se hace clic en el marcador del lugar
+                    // Abre la ventan de información cuando se hace clic en el marcador del lugar
                     placeMarker.addListener('click', function() {
                         // Si existe una ventana de información abierta, la cierra antes de abrir la nueva
                         if (infoWindow) {
