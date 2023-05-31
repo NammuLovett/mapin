@@ -244,17 +244,31 @@ var_dump($_SESSION); */
         }
     </script>
 
-
-
-    <!-- Gráfico totales -->
+    <!-- BARRA DE PROGRESO DE CEUTA -->
     <script>
+        // Obtiene el porcentaje de lugares visitados desde una variable PHP
+        var percentageVisited = <?= $percentageVisited ?>;
+
+        // Busca el elemento con el ID 'progress-bar' en el documento
+        // y ajusta su ancho al porcentaje de lugares visitados.
+        document.getElementById('progress-bar').style.width = percentageVisited + '%';
+    </script>
+
+    <!-- Gráfico totales CHARTJS -->
+    <script>
+        // elemento de canvas con el ID 'totalChart'
         const totalCtx = document.getElementById('totalChart').getContext('2d');
 
+        // Crea un nuevo gráfico de pastel utilizando la biblioteca Chart.js más info en la memoria
         const totalChart = new Chart(totalCtx, {
             type: 'pie',
             data: {
+                // Establece las etiquetas para las secciones del gráfico
                 labels: ['Total', 'Visitado'],
                 datasets: [{
+                    // Establece los datos para el gráfico de pastel utilizando valores PHP incrustados
+                    // $totalPlaces representa el número total de lugares
+                    // $visitedPlacesCount representa el número de lugares visitados
                     data: [<?= $totalPlaces ?>, <?= $visitedPlacesCount ?>],
                     backgroundColor: [
                         'rgba(75, 192, 192, 0.5)',
@@ -270,18 +284,23 @@ var_dump($_SESSION); */
         });
     </script>
 
-    <!-- Gráfico categorías -->
+    <!-- Gráfico categorías CHARTJS -->
     <script>
-        // Obtén el contexto de dibujo en un elemento canvas con id 'myChart'
+        // Elemento canvas con id 'myChart'
         const ctx = document.getElementById('myChart').getContext('2d');
 
-        // Crea un nuevo gráfico PolarArea utilizando la biblioteca Chart.js
+        // Crea un nuevo gráfico PolarArea utilizando la biblioteca Chart.js más info memoria
         const myChart = new Chart(ctx, {
+            //tipo de gráfico
             type: 'doughnut',
             data: {
-                labels: <?php echo json_encode(array_column($visitedCategoriesData, 'nameCategory')); ?>, // Etiquetas de los datos
+                // Muestra como etiqueta, el nombre de la categoría
+                labels: <?php echo json_encode(array_column($visitedCategoriesData, 'nameCategory')); ?>,
+                // Establece los datos para el gráfico utilizando valores PHP incrustados
+                // $visitedPlace representa el número total de lugares visitados por cada categoría
                 datasets: [{
-                    data: <?php echo json_encode(array_column($visitedCategoriesData, 'visitedPlaces')); ?>, // Los datos a graficar, // Los datos a graficar
+                    // Los datos a mostrar
+                    data: <?php echo json_encode(array_column($visitedCategoriesData, 'visitedPlaces')); ?>,
                     // Colores de fondo para cada dato
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.5)',
@@ -301,17 +320,10 @@ var_dump($_SESSION); */
                     borderWidth: 2, // Ancho del borde
                 }, ],
             },
-            options: {
-                // Configuraciones adicionales
-            },
+            options: {},
         });
     </script>
-    <!-- Progress bar -->
-    <script>
-        var percentageVisited = <?= $percentageVisited ?>;
 
-        document.getElementById('progress-bar').style.width = percentageVisited + '%';
-    </script>
 
     <script src="view/js/visitor.js"></script>
 
