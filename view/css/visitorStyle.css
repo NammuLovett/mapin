@@ -24,7 +24,6 @@
 body {
   font-family: 'Lato', sans-serif;
   background-color: var(--background-color);
-  /* overflow: hidden;  */
 }
 
 .grid-container {
@@ -186,13 +185,13 @@ body {
   flex-direction: row;
   justify-content: space-around;
 }
+
 .myChart {
   width: 100%;
   height: 100%;
 }
 
-/* PROGRESS BAR */
-
+/* BARRA DE PROGRESO DE VISITOR */
 .estadisticas h2 {
   color: var(--primary-color);
 }
@@ -214,7 +213,7 @@ body {
   background-color: var(--primary-color);
 }
 
-/* PREVISIÓN */
+/* PREVISIÓN DEL TIEMPO*/
 .previsión {
   display: flex;
   flex-direction: column;
@@ -297,7 +296,7 @@ body {
   color: var(--primary-color);
 }
 
-/* AVATAR */
+/* AVATAR VISITOR*/
 .avatar {
   width: 6vw;
   height: 6vw;
@@ -317,8 +316,8 @@ body {
   object-fit: cover;
 }
 
-/* DESCUBRE */
-/* CARDS HORIZONTALES*/
+/* MENÚ / DESCUBRE */
+/* CARDS HORIZONTALES */
 .cards-container-c3 {
   display: flex;
   flex-direction: column;
@@ -402,7 +401,7 @@ body {
   padding: 5%;
 }
 
-/* HOVER CARDS HORIZ*/
+/* HOVER CARDS HORIZONTL*/
 .card-c3:hover:before {
   content: '';
   position: absolute;
@@ -422,6 +421,7 @@ body {
   z-index: 2;
 }
 
+/* MENÚ / CATEGORÍAS */
 /* CONTENEDOR DE CATEGORÍAS */
 .categorias-container {
   display: flex;
@@ -465,7 +465,7 @@ body {
   color: var(--white);
 }
 
-/* Categorias map cards */
+/* Categorias cards */
 .category-cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -521,7 +521,8 @@ body {
   z-index: 2;
 }
 
-/* VISTA LUGARES DETALLE*/
+/* MENÚ / X */
+/* VISTA LUGARES sHOW DETALLE*/
 .place-image {
   height: 45vh;
   background-position: center center;
@@ -626,7 +627,7 @@ body {
   color: var(--white);
 }
 
-/* Botón visitado */
+/* BOTÓN visitado */
 a.lejos {
   pointer-events: none;
   color: #ccc; /* color de texto gris para indicar que está deshabilitado */
@@ -716,7 +717,7 @@ nav.nav-mobile ul {
   gap: 2%;
   align-items: center;
 }
-
+/* Estilos para pantallas intermedias */
 @media only screen and (max-width: 968px) {
   .logo a {
     display: none;
@@ -797,8 +798,8 @@ nav.nav-mobile ul {
   }
 }
 
+/* Estilos para móviles */
 @media only screen and (max-width: 480px) {
-  /* Estilos para móviles */
   .grid-container {
     grid-template-columns: 1fr;
   }
