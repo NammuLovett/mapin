@@ -53,7 +53,7 @@ class Category
         $this->descriptionCategory = $descriptionCategory;
     }
 
-    /* INSERT LIST DELETE UPDATE  */
+    /* INSERT DELETE UPDATE  */
 
     public function addCategory($nameCategory, $descriptionCategory)
     {
@@ -85,6 +85,7 @@ class Category
         }
     }
 
+    /* Obtener todas categoría */
     public static function getAllCategories()
     {
         $dbObj = new Db();
@@ -103,6 +104,8 @@ class Category
         return $categories;
     }
 
+
+    /* Obtener la categoría por ID */
 
     public static function getCategoryById($idCategory)
     {

@@ -151,7 +151,7 @@ class Place
 
 
 
-    /* FUNCIONES */
+    /* MÉTODOS */
 
     /* Obtener todos los lugares */
 
@@ -458,11 +458,11 @@ class Place
         $dbObj = new Db();
         $conection = $dbObj->conection;
 
-        // Primero, verifica si el lugar ya es favorito
+        // Primero, verifica si el lugar es favorito
         $favoritedData = $this->checkIfFavorited($idVisitor, $idPlace);
 
         if ($favoritedData) {
-            // Si el lugar ya es favorito, borra el registro
+            // Si el lugar es favorito, borra el registro
             $sql = "DELETE FROM visitorFavPlace WHERE idVisitor = $idVisitor AND idPlace = $idPlace";
         } else {
             // Si el lugar no es favorito, inserta un nuevo registro
@@ -498,7 +498,7 @@ class Place
         return $categories;
     }
 
-    /* Gráfica */
+    /* GRÁFICA */
     /* Obtiene el total de sitios  */
     public static function getTotalPlaces()
     {
@@ -517,7 +517,7 @@ class Place
         return 0;
     }
 
-    /* gráfica */
+    /* GRÁFICA */
     /* Obtener los la cuenta de los lugares visitados por el IDvisitor */
     public static function getVisitedPlacesCount($idVisitor)
     {

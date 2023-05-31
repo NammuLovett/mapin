@@ -1,6 +1,7 @@
 <?php
 
 /* Database connection values */
+/* Son los del visitor */
 
 /* Default options */
 

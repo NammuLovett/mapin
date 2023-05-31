@@ -299,19 +299,6 @@ button[type='reset'] {
   border: 1px solid var(--primary-color);
 }
 
-input[type='date']::-webkit-calendar-picker-indicator {
-  color: var(--primary-color);
-  position: absolute;
-  left: 10px;
-  opacity: 1;
-}
-input[type='date']::-webkit-inner-spin-button {
-  display: none;
-}
-input[type='date'] {
-  padding-left: 35px !important;
-}
-
 hr {
   margin: 5%;
 }

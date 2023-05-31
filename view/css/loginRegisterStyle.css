@@ -10,6 +10,10 @@
 :root {
   --color-primario: #00ac8d;
   --color-blanco: #fff;
+  --color-error: #ed3a3a;
+  --color-warning: #ebbc2e;
+  --color-sucess: #33b469;
+  --color-info: #2f80ed;
 }
 body {
   font-family: 'Lato', sans-serif;
@@ -62,7 +66,7 @@ label {
 }
 /* Marcador campo oblig */
 label > span {
-  color: rgb(255, 75, 59);
+  color: var(--color-error);
 }
 .input-field,
 select {
@@ -102,7 +106,7 @@ input[type='date'] {
   padding-left: 35px !important;
 }
 .error {
-  color: rgb(216, 61, 61);
+  color: var(--color-error);
   font-size: 0.9em;
   display: none;
 }
@@ -148,20 +152,20 @@ button[type='reset'] {
 /* Contraseña semáforo */
 
 .strong {
-  background-color: var(--color-primario);
+  background-color: var(--color-sucess);
   color: var(--color-blanco);
   font-size: 2rem;
   font-size: 1.5rem;
 }
 
 .medium {
-  background-color: rgb(245, 203, 51);
+  background-color: var(--color-warning);
   color: var(--color-blanco);
   font-size: 1.5rem;
 }
 
 .weak {
-  background-color: rgb(222, 63, 63);
+  background-color: var(--color-error);
   color: var(--color-blanco);
   font-size: 1.5rem;
 }

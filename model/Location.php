@@ -76,18 +76,4 @@ class Location
     {
         $this->showLocation = $showLocation;
     }
-
-    // Métodos para manejar el array de lugares
-    public function addPlace($place)
-    {
-        array_push($this->places, $place);
-    }
-
-    public function removePlace($place)
-    {
-        $index = array_search($place, $this->places);
-        if ($index !== false) {
-            array_splice($this->places, $index, 1);
-        }
-    }
 }
