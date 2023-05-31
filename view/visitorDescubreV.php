@@ -93,6 +93,7 @@
                 </div>
                 <!-- Card -->
                 <div class="cards-container-c3 ">
+                    <!-- Itera y muestra todos los lugares de la plataforma VISITADOS-->
                     <?php foreach ($places as $place) : ?>
                         <a href="index.php?action=verVisitorPlace&id=<?php echo $place->getIdPlace(); ?>">
                             <div class="card-c3">
@@ -114,23 +115,6 @@
                             </div>
                         </a>
                     <?php endforeach; ?>
-
-                    <!-- Card -->
-
-                </div>
-                <!-- paginación -->
-                <!--   <div class="pagination-container">
-                    <ul class="pagination-list">
-                        <li class="page-item activo"><a href="#">1</a></li>
-                        <li class="page-item"><a href="#">2</a></li>
-                        <li class="page-item"><a href="#">3</a></li>
-                        <li class="page-item"><a href="#">4</a></li>
-                        <li class="page-item"><a href="#">5</a></li>
-                    </ul>
-                </div> -->
-
-                <!-- Tercera fila: Estadísticas -->
-                <div class="fila-3">
 
                 </div>
 

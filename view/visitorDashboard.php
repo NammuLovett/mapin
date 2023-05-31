@@ -183,9 +183,8 @@ var_dump($_SESSION); */
                     // Referencia para la ventana de info abierta actual
                     var currentInfoWindow = null;
 
-                    // Itera todos los lugares
+                    // Para cada lugar, crea un marcador en el mapa
                     places.forEach(function(place) {
-                        // Crea un objeto de ubicación para cada lugar
                         var placeLocation = {
                             lat: parseFloat(place.latPlace),
                             lng: parseFloat(place.lonPlace)
