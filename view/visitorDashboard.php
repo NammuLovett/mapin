@@ -117,7 +117,6 @@ var_dump($_SESSION); */
             <!-- c3 :Primera fila: Perfil -->
             <div class="fila-1">
                 <div class="avatar">
-                    <!--   <img src="../zimg/avatar/avatar.png" alt="Avatar de usuario" /> -->
                 </div>
                 <h4><?php echo $visitor->getNameVisitor(); ?></h4>
                 <p>Amante de los viajes</p>
@@ -139,7 +138,7 @@ var_dump($_SESSION); */
     </main>
     <!-- Api KEY google -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXT7vkQCPszRpdMfAJO7hMr55J31aZug&callback=initMap&libraries=geometry" type="text/javascript"></script>
-    <!-- Mapa Google -->
+    <!-- Mapa Google mostrando los sitios que están a 1km a tu alrededor vista DAHSBOARD -->
     <script>
         // Función para inicializar el mapa
         function initMap() {
@@ -148,7 +147,7 @@ var_dump($_SESSION); */
 
             // Comprueba si la geolocalización está habilitada en el navegador del usuario
             if (navigator.geolocation) {
-                // Obtén la ubicación actual del usuario
+                // Obtiene la ubicación actual del usuario
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var userLocation = {
                         lat: position.coords.latitude,
@@ -168,6 +167,7 @@ var_dump($_SESSION); */
                         }]
                     });
 
+                    // Crea un marcador en la ubicación actual del usuario
                     var userMarker = new google.maps.Marker({
                         position: userLocation,
                         map: map,
@@ -177,25 +177,28 @@ var_dump($_SESSION); */
                             scaledSize: new google.maps.Size(40, 40)
                         }
                     });
-
+                    // Crea un objeto userLatLng con las coordenadas con la ubicación del usuario
                     var userLatLng = new google.maps.LatLng(userLocation.lat, userLocation.lng);
 
-                    // Mantén una referencia a la ventana de información abierta actual
+                    // Referencia para la ventana de info abierta actual
                     var currentInfoWindow = null;
 
+                    // Itera todos los lugares
                     places.forEach(function(place) {
+                        // Crea un objeto de ubicación para cada lugar
                         var placeLocation = {
                             lat: parseFloat(place.latPlace),
                             lng: parseFloat(place.lonPlace)
                         };
-
+                        // Crea un objeto placeLatLng con la ubicación del lugar
                         var placeLatLng = new google.maps.LatLng(placeLocation.lat, placeLocation.lng);
-
+                        // Calcula la distancia entre la ubicación del usuario y la ubicación del lugar
                         var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, placeLatLng);
 
-                        // Decide cómo se muestra la distancia dependiendo de si es más o menos de 1 km
+                        // Formato de medida dependiendo de la distancia (si es más o menos de 1 km)
                         var displayDistance = distance < 1000 ? distance.toFixed(2) + " metros" : (distance / 1000).toFixed(2) + " km";
 
+                        // Si la distancia es menor o igual a 1000m, muestra marcador de lugar
                         if (distance <= 1000) {
                             var placeMarker = new google.maps.Marker({
                                 position: placeLocation,
@@ -203,18 +206,20 @@ var_dump($_SESSION); */
                                 title: place.namePlace
                             });
 
+                            // Contenido de la ventana de información
                             var infoWindowContent = "<h3>" + place.namePlace + "</h3><p>" + place.infoPlace + ".</p><p>Distancia desde tu ubicación: " + displayDistance + "</p><a href='https://www.google.com/maps/search/?api=1&query=" + place.latPlace + "," + place.lonPlace + "' target='_blank'>Ir al lugar</a><br><a href='index.php?action=verVisitorPlace&id=" + place.idPlace + "'>Ver detalles del lugar</a>";
-
+                            // Crea la ventana de información con el contenido
                             var infoWindow = new google.maps.InfoWindow({
                                 content: infoWindowContent
                             });
 
+                            // Añade un lisener de eventos al marcador para que se abra la ventana de información al hacer clic
                             placeMarker.addListener('click', function() {
                                 // Cierra la ventana de información abierta actual
                                 if (currentInfoWindow) {
                                     currentInfoWindow.close();
                                 }
-
+                                // Abre la nueva ventana de información y la guarda como la actual
                                 infoWindow.open(map, placeMarker);
                                 currentInfoWindow = infoWindow;
                             });
@@ -228,10 +233,12 @@ var_dump($_SESSION); */
                         }
                     });
 
+                    // Si ocurre un error al obtener la ubicación del usuario, muestra un mensaje de alerta
                 }, function() {
                     alert('Error: El navegador no permite la geolocalización, o esta ha sido desactivada.');
                 });
             } else {
+                // Si la geolocalización no está soportada en el navegador del usuario, muestra un mensaje de alerta
                 alert('Error: Tu navegador no soporta la geolocalización.');
             }
         }
